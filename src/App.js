@@ -4,10 +4,12 @@ import request from './utils/request'
 import findNextTide from './utils/find-next-tide'
 import { fetchLocation } from './utils/location'
 import TidePhrase from './location/tide-phrase'
+import CurrentWeather from './location/current-weather'
 
 class App extends Component {
   state = {
     tides: JSON.parse(localStorage.getItem('tides')),
+    weather: JSON.parse(localStorage.getItem('weather')),
   }
 
   componentDidMount() {
@@ -17,9 +19,14 @@ class App extends Component {
 
     fetchLocation().then(location => {
       request(`/tides?latitude=43.3845&longitude=-70.5440`).then(tides => {
-        console.log(tides)
         this.setState({ tides: tides })
         localStorage.setItem('tides', JSON.stringify(tides))
+      })
+
+      request(`/weather?latitude=43.3845&longitude=-70.5440`).then(weather => {
+        console.log(weather)
+        this.setState({ weather: weather })
+        localStorage.setItem('weather', JSON.stringify(weather))
       })
     })
   }
@@ -39,7 +46,10 @@ class App extends Component {
 
     return (
       <div>
-        <TidePhrase city="Boston" nextTide={this.nextTide} />
+        {this.state.tides && (
+          <TidePhrase city="Boston" nextTide={this.nextTide} />
+        )}
+        {this.state.weather && <CurrentWeather weather={this.state.weather} />}
       </div>
     )
   }

@@ -17,9 +17,17 @@ const SmallNumericType = glamorous.span({
   fontSize: 15,
 })
 
+const Body = glamorous.h3({
+  fontSize: 18,
+  color: Colors.baseTextColor,
+  fontFamily: bodyFontFamily,
+  fontWeight: 'normal',
+})
+
 const Type = {}
 
 Type.TidePhrase = TidePhrase
 Type.SmallNumericType = SmallNumericType
+Type.Body = Body
 
 export default Type
