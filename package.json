@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-geocode": "^0.0.1",
     "react-scripts": "1.1.1"
   },
   "scripts": {
@@ -15,14 +16,18 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.18.1",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
     "prettier": "^1.10.2"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,ts,tsx,json,css,md}": ["prettier --write", "git add"]
   }
 }

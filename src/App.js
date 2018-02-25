@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import request from './utils/request'
+import { fetchLocation } from './utils/location'
 
 class App extends Component {
   state = {
@@ -12,9 +13,12 @@ class App extends Component {
     // Kick of all requests
     // Save data to localStorage
 
-    request(`/tides?latitude=43.3845&longitude=-70.5440`).then(json => {
-      this.setState({ tides: json })
-      localStorage.setItem('tides', JSON.stringify(json))
+    fetchLocation().then(location => {
+      console.log('Location', location)
+      request(`/tides?latitude=43.3845&longitude=-70.5440`).then(json => {
+        this.setState({ tides: json })
+        localStorage.setItem('tides', JSON.stringify(json))
+      })
     })
   }
 
