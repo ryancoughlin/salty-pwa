@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <pre>{JSON.stringify(this.state.tides)}</pre>
+        <h2>{JSON.stringify(this.state.tides)}</h2>
       </div>
     )
   }
