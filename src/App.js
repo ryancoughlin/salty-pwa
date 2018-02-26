@@ -5,6 +5,7 @@ import findNextTide from './utils/find-next-tide'
 import { fetchLocation } from './utils/location'
 import TidePhrase from './location/tide-phrase'
 import CurrentWeather from './location/current-weather'
+import TodaysTides from './location/todays-tides'
 
 class App extends Component {
   state = {
@@ -50,6 +51,8 @@ class App extends Component {
           <TidePhrase city="Boston" nextTide={this.nextTide} />
         )}
         {this.state.weather && <CurrentWeather weather={this.state.weather} />}
+
+        <TodaysTides tides={this.state.tides} />
       </div>
     )
   }
