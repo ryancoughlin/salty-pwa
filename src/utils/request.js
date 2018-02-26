@@ -1,9 +1,3 @@
-// BASE_URL=http://104.131.10.204:3000/api
-// #BASE_URL=http://localhost:3000/api
-// SENTRY_DEVELOPMENT_DSN=https://a33922bc08284c85bd4b10f689778e85:afaa5f7aae1a4f2db85f4809d2ca8adf@sentry.io/191740
-
-// const BASE_URL = 'http://104.131.10.204:3000/api'
-const BASE_URL = 'http://localhost:3000/api'
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
@@ -16,7 +10,7 @@ const request = function(path) {
     },
   }
 
-  const response = fetch(`${BASE_URL}${path}`, params)
+  const response = fetch(`${process.env.REACT_APP_BASE_URL}${path}`, params)
 
   response.catch(error => {
     console.error(error)
