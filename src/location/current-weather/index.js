@@ -11,7 +11,8 @@ const CurrentWeather = ({ weather }) => (
 )
 
 const Container = glamorous.div({
-  marginBottom: Styles.Spacing.baseSpacing,
+  marginBottom: Styles.Spacing.largeSpacing,
+  marginTop: Styles.Spacing.largeSpacing,
 })
 
 export default CurrentWeather

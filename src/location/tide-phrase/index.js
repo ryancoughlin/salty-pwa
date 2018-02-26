@@ -39,7 +39,6 @@ const FadedText = glamorous.span({
 const Container = glamorous.div({
   flexDirection: 'row',
   marginTop: 60,
-  marginBottom: Styles.Spacing.largeSpacing,
 })
 
 export default TidePhrase
