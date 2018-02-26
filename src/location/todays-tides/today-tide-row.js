@@ -16,25 +16,11 @@ export default class NextTideRow extends Component {
     return `${height.toFixed(1)}'`
   }
 
-  get pastTideStyle() {
-    const time = this.props.tide.time
-    const now = moment()
-
-    if (
-      moment
-        .utc(time)
-        .local()
-        .diff(now, 'minutes') < 0
-    ) {
-      return 'foo'
-    }
-  }
-
   render() {
     const { tide } = this.props
 
     return (
-      <Container>
+      <Container pastTide={isPastTide(tide.time)}>
         <TideType>{_.upperFirst(tide.type)}</TideType>
         <Styles.Type.Time>
           {this.formatTideTime(tide.time)} /{' '}
@@ -45,12 +31,30 @@ export default class NextTideRow extends Component {
   }
 }
 
-const Container = glamorous.div({
-  marginLeft: 61,
-  flexDirection: 'row',
-  display: 'flex',
-  marginBottom: 8,
-})
+const isPastTide = time => {
+  const now = moment()
+
+  if (
+    moment
+      .utc(time)
+      .local()
+      .diff(now, 'minutes') < 0
+  ) {
+    return true
+  }
+}
+
+const Container = glamorous.div(
+  {
+    marginLeft: 61,
+    flexDirection: 'row',
+    display: 'flex',
+    marginBottom: 8,
+  },
+  props => ({
+    textDecoration: props.pastTide ? 'line-through' : 'none',
+  }),
+)
 
 const TideType = glamorous(Styles.Type.SmallBody)({
   minWidth: 50,
