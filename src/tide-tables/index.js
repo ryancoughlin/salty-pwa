@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import glamorous from 'glamorous'
 import Header from './header'
 import TideRow from './tide-row'
+import ModalHeader from '../common/modal-header'
 
 class Location extends Component {
   state = {
@@ -17,6 +17,7 @@ class Location extends Component {
 
     return (
       <div>
+        <ModalHeader />
         {Object.keys(tides).map(date => {
           const dayTides = tides[date]
           return (
