@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import { geoCodeLocation } from '../../utils/location'
 import Styles from '../../assets/styles'
