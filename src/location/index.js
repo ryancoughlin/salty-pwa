@@ -14,10 +14,6 @@ class Location extends Component {
   }
 
   componentDidMount() {
-    // Get user location
-    // Kick of all requests
-    // Save data to localStorage
-
     fetchLocation().then(location => {
       request(`/tides?latitude=43.3845&longitude=-70.5440`).then(tides => {
         this.setState({ tides: tides })
@@ -25,21 +21,17 @@ class Location extends Component {
       })
 
       request(`/weather?latitude=43.3845&longitude=-70.5440`).then(weather => {
-        console.log(weather)
         this.setState({ weather: weather })
         localStorage.setItem('weather', JSON.stringify(weather))
       })
     })
   }
 
-  // Derive your data don't save it
-
   get nextTide() {
     return findNextTide(this.state.tides)
   }
 
   render() {
-    console.log(this.state)
     if (!this.state.tides) {
       return null
     }
