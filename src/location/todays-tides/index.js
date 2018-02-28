@@ -16,9 +16,7 @@ const TodaysTides = ({ tides }) => (
           Today&apos;s Tides
         </Styles.Type.SecondaryHeader>
       </Header>
-      <ViewTidesButton>
-        <Link to="/tables">View tides</Link>
-      </ViewTidesButton>
+      <ViewTideTable to="/tables">View tides</ViewTideTable>
     </InnerContainer>
 
     {findTodaysTides(tides).map(tide => (
@@ -42,10 +40,13 @@ const Header = glamorous.div({
   display: 'flex',
 })
 
-const ViewTidesButton = glamorous.a({
-  fontSize: 14,
+const ViewTideTable = glamorous(Link)({
+  fontSize: 16,
   fontWeight: '500',
   color: Styles.Colors.Primary,
+  ':visited': {
+    color: Styles.Colors.Primary,
+  },
 })
 
 const Container = glamorous.div({
