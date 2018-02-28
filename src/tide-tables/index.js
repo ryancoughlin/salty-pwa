@@ -9,10 +9,6 @@ class Location extends Component {
   }
 
   render() {
-    if (!this.state.tides) {
-      return null
-    }
-
     const { tides } = this.state
 
     return (

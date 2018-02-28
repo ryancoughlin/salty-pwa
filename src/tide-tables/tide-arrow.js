@@ -3,15 +3,7 @@ import glamorous from 'glamorous'
 import Styles from '../assets/styles'
 
 const TideArrow = direction => {
-  return findDirection(direction)
-}
-
-const findDirection = ({ direction }) => {
-  if (direction === 'high') {
-    return <Arrow>↑</Arrow>
-  } else {
-    return <Arrow>↓</Arrow>
-  }
+  return direction === 'high' ? <Arrow>↑</Arrow> : <Arrow>↓</Arrow>
 }
 
 const Arrow = glamorous(Styles.Type.Body)({
