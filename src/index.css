@@ -20,3 +20,7 @@ p {
   max-width: 380px;
   width: 100%;
 }
+
+a {
+  text-decoration: none;
+}
