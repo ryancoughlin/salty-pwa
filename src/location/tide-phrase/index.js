@@ -5,24 +5,13 @@ import Styles from '../../assets/styles'
 import RemainingTideTime from './remaining-tide-time'
 
 const TidePhrase = class extends Component {
-  constructor(props) {
-    super(props)
-
-    console.log('State inside of tide phrase', props)
-
-    this.state = {
-      location: props.location,
-    }
-  }
-
   render() {
-    const { nextTide } = this.props
-    const { location } = this.state
+    const { nextTide, location } = this.props
 
     return (
       <Container>
         <Styles.Type.TidePhrase>
-          {nextTide.type === 'high' ? 'Incoming' : 'Outoging'}{' '}
+          {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
           <FadedText>
             Tide
             <br />in <a>{cityName(location)}</a>
@@ -34,16 +23,16 @@ const TidePhrase = class extends Component {
   }
 }
 
-const cityName = location => {
-  geoCodeLocation(location)
-    .then(response => {
-      console.log(response)
-
-      return 'foo'
-    })
-    .catch(error => {
-      console.error(error)
-    })
+const cityName = userLocation => {
+  if (userLocation) {
+    geoCodeLocation(userLocation)
+      .then(city => {
+        return city
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
 }
 
 const FadedText = glamorous.span({
