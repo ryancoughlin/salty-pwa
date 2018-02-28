@@ -11,9 +11,7 @@ export default class extends Component {
   render() {
     return (
       <Container>
-        <Styles.Type.SecondaryHeader>
-          {this.formattedDate}
-        </Styles.Type.SecondaryHeader>
+        <Header>{this.formattedDate}</Header>
       </Container>
     )
   }
@@ -24,4 +22,12 @@ const Container = glamorous.div({
   height: 70,
   paddingHorizontal: Styles.Spacing.baseSpacing,
   alignItems: 'flex-end',
+  position: 'sticky',
+  top: 0,
+  backgroundColor: 'white',
+})
+
+const Header = glamorous(Styles.Type.SecondaryHeader)({
+  paddingBottom: Styles.Spacing.smallSpacing,
+  marginBottom: 0,
 })
