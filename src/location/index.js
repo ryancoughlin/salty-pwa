@@ -9,8 +9,8 @@ import TodaysTides from './todays-tides'
 
 class Location extends Component {
   state = {
-    tides: JSON.parse(localStorage.getItem('tides')),
-    weather: JSON.parse(localStorage.getItem('weather')),
+    tides: JSON.parse(localStorage.getItem('tides')) || [],
+    weather: JSON.parse(localStorage.getItem('weather')) || [],
   }
 
   componentDidMount() {
