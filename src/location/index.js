@@ -3,14 +3,15 @@ import React, { Component } from 'react'
 import request from '../utils/request'
 import findNextTide from '../utils/find-next-tide'
 import { fetchLocation } from '../utils/location'
+import Loading from '../common/loading'
 import TidePhrase from './tide-phrase'
 import CurrentWeather from './current-weather'
 import TodaysTides from './todays-tides'
 
 class Location extends Component {
   state = {
-    tides: JSON.parse(localStorage.getItem('tides')) || [],
-    weather: JSON.parse(localStorage.getItem('weather')) || [],
+    tides: JSON.parse(localStorage.getItem('tides')),
+    weather: JSON.parse(localStorage.getItem('weather')),
   }
 
   componentDidMount() {
@@ -32,8 +33,8 @@ class Location extends Component {
   }
 
   render() {
-    if (!this.state.tides) {
-      return null
+    if (!this.state.tides && !this.state.weather) {
+      return <Loading />
     }
 
     return (
