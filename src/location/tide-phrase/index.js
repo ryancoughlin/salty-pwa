@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import _ from 'lodash'
-
+import { geoCodeLocation } from '../../utils/location'
 import Styles from '../../assets/styles'
 import RemainingTideTime from './remaining-tide-time'
 
 const TidePhrase = class extends Component {
+  state = {
+    city: '',
+  }
+
+  componentDidMount() {
+    geoCodeLocation(location).then(response => {
+      console.log(response)
+
+      return 'foo'
+    })
+  }
   render() {
-    const { city, nextTide } = this.props
+    const { location, nextTide } = this.props
 
     return (
       <Container>
@@ -15,7 +26,7 @@ const TidePhrase = class extends Component {
           {tideDirection(nextTide)}{' '}
           <FadedText>
             Tide
-            <br />in <a>{city}</a>
+            <br />in <a>{location}</a>
           </FadedText>
         </Styles.Type.TidePhrase>
         <RemainingTideTime nextTide={nextTide} />
