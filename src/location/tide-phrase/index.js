@@ -5,8 +5,16 @@ import Styles from '../../assets/styles'
 import RemainingTideTime from './remaining-tide-time'
 
 const TidePhrase = class extends Component {
+  state = {
+    city: '',
+  }
+
   render() {
     const { nextTide, location } = this.props
+
+    cityName(location)
+
+    console.log('City is: ', this.state.city)
 
     return (
       <Container>
@@ -14,7 +22,7 @@ const TidePhrase = class extends Component {
           {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
           <FadedText>
             Tide
-            <br />in <a>{cityName(location)}</a>
+            <br />in <a>{this.state.city}</a>
           </FadedText>
         </Styles.Type.TidePhrase>
         <RemainingTideTime nextTide={nextTide} />
@@ -25,16 +33,15 @@ const TidePhrase = class extends Component {
 
 const cityName = userLocation => {
   if (userLocation) {
-    return geoCodeLocation(userLocation)
+    console.log('Start to geocode')
+    geoCodeLocation(userLocation)
       .then(city => {
+        console.log(city)
         this.setState({ city: city })
-        return city
       })
       .catch(error => {
         console.error(error)
       })
-  } else {
-    return 'Loading...'
   }
 }
 
