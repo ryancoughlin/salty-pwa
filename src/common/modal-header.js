@@ -1,22 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
 import Styles from '../assets/styles'
-import modalClose from '../assets/images/modal-close.png'
 
 const ModalHeader = () => (
   <Container>
-    <CloseModal source={modalClose} />
+    <Link to="/">
+      <Close>×</Close>
+    </Link>
   </Container>
 )
 
 const Container = glamorous.div({
+  display: 'flex',
   height: 64,
-  justifyContent: 'center',
-  paddingHorizontal: Styles.Spacing.smallSpacing,
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  paddingRight: Styles.Spacing.smallSpacing,
 })
 
-const CloseModal = glamorous.img({
-  marginLeft: Styles.Spacing.smallSpacing,
+const Close = glamorous.span({
+  fontSize: 26,
+  fontWeight: 'normal',
 })
 
 export default ModalHeader
