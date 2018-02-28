@@ -12,6 +12,7 @@ class Location extends Component {
   state = {
     tides: JSON.parse(localStorage.getItem('tides')),
     weather: JSON.parse(localStorage.getItem('weather')),
+    location: JSON.parse(localStorage.getItem('location')),
   }
 
   componentDidMount() {
@@ -19,7 +20,7 @@ class Location extends Component {
       const { latitude, longitude } = location
 
       this.setState({ location: { latitude: latitude, longitude: longitude } })
-      // localStorage.setItem('location', JSON.stringify(location))
+      localStorage.setItem('location', JSON.stringify(location))
 
       request(`/tides?latitude=${latitude}&longitude=${longitude}`).then(
         tides => {
@@ -44,7 +45,7 @@ class Location extends Component {
   render() {
     const { tides, weather, location } = this.state
 
-    if (!tides || !weather) {
+    if (!tides || !weather || !location) {
       return <Loading />
     }
 

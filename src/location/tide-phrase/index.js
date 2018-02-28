@@ -9,10 +9,12 @@ const TidePhrase = class extends Component {
     city: '',
   }
 
-  render() {
-    const { nextTide, location } = this.props
+  componentDidMount() {
+    cityName(this.props.location)
+  }
 
-    cityName(location)
+  render() {
+    const { nextTide } = this.props
 
     console.log('City is: ', this.state.city)
 
@@ -32,17 +34,15 @@ const TidePhrase = class extends Component {
 }
 
 const cityName = userLocation => {
-  if (userLocation) {
-    console.log('Start to geocode')
-    geoCodeLocation(userLocation)
-      .then(city => {
-        console.log(city)
-        this.setState({ city: city })
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }
+  console.log('Start to geocode')
+  geoCodeLocation(userLocation)
+    .then(city => {
+      console.log(city)
+      this.setState({ city: city })
+    })
+    .catch(error => {
+      console.error(error)
+    })
 }
 
 const FadedText = glamorous.span({
