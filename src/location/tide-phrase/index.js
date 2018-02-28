@@ -25,13 +25,16 @@ const TidePhrase = class extends Component {
 
 const cityName = userLocation => {
   if (userLocation) {
-    geoCodeLocation(userLocation)
+    return geoCodeLocation(userLocation)
       .then(city => {
+        this.setState({ city: city })
         return city
       })
       .catch(error => {
         console.error(error)
       })
+  } else {
+    return 'Loading...'
   }
 }
 

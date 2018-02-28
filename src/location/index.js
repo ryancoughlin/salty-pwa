@@ -18,8 +18,8 @@ class Location extends Component {
     fetchLocation().then(location => {
       const { latitude, longitude } = location
 
-      this.setState({ location: location })
-      localStorage.setItem('location', JSON.stringify(location))
+      this.setState({ location: { latitude: latitude, longitude: longitude } })
+      // localStorage.setItem('location', JSON.stringify(location))
 
       request(`/tides?latitude=${latitude}&longitude=${longitude}`).then(
         tides => {
@@ -44,7 +44,7 @@ class Location extends Component {
   render() {
     const { tides, weather, location } = this.state
 
-    if (!tides && !weather) {
+    if (!tides || !weather) {
       return <Loading />
     }
 
