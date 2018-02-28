@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
 import moment from 'moment'
 import TodayTideRow from './today-tide-row'
@@ -15,7 +16,9 @@ const TodaysTides = ({ tides }) => (
           Today&apos;s Tides
         </Styles.Type.SecondaryHeader>
       </Header>
-      <ViewTidesButton>View tides</ViewTidesButton>
+      <ViewTidesButton>
+        <Link to="/tables">View tides</Link>
+      </ViewTidesButton>
     </InnerContainer>
 
     {findTodaysTides(tides).map(tide => (
