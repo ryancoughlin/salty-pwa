@@ -8,12 +8,16 @@ import tideIcon from '../../assets/images/tide.png'
 
 const TodaysTides = ({ tides }) => (
   <Container>
-    <Header>
-      <Icon source={tideIcon} />
-      <Styles.Type.SecondaryHeader>
-        Today&apos;s Tides
-      </Styles.Type.SecondaryHeader>
-    </Header>
+    <InnerContainer>
+      <Header>
+        <Icon source={tideIcon} />
+        <Styles.Type.SecondaryHeader>
+          Today&apos;s Tides
+        </Styles.Type.SecondaryHeader>
+      </Header>
+      <ViewTidesButton>View tides</ViewTidesButton>
+    </InnerContainer>
+
     {findTodaysTides(tides).map(tide => (
       <TodayTideRow tide={tide} key={tide.time} />
     ))}
@@ -26,8 +30,19 @@ const findTodaysTides = tides => {
   return tides[todaysKey]
 }
 
+const InnerContainer = glamorous.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+})
+
 const Header = glamorous.div({
   display: 'flex',
+})
+
+const ViewTidesButton = glamorous.a({
+  fontSize: 14,
+  fontWeight: '500',
+  color: Styles.Colors.Primary,
 })
 
 const Container = glamorous.div({
