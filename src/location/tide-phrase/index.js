@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import _ from 'lodash'
 import { geoCodeLocation } from '../../utils/location'
 import Styles from '../../assets/styles'
 import RemainingTideTime from './remaining-tide-time'
@@ -23,7 +22,7 @@ const TidePhrase = class extends Component {
     return (
       <Container>
         <Styles.Type.TidePhrase>
-          {tideDirection(nextTide)}{' '}
+          {tideDirection(nextTide)}
           <FadedText>
             Tide
             <br />in <a>{location}</a>
@@ -37,10 +36,10 @@ const TidePhrase = class extends Component {
 
 const tideDirection = nextTide => {
   if (nextTide.type === 'high') {
-    return _.upperFirst('incoming')
+    return 'Incoming'
   }
 
-  return _.upperFirst('outgoing')
+  return 'Outgoing'
 }
 
 const FadedText = glamorous.span({
