@@ -1,17 +1,24 @@
 import React from 'react'
+import glamorous from 'glamorous'
+import Styles from '../assets/styles'
 
-import Icon from '../common/icon'
-import downArrow from '../assets/images/low-tide-arrow.png'
-import upArrow from '../assets/images/high-tide-arrow.png'
-
-const TideArrow = direction => <Icon source={findDirection(direction)} />
+const TideArrow = direction => {
+  return findDirection(direction)
+}
 
 const findDirection = ({ direction }) => {
-  console.log(direction)
   if (direction === 'high') {
-    return upArrow
+    return <Arrow>↑</Arrow>
+  } else {
+    return <Arrow>↓</Arrow>
   }
-  return downArrow
 }
+
+const Arrow = glamorous(Styles.Type.Body)({
+  color: Styles.Colors.Primary,
+  fontSize: 14,
+  fontWeight: 'bold',
+  marginRight: Styles.Spacing.smallSpacing,
+})
 
 export default TideArrow
