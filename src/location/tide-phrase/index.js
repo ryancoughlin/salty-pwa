@@ -5,33 +5,45 @@ import Styles from '../../assets/styles'
 import RemainingTideTime from './remaining-tide-time'
 
 const TidePhrase = class extends Component {
-  state = {
-    city: '',
+  constructor(props) {
+    super(props)
+
+    console.log('State inside of tide phrase', props.location)
+
+    this.state = {
+      location: props.location,
+    }
   }
 
-  componentDidMount() {
-    geoCodeLocation(location).then(response => {
-      console.log(response)
-
-      return 'foo'
-    })
-  }
   render() {
-    const { location, nextTide } = this.props
+    const { nextTide } = this.props
+    const { location } = this.state
 
     return (
       <Container>
         <Styles.Type.TidePhrase>
-          {tideDirection(nextTide)}
+          {tideDirection(nextTide)}{' '}
           <FadedText>
             Tide
-            <br />in <a>{location}</a>
+            <br />in <a>{cityName(location)}</a>
           </FadedText>
         </Styles.Type.TidePhrase>
         <RemainingTideTime nextTide={nextTide} />
       </Container>
     )
   }
+}
+
+const cityName = location => {
+  geoCodeLocation(location)
+    .then(response => {
+      console.log(response)
+
+      return 'foo'
+    })
+    .catch(error => {
+      console.error(error)
+    })
 }
 
 const tideDirection = nextTide => {
