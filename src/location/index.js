@@ -16,15 +16,22 @@ class Location extends Component {
 
   componentDidMount() {
     fetchLocation().then(location => {
-      request(`/tides?latitude=43.3845&longitude=-70.5440`).then(tides => {
-        this.setState({ tides: tides })
-        localStorage.setItem('tides', JSON.stringify(tides))
-      })
+      const { latitude, longitude } = location
 
-      request(`/weather?latitude=43.3845&longitude=-70.5440`).then(weather => {
-        this.setState({ weather: weather })
-        localStorage.setItem('weather', JSON.stringify(weather))
-      })
+      this.setState({ location: location })
+      request(`/tides?latitude=${latitude}&longitude=${longitude}`).then(
+        tides => {
+          this.setState({ tides: tides })
+          localStorage.setItem('tides', JSON.stringify(tides))
+        },
+      )
+
+      request(`/weather?latitude=${latitude}&longitude=${longitude}`).then(
+        weather => {
+          this.setState({ weather: weather })
+          localStorage.setItem('weather', JSON.stringify(weather))
+        },
+      )
     })
   }
 
@@ -33,18 +40,18 @@ class Location extends Component {
   }
 
   render() {
-    if (!this.state.tides && !this.state.weather) {
+    const { tides, weather, location } = this.state
+
+    if (!tides && !weather) {
       return <Loading />
     }
 
     return (
       <div className={'container'}>
-        {this.state.tides && (
-          <TidePhrase city="Boston" nextTide={this.nextTide} />
-        )}
-        {this.state.weather && <CurrentWeather weather={this.state.weather} />}
+        {tides && <TidePhrase location={location} nextTide={this.nextTide} />}
+        {weather && <CurrentWeather weather={weather} />}
 
-        <TodaysTides tides={this.state.tides} />
+        <TodaysTides tides={tides} />
       </div>
     )
   }
