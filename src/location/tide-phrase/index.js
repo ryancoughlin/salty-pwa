@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import glamorous from 'glamorous'
 import { geoCodeLocation } from '../../utils/location'
 import Styles from '../../assets/styles'
@@ -8,7 +8,7 @@ const TidePhrase = class extends Component {
   constructor(props) {
     super(props)
 
-    console.log('State inside of tide phrase', props.location)
+    console.log('State inside of tide phrase', props)
 
     this.state = {
       location: props.location,
@@ -22,7 +22,7 @@ const TidePhrase = class extends Component {
     return (
       <Container>
         <Styles.Type.TidePhrase>
-          {tideDirection(nextTide)}{' '}
+          {nextTide.type === 'high' ? 'Incoming' : 'Outoging'}{' '}
           <FadedText>
             Tide
             <br />in <a>{cityName(location)}</a>
@@ -44,14 +44,6 @@ const cityName = location => {
     .catch(error => {
       console.error(error)
     })
-}
-
-const tideDirection = nextTide => {
-  if (nextTide.type === 'high') {
-    return 'Incoming'
-  }
-
-  return 'Outgoing'
 }
 
 const FadedText = glamorous.span({

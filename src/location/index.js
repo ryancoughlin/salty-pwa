@@ -53,9 +53,8 @@ class Location extends Component {
 
     return (
       <div className={'container'}>
-        {tides && <TidePhrase location={location} nextTide={this.nextTide} />}
-        {weather && <CurrentWeather weather={weather} />}
-
+        <TidePhrase location={location} nextTide={this.nextTide} />
+        <CurrentWeather weather={weather} />
         <TodaysTides tides={tides} />
       </div>
     )
