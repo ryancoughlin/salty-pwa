@@ -15,7 +15,7 @@ export function fetchLocation() {
 
 export function geoCodeLocation(location) {
   return new Promise(resolve => {
-    console.log(location)
+    console.log('Location passed into geocode:', location)
     const { latitude, longitude } = location
 
     Geocode.setApiKey('AIzaSyAB4Hyk0FUOkDXaBSZu0Q1NYOYjxG3Nh7E')
