@@ -2,7 +2,7 @@ import React from 'react'
 import glamorous from 'glamorous'
 import Styles from '../assets/styles'
 
-const TideArrow = direction => {
+const TideArrow = ({ direction }) => {
   return direction === 'high' ? <Arrow>↑</Arrow> : <Arrow>↓</Arrow>
 }
 
