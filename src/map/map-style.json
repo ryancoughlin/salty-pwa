@@ -1,0 +1,54 @@
+{
+  "version": 8,
+  "name": "Basic",
+  "metadata": {
+    "mapbox:autocomposite": true
+  },
+  "sources": {
+    "stationList": {
+      "type": "geojson",
+      "data": "/stations.json",
+      "cluster": true,
+      "clusterMaxZoom": 14,
+      "clusterRadius": 50
+    },
+    "mapbox": {
+      "url": "mapbox://mapbox.mapbox-streets-v7",
+      "type": "vector"
+    }
+  },
+  "sprite": "mapbox://sprites/mapbox/basic-v8",
+  "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "unclustered-point",
+      "type": "circle",
+      "source": "stationList",
+      "filter": ["!has", "point_count"],
+      "paint": {
+        "circle-color": "#11b4da",
+        "circle-radius": 4,
+        "circle-stroke-width": 1,
+        "circle-stroke-color": "#fff"
+      }
+    },
+    {
+      "id": "clusters",
+      "type": "circle",
+      "source": "stationList",
+      "filter": ["has", "point_count"],
+      "paint": {
+        "circle-color": [
+          "step",
+          ["get", "point_count"],
+          "#51bbd6",
+          100,
+          "#f1f075",
+          750,
+          "#f28cb1"
+        ],
+        "circle-radius": ["step", ["get", "point_count"], 20, 100, 30, 750, 40]
+      }
+    }
+  ]
+}

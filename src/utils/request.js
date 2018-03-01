@@ -8,6 +8,7 @@ const request = function(path) {
     headers: {
       ...DEFAULT_HEADERS,
     },
+    method: 'get',
   }
 
   const response = fetch(`${process.env.REACT_APP_BASE_URL}${path}`, params)
