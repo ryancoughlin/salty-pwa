@@ -6,17 +6,15 @@ import RemainingTideTime from './remaining-tide-time'
 
 const TidePhrase = class extends Component {
   state = {
-    city: '',
+    city: JSON.parse(localStorage.getItem('city')),
   }
 
   componentDidMount() {
-    cityName(this.props.location)
+    this.getCityName()
   }
 
   render() {
     const { nextTide } = this.props
-
-    console.log('City is: ', this.state.city)
 
     return (
       <Container>
@@ -31,18 +29,17 @@ const TidePhrase = class extends Component {
       </Container>
     )
   }
-}
 
-const cityName = userLocation => {
-  console.log('Start to geocode')
-  geoCodeLocation(userLocation)
-    .then(city => {
-      console.log(city)
-      this.setState({ city: city })
-    })
-    .catch(error => {
-      console.error(error)
-    })
+  getCityName = () => {
+    geoCodeLocation(this.props.location)
+      .then(city => {
+        this.setState({ city: city })
+        localStorage.setItem('city', JSON.stringify(city))
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
 }
 
 const FadedText = glamorous.span({
