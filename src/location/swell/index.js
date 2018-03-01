@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import _ from 'lodash'
 import glamorous from 'glamorous'
+import SwellChart from './chart'
 import Styles from '../../assets/styles'
 
 const API_DATE_FORMAT = 'MM/DD/YYYY'
@@ -43,7 +44,7 @@ const Swell = class extends Component {
   render() {
     const { type, period, compassDirection, height } = this.state
 
-    if (!this.state.type) {
+    if (!type) {
       return null
     }
 
@@ -54,6 +55,7 @@ const Swell = class extends Component {
         <SwellPeriod>
           Swell period at {period}s from {compassDirection}
         </SwellPeriod>
+        <SwellChart swell={this.props.swell} />
       </Container>
     )
   }
@@ -69,13 +71,7 @@ const Container = glamorous.div({
   marginBottom: Styles.Spacing.baseSpacing,
   borderRadius: 6,
   backgroundColor: Styles.Colors.Primary,
-  shadowColor: 'black',
-  shadowOffset: {
-    width: 0,
-    height: 0,
-  },
-  shadowOpacity: 0.1,
-  shadowRadius: 20,
+  boxShadow: '0 0 20px 0 rgba(3, 23, 44, 0.18)',
 })
 
 const SwellHeight = glamorous(Styles.Type.SecondaryHeader)({

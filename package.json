@@ -13,7 +13,8 @@
     "react-dom": "^16.2.0",
     "react-geocode": "^0.0.3",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "victory": "^0.25.6"
   },
   "scripts": {
     "start": "react-scripts start",
