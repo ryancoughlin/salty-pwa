@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "build-create-react-app-netlify": "^1.1.2",
+    "geojson": "^0.5.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.11.6",
+    "immutable": "^3.8.2",
     "lodash": "^4.17.5",
     "mapbox-gl": "^0.44.1",
     "moment": "^2.20.1",
