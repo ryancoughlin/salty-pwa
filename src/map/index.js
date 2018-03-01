@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import Styles from '../assets/styles'
-import ReactMapGL, { Marker } from 'react-map-gl'
-import GeoJSON from 'geojson'
-import { fromJS } from 'immutable'
-
+import mapboxgl from 'mapbox-gl'
 import Loading from '../common/loading'
-import request from '../utils/request'
-import { dataLayer, defaultMapStyle } from './map-style'
 import 'mapbox-gl/dist/mapbox-gl.css'
+
+mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
 
 class Map extends Component {
   state = {
-    mapStyle: defaultMapStyle,
     stations: JSON.parse(localStorage.getItem('stations')),
-    stationGeoJSON: JSON.parse(localStorage.getItem('stationGeoJSON')),
-    viewport: {
+    map: {
       width: 400,
       height: 400,
       latitude: 37.7577,
@@ -25,73 +20,104 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.stations)
-    // if (!this.state.stations) {
-    request(`/stations`)
-      .then(stations => {
-        localStorage.setItem('stations', JSON.stringify(stations))
-        this.buildGeoJSON(stations.stations)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    // }
-  }
+    const { latitude, longitude, zoom } = this.state.map
 
-  buildGeoJSON(stations) {
-    const geoJSON = GeoJSON.parse(stations, {
-      Point: ['location.latitude', 'location.longitude'],
-      include: ['name', 'id'],
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/snowcast/cjbtlwe7dapyb2spcpo1risft',
+      center: [longitude, latitude],
+      zoom,
     })
 
-    console.log(geoJSON)
+    map.on('load', function() {
+      map.addSource('earthquakes', {
+        type: 'geojson',
+        // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+        // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+        data: './stations.geojson',
+        cluster: true,
+        clusterMaxZoom: 14, // Max zoom to cluster points on
+        clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+      })
 
-    this.setState({ stationGeoJSON: geoJSON })
-    localStorage.setItem('stationGeoJSON', JSON.stringify(geoJSON))
+      map.addLayer({
+        id: 'clusters',
+        type: 'circle',
+        source: 'earthquakes',
+        filter: ['has', 'point_count'],
+        paint: {
+          // Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+          // with three steps to implement three types of circles:
+          //   * Blue, 20px circles when point count is less than 100
+          //   * Yellow, 30px circles when point count is between 100 and 750
+          //   * Pink, 40px circles when point count is greater than or equal to 750
+          'circle-color': [
+            'step',
+            ['get', 'point_count'],
+            '#51bbd6',
+            100,
+            '#f1f075',
+            750,
+            '#f28cb1',
+          ],
+          'circle-radius': [
+            'step',
+            ['get', 'point_count'],
+            20,
+            100,
+            30,
+            750,
+            40,
+          ],
+        },
+      })
 
-    // this.buildMapDataLayer(geoJSON)
-  }
-  //
-  // buildMapDataLayer(geoJSON) {
-  //   const mapStyle = defaultMapStyle
-  //     .setIn(['sources', 'stationList'], fromJS({cluster: true, clusterMaxZoom: 14, clusterRadius: 40, type: 'geojson', data: geoJSON}))
-  //     .set('layers', defaultMapStyle.get('layers').push(dataLayer))
-  //
-  //     console.log(JSON.stringify(mapStyle))
-  //
-  //   this.setState({ mapStyle })
-  // }
+      map.addLayer({
+        id: 'cluster-count',
+        type: 'symbol',
+        source: 'earthquakes',
+        filter: ['has', 'point_count'],
+        layout: {
+          'text-field': '{point_count_abbreviated}',
+          'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+          'text-size': 12,
+        },
+      })
 
-  _stationMarker = station => {
-    return (
-      <Marker
-        key={`station-{$station.id}`}
-        longitude={station.location.longitude}
-        latitude={station.location.latitude}
-      />
-    )
+      map.addLayer({
+        id: 'unclustered-point',
+        type: 'circle',
+        source: 'earthquakes',
+        filter: ['!has', 'point_count'],
+        paint: {
+          'circle-color': '#11b4da',
+          'circle-radius': 4,
+          'circle-stroke-width': 1,
+          'circle-stroke-color': '#fff',
+        },
+      })
+    })
   }
 
   render() {
-    const { stations, mapStyle, viewport } = this.state
+    const { stations } = this.state
 
     if (!stations) {
       return <Loading />
     }
 
     return (
-      <ReactMapGL
-        {...viewport}
-        mapStyle={mapStyle}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
-        onViewportChange={viewport => this.setState({ viewport })}
-      >
-        {stations.stations.map(station => {
-          this._stationMarker(station)
-        })}
-      </ReactMapGL>
+      <div
+        ref={el => (this.mapContainer = el)}
+        style={{ width: '100vw', height: '1000vh' }}
+      />
     )
   }
 }
+
+const Container = glamorous.div({
+  width: '100vw',
+  height: '100vh',
+})
 
 export default Map
