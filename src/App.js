@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AnimatedSwitch, spring } from 'react-router-transition'
 import Location from './location/index'
 import TideTables from './tide-tables/index'
+import Map from './map/index'
 
 function mapStyles(styles) {
   console.log(styles)
@@ -48,6 +49,7 @@ class App extends Component {
         >
           <Route exact path="/" component={Location} />
           <Route exact path="/tables" component={TideTables} />
+          <Route exact path="/map" component={Map} />
         </AnimatedSwitch>
       </Router>
     )
