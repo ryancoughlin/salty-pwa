@@ -20,8 +20,8 @@ export function geoCodeLocation(location) {
     Geocode.setApiKey('AIzaSyAB4Hyk0FUOkDXaBSZu0Q1NYOYjxG3Nh7E')
     Geocode.fromLatLng(latitude, longitude).then(
       response => {
-        console.log(response.results[0].address_components[3].long_name)
-        return response.results[0].address_components[3].long_name
+        const cityName = response.results[0].address_components[3].long_name
+        resolve(cityName)
       },
       error => {
         console.error(error)

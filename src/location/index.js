@@ -22,7 +22,14 @@ class Location extends Component {
       console.log('Location is: ', location)
 
       this.setState({ location: location })
-      localStorage.setItem('location', JSON.stringify({ location }))
+
+      const coords = {
+        latitude: location.latitude,
+        longitude: location.longitude,
+      }
+
+      localStorage.setItem('location', JSON.stringify(coords))
+      console.log(JSON.stringify(location))
       console.log('Location from state: ', this.state.location)
 
       request(`/tides?latitude=${latitude}&longitude=${longitude}`).then(
