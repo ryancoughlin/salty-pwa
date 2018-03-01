@@ -67,11 +67,10 @@ const Container = glamorous.div({
   paddingTop: 14,
   paddingLeft: 40,
   paddingBottom: Styles.Spacing.smallSpacing,
-  marginHorizontal: Styles.Spacing.baseSpacing,
   marginBottom: Styles.Spacing.baseSpacing,
   borderRadius: 6,
   backgroundColor: Styles.Colors.Primary,
-  boxShadow: '0 0 20px 0 rgba(3, 23, 44, 0.18)',
+  boxShadow: '0 0 20px 0 rgba(3, 23, 44, 0.14)',
 })
 
 const SwellHeight = glamorous(Styles.Type.SecondaryHeader)({
