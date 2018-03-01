@@ -19,18 +19,13 @@ class Location extends Component {
     fetchLocation().then(location => {
       const { latitude, longitude } = location
 
-      console.log('Location is: ', location)
-
-      this.setState({ location: location })
-
       const coords = {
         latitude: location.latitude,
         longitude: location.longitude,
       }
 
       localStorage.setItem('location', JSON.stringify(coords))
-      console.log(JSON.stringify(location))
-      console.log('Location from state: ', this.state.location)
+      this.setState({ location: location })
 
       request(`/tides?latitude=${latitude}&longitude=${longitude}`).then(
         tides => {
