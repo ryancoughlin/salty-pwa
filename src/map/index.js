@@ -3,6 +3,7 @@ import glamorous from 'glamorous'
 import Styles from '../assets/styles'
 import mapboxgl from 'mapbox-gl'
 import Loading from '../common/loading'
+import ModalHeader from '../common/modal-header'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
@@ -24,15 +25,15 @@ class Map extends Component {
 
     const map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/snowcast/cjbtlwe7dapyb2spcpo1risft',
+      style: 'mapbox://styles/snowcast/cje8m7qongh212sqss7q3yvx4',
       center: [longitude, latitude],
       zoom,
     })
 
     map.on('load', function() {
-      map.addSource('earthquakes', {
+      map.addSource('stations', {
         type: 'geojson',
-        // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+        // Point to GeoJSON data. This example visualizes all M1.0+ stations
         // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
         data: './stations.geojson',
         cluster: true,
@@ -41,9 +42,9 @@ class Map extends Component {
       })
 
       map.addLayer({
-        id: 'clusters',
+        id: 'stationPoints',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'stations',
         filter: ['has', 'point_count'],
         paint: {
           // Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -75,7 +76,7 @@ class Map extends Component {
       map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
-        source: 'earthquakes',
+        source: 'stations',
         filter: ['has', 'point_count'],
         layout: {
           'text-field': '{point_count_abbreviated}',
@@ -87,15 +88,43 @@ class Map extends Component {
       map.addLayer({
         id: 'unclustered-point',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'stations',
         filter: ['!has', 'point_count'],
         paint: {
           'circle-color': '#11b4da',
-          'circle-radius': 4,
-          'circle-stroke-width': 1,
+          'circle-radius': 6,
+          'circle-stroke-width': 3,
           'circle-stroke-color': '#fff',
         },
       })
+    })
+
+    map.on('click', 'unclustered-point', function(e) {
+      var coordinates = e.features[0].geometry.coordinates.slice()
+      var description = e.features[0].properties.name
+
+      // Ensure that if the map is zoomed out such that multiple
+      // copies of the feature are visible, the popup appears
+      // over the copy being pointed to.
+      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+      }
+
+      map.flyTo({ center: e.features[0].geometry.coordinates })
+
+      new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(description)
+        .addTo(map)
+    })
+
+    map.on('mouseenter', 'unclustered-point', function() {
+      map.getCanvas().style.cursor = 'pointer'
+    })
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'unclustered-point', function() {
+      map.getCanvas().style.cursor = ''
     })
   }
 
@@ -107,10 +136,13 @@ class Map extends Component {
     }
 
     return (
-      <div
-        ref={el => (this.mapContainer = el)}
-        style={{ width: '100vw', height: '1000vh' }}
-      />
+      <div>
+        <ModalHeader />
+        <div
+          ref={el => (this.mapContainer = el)}
+          style={{ width: '100vw', height: '100vh' }}
+        />
+      </div>
     )
   }
 }
