@@ -8,6 +8,7 @@ import TidePhrase from './tide-phrase'
 import CurrentWeather from './current-weather'
 import TodaysTides from './todays-tides'
 import Swell from './swell'
+import TideChart from './tide-chart'
 
 class Location extends Component {
   state = {
@@ -69,6 +70,7 @@ class Location extends Component {
         <CurrentWeather weather={weather} />
         <TodaysTides tides={tides} />
         <Swell swell={swell} />
+        <TideChart location={location} />
       </div>
     )
   }
