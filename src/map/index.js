@@ -36,8 +36,6 @@ class Map extends Component {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
         }
 
-        this.map.flyTo({ center: e.features[0].geometry.coordinates })
-
         new mapboxgl.Popup()
           .setLngLat(coordinates)
           .setHTML(description)
