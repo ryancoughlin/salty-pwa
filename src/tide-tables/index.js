@@ -13,7 +13,7 @@ class Location extends Component {
     const { tides } = this.state
 
     return (
-      <div>
+      <div className={'container'} style={{ padding: '4px 16px 24px 16px' }}>
         <ModalHeader />
         <Styles.Containers.Base>
           {Object.keys(tides).map(date => {

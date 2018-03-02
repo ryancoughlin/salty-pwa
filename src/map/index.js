@@ -144,7 +144,7 @@ class Map extends Component {
     const { stations } = this.state
 
     return (
-      <div>
+      <div className={'container'}>
         <ModalHeader />
         <div
           ref={el => (this.mapContainer = el)}

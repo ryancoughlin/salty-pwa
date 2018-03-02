@@ -14,12 +14,23 @@ p {
 }
 
 .container {
-  max-width: 380px;
+  background-color: white;
+  max-width: 460px;
   width: 100%;
 }
 
 a {
   text-decoration: none;
+}
+
+@media screen and (min-width: 461px) and (max-width: 1600px) {
+  body {
+    background-color: #f8f8f8;
+  }
+
+  .container {
+    margin: 0 auto;
+  }
 }
 
 .switch-wrapper {
