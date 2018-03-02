@@ -7,7 +7,9 @@ import request from '../../utils/request'
 import Styles from '../../assets/styles'
 
 class TideChart extends Component {
-  state = { tideChart: null }
+  state = {
+    tideChart: JSON.parse(localStorage.getItem('tideChart')),
+  }
 
   componentDidMount() {
     const { latitude, longitude } = this.props.location
