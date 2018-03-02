@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import moment from 'moment'
-import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 
 export default class RemainingTideTime extends Component {
@@ -34,14 +33,10 @@ export default class RemainingTideTime extends Component {
 
   render() {
     return (
-      <TimeLeft>
+      <Styles.Type.SmallNumericType>
         {this.formattedTime}
         {this.formattedTideDirection}
-      </TimeLeft>
+      </Styles.Type.SmallNumericType>
     )
   }
 }
-
-const TimeLeft = glamorous(Styles.Type.SmallNumericType)({
-  marginLeft: 2,
-})
