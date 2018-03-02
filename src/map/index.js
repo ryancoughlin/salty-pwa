@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import Styles from '../assets/styles'
+import { fetchLocation } from '../utils/location'
 import mapboxgl from 'mapbox-gl'
 import Loading from '../common/loading'
 import ModalHeader from '../common/modal-header'
@@ -11,27 +12,25 @@ mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
 class Map extends Component {
   state = {
     stations: JSON.parse(localStorage.getItem('stations')),
-    map: {
-      width: 400,
-      height: 400,
-      latitude: 37.7577,
-      longitude: -122.4376,
-      zoom: 8,
-    },
+    userLocation: JSON.parse(localStorage.getItem('userLocation')),
   }
 
   componentDidMount() {
-    const { latitude, longitude, zoom } = this.state.map
-
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/snowcast/cje8m7qongh212sqss7q3yvx4',
-      center: [longitude, latitude],
-      zoom,
+    fetchLocation().then(location => {
+      const userLocation = [location.longitude, location.latitude]
+      this.setState({ userLocation })
+      localStorage.setItem('userLocation', JSON.stringify(userLocation))
     })
 
-    map.on('load', function() {
-      map.addSource('stations', {
+    this.map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/snowcast/cje8m7qongh212sqss7q3yvx4',
+      center: this.state.userLocation,
+      zoom: 12,
+    })
+
+    this.map.on('load', () => {
+      this.map.addSource('stations', {
         type: 'geojson',
         // Point to GeoJSON data. This example visualizes all M1.0+ stations
         // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
@@ -41,13 +40,13 @@ class Map extends Component {
         clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
       })
 
-      map.addLayer({
+      this.map.addLayer({
         id: 'stationPoints',
         type: 'circle',
         source: 'stations',
         filter: ['has', 'point_count'],
         paint: {
-          // Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+          // Use step expressions (https://www.this.mapbox.com/this.mapbox-gl-js/style-spec/#expressions-step)
           // with three steps to implement three types of circles:
           //   * Blue, 20px circles when point count is less than 100
           //   * Yellow, 30px circles when point count is between 100 and 750
@@ -73,7 +72,7 @@ class Map extends Component {
         },
       })
 
-      map.addLayer({
+      this.map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
         source: 'stations',
@@ -85,7 +84,7 @@ class Map extends Component {
         },
       })
 
-      map.addLayer({
+      this.map.addLayer({
         id: 'unclustered-point',
         type: 'circle',
         source: 'stations',
@@ -99,41 +98,50 @@ class Map extends Component {
       })
     })
 
-    map.on('click', 'unclustered-point', function(e) {
+    this.map.on('click', 'unclustered-point', e => {
       var coordinates = e.features[0].geometry.coordinates.slice()
       var description = e.features[0].properties.name
 
-      // Ensure that if the map is zoomed out such that multiple
+      // Ensure that if the this.map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
       // over the copy being pointed to.
       while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
       }
 
-      map.flyTo({ center: e.features[0].geometry.coordinates })
+      this.map.flyTo({ center: e.features[0].geometry.coordinates })
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(description)
-        .addTo(map)
+        .addTo(this.map)
     })
 
-    map.on('mouseenter', 'unclustered-point', function() {
-      map.getCanvas().style.cursor = 'pointer'
+    this.map.on('mouseenter', 'unclustered-point', () => {
+      this.map.getCanvas().style.cursor = 'pointer'
     })
 
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'unclustered-point', function() {
-      map.getCanvas().style.cursor = ''
+    this.map.on('mouseleave', 'unclustered-point', () => {
+      this.map.getCanvas().style.cursor = ''
     })
+
+    // Add geolocate control to the map.
+    this.map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: false,
+        },
+      }),
+    )
+  }
+
+  componentWillUnmount() {
+    this.map.remove()
   }
 
   render() {
     const { stations } = this.state
-
-    if (!stations) {
-      return <Loading />
-    }
 
     return (
       <div>

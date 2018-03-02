@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
 import geocodeLocation from '../../utils/geocode'
 import Styles from '../../assets/styles'
@@ -55,6 +56,14 @@ const TidePhrase = class extends Component {
       })
   }
 }
+
+const CityName = glamorous(Link)({
+  textDecoration: 'underline',
+  color: Styles.Colors.SubtleTextColor,
+  ':visited': {
+    color: Styles.Colors.Primary,
+  },
+})
 
 const FadedText = glamorous.span({
   color: Styles.Colors.SubtleTextColor,

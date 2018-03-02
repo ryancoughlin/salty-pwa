@@ -17,6 +17,8 @@ const Container = glamorous.div({
   justifyContent: 'flex-end',
   alignItems: 'center',
   paddingRight: Styles.Spacing.smallSpacing,
+  position: 'relative',
+  zIndex: 1,
 })
 
 const Close = glamorous.span({
