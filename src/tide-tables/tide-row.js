@@ -3,7 +3,7 @@ import glamorous from 'glamorous'
 
 import moment from 'moment'
 import Styles from '../assets/styles'
-import TideArrow from './tide-arrow'
+import TideArrow from '../common/tide-arrow'
 
 export default class extends Component {
   get prettyTideTime() {
@@ -19,7 +19,7 @@ export default class extends Component {
     return (
       <Container>
         <Left>
-          <TideArrow direction={tide.type} />
+          <TideArrow size={22} direction={tide.type} />
           <TideType>{tide.type}</TideType>
           <Numeric>{this.prettyTideTime}</Numeric>
         </Left>

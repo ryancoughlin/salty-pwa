@@ -3,6 +3,7 @@ import glamorous from 'glamorous'
 import { geoCodeLocation } from '../../utils/location'
 import Styles from '../../assets/styles'
 import RemainingTideTime from './remaining-tide-time'
+import TideArrow from '../../common/tide-arrow'
 
 const TidePhrase = class extends Component {
   state = {
@@ -18,14 +19,17 @@ const TidePhrase = class extends Component {
 
     return (
       <Container>
-        <Styles.Type.TidePhrase>
-          {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
-          <FadedText>
-            Tide
-            <br />in <a>{this.state.city}</a>
-          </FadedText>
-        </Styles.Type.TidePhrase>
-        <RemainingTideTime nextTide={nextTide} />
+        <TideArrow direction={nextTide.direction} tidePhrase />
+        <InnerContainer>
+          <Styles.Type.TidePhrase>
+            {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
+            <FadedText>
+              Tide
+              <br />in <a>{this.state.city}</a>
+            </FadedText>
+          </Styles.Type.TidePhrase>
+          <RemainingTideTime nextTide={nextTide} />
+        </InnerContainer>
       </Container>
     )
   }
@@ -47,8 +51,13 @@ const FadedText = glamorous.span({
 })
 
 const Container = glamorous.div({
+  display: 'flex',
   flexDirection: 'row',
   marginTop: 60,
+})
+
+const InnerContainer = glamorous.div({
+  marginLeft: 40,
 })
 
 export default TidePhrase
