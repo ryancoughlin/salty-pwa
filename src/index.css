@@ -8,7 +8,6 @@ h1,
 h2,
 h3,
 h4,
-h5,
 p {
   margin: 0;
 }
@@ -17,6 +16,7 @@ p {
   background-color: white;
   max-width: 460px;
   width: 100%;
+  overflow: hidden;
 }
 
 a {
