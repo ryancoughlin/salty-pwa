@@ -3,7 +3,6 @@ import glamorous from 'glamorous'
 import Styles from '../assets/styles'
 import { fetchLocation } from '../utils/location'
 import mapboxgl from 'mapbox-gl'
-import Loading from '../common/loading'
 import ModalHeader from '../common/modal-header'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
@@ -11,7 +10,6 @@ mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
 
 class Map extends Component {
   state = {
-    stations: JSON.parse(localStorage.getItem('stations')),
     userLocation: JSON.parse(localStorage.getItem('userLocation')),
   }
 
@@ -29,42 +27,39 @@ class Map extends Component {
       zoom: 12,
     })
 
-    this.map.on('click', 'stations', e => {
-      var coordinates = e.features[0].geometry.coordinates.slice()
-      var description = e.features[0].properties.name
+    this.map.on('load', () => {
+      this.map.on('click', 'stations', e => {
+        var coordinates = e.features[0].geometry.coordinates.slice()
+        var description = e.features[0].properties.name
 
-      // Ensure that if the this.map is zoomed out such that multiple
-      // copies of the feature are visible, the popup appears
-      // over the copy being pointed to.
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-      }
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+        }
 
-      this.map.flyTo({ center: e.features[0].geometry.coordinates })
+        this.map.flyTo({ center: e.features[0].geometry.coordinates })
 
-      new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(description)
-        .addTo(this.map)
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(this.map)
+      })
+
+      this.map.on('mouseenter', 'stations', () => {
+        this.map.getCanvas().style.cursor = 'pointer'
+      })
+
+      this.map.on('mouseleave', 'stations', () => {
+        this.map.getCanvas().style.cursor = ''
+      })
+
+      this.map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: false,
+          },
+        }),
+      )
     })
-
-    this.map.on('mouseenter', 'stations', () => {
-      this.map.getCanvas().style.cursor = 'pointer'
-    })
-
-    // Change it back to a pointer when it leaves.
-    this.map.on('mouseleave', 'stations', () => {
-      this.map.getCanvas().style.cursor = ''
-    })
-
-    // Add geolocate control to the map.
-    this.map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: false,
-        },
-      }),
-    )
   }
 
   componentWillUnmount() {
@@ -72,8 +67,6 @@ class Map extends Component {
   }
 
   render() {
-    const { stations } = this.state
-
     return (
       <div className={'container'}>
         <ModalHeader />
