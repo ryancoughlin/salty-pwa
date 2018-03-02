@@ -5,8 +5,6 @@ import {
   VictoryContainer,
   VictoryScatter,
   VictoryAxis,
-  VictoryLabel,
-  VictoryGroup,
 } from 'victory'
 import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
@@ -34,7 +32,7 @@ export default class TideChart extends Component {
             top: 24,
             right: 24,
             bottom: 24,
-            left: 32,
+            left: 16,
           }}
           scale={{ x: 'time', y: 'linear' }}
         >
