@@ -14,7 +14,7 @@ class Location extends Component {
     tides: JSON.parse(localStorage.getItem('tides')),
     weather: JSON.parse(localStorage.getItem('weather')),
     location: JSON.parse(localStorage.getItem('location')),
-    swell: JSON.parse(localStorage.getItem('swell')),
+    swell: JSON.parse(localStorage.getItem('swell')) || {},
   }
 
   componentDidMount() {

@@ -3,6 +3,7 @@ import moment from 'moment'
 import _ from 'lodash'
 import glamorous from 'glamorous'
 import SwellChart from './chart'
+import Loading from '../../common/loading'
 import Styles from '../../assets/styles'
 
 const API_DATE_FORMAT = 'MM/DD/YYYY'
@@ -19,7 +20,9 @@ const Swell = class extends Component {
   }
 
   componentDidMount() {
-    this.findCurrentSwell()
+    if (!this.isEmpty(this.props.swells)) {
+      this.findCurrentSwell()
+    }
   }
 
   findCurrentSwell() {
@@ -41,11 +44,22 @@ const Swell = class extends Component {
     })
   }
 
+  isEmpty = obj => {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) return false
+    }
+    return true
+  }
+
   render() {
     const { type, period, compassDirection, height } = this.state
 
     if (!type) {
-      return null
+      return (
+        <Container>
+          <Loading />
+        </Container>
+      )
     }
 
     return (
