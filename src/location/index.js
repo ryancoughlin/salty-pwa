@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import request from '../utils/request'
 import findNextTide from '../utils/find-next-tide'
 import { fetchLocation } from '../utils/location'
