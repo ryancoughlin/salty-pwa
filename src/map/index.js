@@ -29,76 +29,7 @@ class Map extends Component {
       zoom: 12,
     })
 
-    this.map.on('load', () => {
-      this.map.addSource('stations', {
-        type: 'geojson',
-        // Point to GeoJSON data. This example visualizes all M1.0+ stations
-        // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-        data: './stations.geojson',
-        cluster: true,
-        clusterMaxZoom: 14, // Max zoom to cluster points on
-        clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
-      })
-
-      this.map.addLayer({
-        id: 'stationPoints',
-        type: 'circle',
-        source: 'stations',
-        filter: ['has', 'point_count'],
-        paint: {
-          // Use step expressions (https://www.this.mapbox.com/this.mapbox-gl-js/style-spec/#expressions-step)
-          // with three steps to implement three types of circles:
-          //   * Blue, 20px circles when point count is less than 100
-          //   * Yellow, 30px circles when point count is between 100 and 750
-          //   * Pink, 40px circles when point count is greater than or equal to 750
-          'circle-color': [
-            'step',
-            ['get', 'point_count'],
-            '#51bbd6',
-            100,
-            '#f1f075',
-            750,
-            '#f28cb1',
-          ],
-          'circle-radius': [
-            'step',
-            ['get', 'point_count'],
-            20,
-            100,
-            30,
-            750,
-            40,
-          ],
-        },
-      })
-
-      this.map.addLayer({
-        id: 'cluster-count',
-        type: 'symbol',
-        source: 'stations',
-        filter: ['has', 'point_count'],
-        layout: {
-          'text-field': '{point_count_abbreviated}',
-          'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-          'text-size': 12,
-        },
-      })
-
-      this.map.addLayer({
-        id: 'unclustered-point',
-        type: 'circle',
-        source: 'stations',
-        filter: ['!has', 'point_count'],
-        paint: {
-          'circle-color': '#11b4da',
-          'circle-radius': 6,
-          'circle-stroke-width': 3,
-          'circle-stroke-color': '#fff',
-        },
-      })
-    })
-
-    this.map.on('click', 'unclustered-point', e => {
+    this.map.on('click', 'stations', e => {
       var coordinates = e.features[0].geometry.coordinates.slice()
       var description = e.features[0].properties.name
 
@@ -117,12 +48,12 @@ class Map extends Component {
         .addTo(this.map)
     })
 
-    this.map.on('mouseenter', 'unclustered-point', () => {
+    this.map.on('mouseenter', 'stations', () => {
       this.map.getCanvas().style.cursor = 'pointer'
     })
 
     // Change it back to a pointer when it leaves.
-    this.map.on('mouseleave', 'unclustered-point', () => {
+    this.map.on('mouseleave', 'stations', () => {
       this.map.getCanvas().style.cursor = ''
     })
 
