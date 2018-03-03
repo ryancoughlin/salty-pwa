@@ -45,7 +45,7 @@ const isPastTide = time => {
 
 const Container = glamorous.div(
   {
-    marginLeft: 61,
+    marginLeft: 47,
     flexDirection: 'row',
     display: 'flex',
     marginBottom: 8,
