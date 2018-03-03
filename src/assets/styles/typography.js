@@ -14,11 +14,16 @@ const SmallNumericType = glamorous.span({
   fontSize: 15,
 })
 
-const SecondaryHeader = glamorous.h2({
-  fontSize: 20,
-  fontWeight: '500',
-  marginBottom: 8,
-})
+const SecondaryHeader = glamorous.h2(
+  {
+    fontSize: 20,
+    fontWeight: '500',
+    marginBottom: 4,
+  },
+  props => ({
+    marginBottom: props.marginBottom,
+  }),
+)
 
 const Body = glamorous.h3({
   fontSize: 18,
