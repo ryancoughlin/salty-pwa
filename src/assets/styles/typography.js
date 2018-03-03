@@ -1,7 +1,7 @@
 import glamorous from 'glamorous'
 import Colors from './colors'
 
-const numericFontFamily = 'overpass-mono'
+const numericFontFamily = 'overpass-mono, Menlo, Monaco, monospace'
 
 const TidePhrase = glamorous.h1({
   fontSize: 34,
