@@ -5,17 +5,6 @@ import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 
 export default class NextTideRow extends Component {
-  formatTideTime(time) {
-    return moment
-      .utc(time)
-      .local()
-      .format('hh:mma')
-  }
-
-  formatTideHeight(height) {
-    return `${height.toFixed(1)}'`
-  }
-
   render() {
     const { tide } = this.props
 
@@ -23,12 +12,22 @@ export default class NextTideRow extends Component {
       <Container pastTide={isPastTide(tide.time)}>
         <TideType>{_.upperFirst(tide.type)}</TideType>
         <Styles.Type.Time>
-          {this.formatTideTime(tide.time)} /{' '}
-          {this.formatTideHeight(tide.height)}
+          {formatTideTime(tide.time)} / {formatTideHeight(tide.height)}
         </Styles.Type.Time>
       </Container>
     )
   }
+}
+
+const formatTideTime = time => {
+  return moment
+    .utc(time)
+    .local()
+    .format('hh:mma')
+}
+
+const formatTideHeight = height => {
+  return `${height.toFixed(1)}'`
 }
 
 const isPastTide = time => {
