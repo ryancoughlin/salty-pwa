@@ -95,6 +95,7 @@ const Container = glamorous.div({
   padding: Styles.Spacing.baseSpacing,
   marginBottom: Styles.Spacing.baseSpacing,
   borderRadius: 6,
+  maxHeight: '352',
 })
 
 const SwellHeight = glamorous(Styles.Type.SecondaryHeader)({
