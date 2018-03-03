@@ -35,13 +35,10 @@ const Swell = class extends Component {
 
     const currentSwellIndex = _.findIndex(swellForecast, swell => {
       const time = moment.utc(swell.time).local()
-      console.log(now.diff(time), swell)
       return now.diff(time) <= 0
     })
 
     const currentSwell = swellForecast[currentSwellIndex]
-
-    console.log(currentSwell, currentSwellIndex)
 
     if (currentSwell) {
       this.setState({

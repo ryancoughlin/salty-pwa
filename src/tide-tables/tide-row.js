@@ -19,7 +19,7 @@ export default class extends Component {
     return (
       <Container>
         <Left>
-          <TideArrow size={22} direction={tide.type} />
+          <TideArrow direction={tide.type} />
           <TideType>{tide.type}</TideType>
           <Numeric>{this.prettyTideTime}</Numeric>
         </Left>

@@ -2,11 +2,11 @@ import React from 'react'
 import glamorous from 'glamorous'
 import Styles from '../assets/styles'
 
-const TideArrow = ({ direction, tidePhrase }) => {
-  return direction === 'high' ? (
-    <Arrow tidePhrase>↑</Arrow>
+const TideArrow = props => {
+  return props.direction === 'high' ? (
+    <Arrow {...props}>↑</Arrow>
   ) : (
-    <Arrow tidePhrase>↓</Arrow>
+    <Arrow {...props}>↓</Arrow>
   )
 }
 
@@ -20,6 +20,8 @@ const Arrow = glamorous(Styles.Type.Body)(
   props => {
     if (props.tidePhrase) {
       return { fontSize: 18, position: 'relative', top: 12, left: 24 }
+    } else {
+      return null
     }
   },
 )
