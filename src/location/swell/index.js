@@ -20,7 +20,7 @@ const Swell = class extends Component {
   }
 
   componentDidMount() {
-    if (!this.isEmpty(this.props.swells)) {
+    if (this.isEmpty(this.props.swells)) {
       this.findCurrentSwell()
     }
   }
