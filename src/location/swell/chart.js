@@ -27,9 +27,9 @@ export default class SwellChart extends Component {
       <Container>
         <VictoryChart
           containerComponent={
-            <VictoryContainer responsive={false} width={1150} />
+            <VictoryContainer responsive={false} width={1550} />
           }
-          width={1150}
+          width={1550}
           height={120}
           padding={{
             top: 24,
@@ -58,8 +58,9 @@ export default class SwellChart extends Component {
           />
           <VictoryAxis
             scale={{ x: 'time' }}
-            offsetY={22}
+            offsetY={16}
             tickValues={_.map(this.data, wind => wind.time)}
+            labelComponent={<VictoryLabel dx={-2} />}
             style={{
               axis: { stroke: 'transparent' },
               tickLabels: {

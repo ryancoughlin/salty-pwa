@@ -22,9 +22,9 @@ export default class TideChart extends Component {
       <Container>
         <VictoryChart
           containerComponent={
-            <VictoryContainer responsive={false} width={1250} />
+            <VictoryContainer responsive={false} width={1150} />
           }
-          width={1250}
+          width={1150}
           height={150}
           padding={{
             top: 24,

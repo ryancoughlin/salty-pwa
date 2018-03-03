@@ -15,7 +15,6 @@ class Location extends Component {
     tides: JSON.parse(localStorage.getItem('tides')),
     weather: JSON.parse(localStorage.getItem('weather')),
     location: JSON.parse(localStorage.getItem('location')),
-    swell: JSON.parse(localStorage.getItem('swell')) || {},
   }
 
   componentDidMount() {
@@ -43,13 +42,6 @@ class Location extends Component {
           localStorage.setItem('weather', JSON.stringify(weather))
         },
       )
-
-      request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
-        swell => {
-          this.setState({ swell: swell })
-          localStorage.setItem('swell', JSON.stringify(swell))
-        },
-      )
     })
   }
 
@@ -58,7 +50,7 @@ class Location extends Component {
   }
 
   render() {
-    const { tides, weather, location, swell } = this.state
+    const { tides, weather, location } = this.state
 
     if (!tides || !weather || !location) {
       return <Loading />
@@ -69,7 +61,7 @@ class Location extends Component {
         <TidePhrase location={location} nextTide={this.nextTide} />
         <CurrentWeather weather={weather} />
         <TodaysTides tides={tides} />
-        <Swell swell={swell} />
+        <Swell location={location} />
         <TideChart location={location} />
       </div>
     )
