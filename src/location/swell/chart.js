@@ -27,15 +27,15 @@ export default class SwellChart extends Component {
       <Container>
         <VictoryChart
           containerComponent={
-            <VictoryContainer responsive={false} width={1550} />
+            <VictoryContainer responsive={false} width={1850} />
           }
-          width={1550}
+          width={1850}
           height={120}
           padding={{
             top: 24,
             right: 24,
-            bottom: 24,
-            left: 16,
+            bottom: 34,
+            left: 24,
           }}
           scale={{ x: 'time', y: 'linear' }}
         >
@@ -64,7 +64,7 @@ export default class SwellChart extends Component {
             style={{
               axis: { stroke: 'transparent' },
               tickLabels: {
-                fontSize: 10,
+                fontSize: 12,
                 padding: 5,
                 fontFamily: 'overpass-mono',
                 fill: '#164F75',
