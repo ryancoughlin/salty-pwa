@@ -82,5 +82,5 @@ const Container = glamorous.div({
   overflowX: 'scroll',
   overflowY: 'hidden',
   whiteSpace: 'nowrap',
-  '-webkit-overflow-scrolling': 'touch',
+  WebkitOverflowScrolling: 'touch',
 })
