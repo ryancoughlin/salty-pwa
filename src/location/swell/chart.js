@@ -32,7 +32,7 @@ export default class SwellChart extends Component {
           width={1850}
           height={120}
           padding={{
-            top: 24,
+            top: 40,
             right: 24,
             bottom: 34,
             left: 24,

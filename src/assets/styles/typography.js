@@ -18,7 +18,7 @@ const SecondaryHeader = glamorous.h2(
   {
     fontSize: 20,
     fontWeight: '500',
-    marginBottom: 14,
+    marginBottom: 6,
   },
   props => ({
     marginBottom: props.marginBottom,

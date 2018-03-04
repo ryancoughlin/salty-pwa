@@ -12,7 +12,7 @@ const TodaysTides = ({ tides }) => (
     <InnerContainer>
       <Header>
         <Icon source={tideIcon} />
-        <Styles.Type.SecondaryHeader marginBottom={12}>
+        <Styles.Type.SecondaryHeader>
           Today&apos;s Tides
         </Styles.Type.SecondaryHeader>
       </Header>
