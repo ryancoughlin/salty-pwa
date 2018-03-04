@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import moment from 'moment'
 import glamorous from 'glamorous'
+import { shortTimeFormat } from '../../utils/helpers'
 import Styles from '../../assets/styles'
 
 export default class NextTideRow extends Component {
@@ -12,18 +13,11 @@ export default class NextTideRow extends Component {
       <Container pastTide={isPastTide(tide.time)}>
         <TideType>{_.upperFirst(tide.type)}</TideType>
         <Styles.Type.Time>
-          {formatTideTime(tide.time)} / {formatTideHeight(tide.height)}
+          {shortTimeFormat(tide.time)} / {formatTideHeight(tide.height)}
         </Styles.Type.Time>
       </Container>
     )
   }
-}
-
-const formatTideTime = time => {
-  return moment
-    .utc(time)
-    .local()
-    .format('hh:mma')
 }
 
 const formatTideHeight = height => {

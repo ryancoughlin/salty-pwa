@@ -5,10 +5,12 @@ import findNextTide from '../utils/find-next-tide'
 import { fetchLocation } from '../utils/location'
 import Loading from '../common/loading'
 import TidePhrase from './tide-phrase'
+import Currently from './currently'
 import CurrentWeather from './current-weather'
 import TodaysTides from './todays-tides'
 import Swell from './swell'
 import TideChart from './tide-chart'
+import Styles from '../assets/styles'
 
 class Location extends Component {
   state = {
@@ -26,8 +28,8 @@ class Location extends Component {
         longitude: location.longitude,
       }
 
-      localStorage.setItem('location', JSON.stringify(coords))
       this.setState({ location: location })
+      localStorage.setItem('location', JSON.stringify(coords))
 
       request(`/tides?latitude=${latitude}&longitude=${longitude}`).then(
         tides => {
@@ -38,8 +40,11 @@ class Location extends Component {
 
       request(`/weather?latitude=${latitude}&longitude=${longitude}`).then(
         weather => {
+          console.log(JSON.stringify(weather))
           this.setState({ weather: weather })
           localStorage.setItem('weather', JSON.stringify(weather))
+
+          console.log('weather done')
         },
       )
     })
@@ -58,11 +63,16 @@ class Location extends Component {
 
     return (
       <div className={'container'}>
-        <TidePhrase location={location} nextTide={this.nextTide} />
-        <CurrentWeather weather={weather} />
-        <TodaysTides tides={tides} />
-        <Swell location={location} />
-        <TideChart location={location} />
+        <Styles.Containers.Base>
+          <TidePhrase location={location} nextTide={this.nextTide} />
+          <CurrentWeather weather={weather} />
+          <TodaysTides tides={tides} />
+        </Styles.Containers.Base>
+        <Currently weather={weather} />
+        <Styles.Containers.Base>
+          <Swell location={location} />
+          <TideChart location={location} />
+        </Styles.Containers.Base>
       </div>
     )
   }

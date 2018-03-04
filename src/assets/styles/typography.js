@@ -18,7 +18,7 @@ const SecondaryHeader = glamorous.h2(
   {
     fontSize: 20,
     fontWeight: '500',
-    marginBottom: 4,
+    marginBottom: 14,
   },
   props => ({
     marginBottom: props.marginBottom,
@@ -33,7 +33,7 @@ const Body = glamorous.h3({
 
 const SmallBody = glamorous.h4({
   fontSize: 15,
-  fontWeight: 'bold',
+  fontWeight: '500',
 })
 
 const Time = glamorous.time({

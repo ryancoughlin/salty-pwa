@@ -7,6 +7,7 @@ export const Palette = {
 
 export const Colors = {
   Primary: Palette.Blue,
+  DarkBackground: Palette.DeepNavy,
   BaseTextColor: Palette.DeepNavy,
   SubtleTextColor: Palette.LightGray,
   SwellBlue: Palette.DarkBlue,
