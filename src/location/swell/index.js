@@ -13,23 +13,26 @@ const Swell = class extends Component {
     direction: '',
     period: '',
     swell: JSON.parse(localStorage.getItem('swell')),
-    requestSuccess: false,
   }
 
   componentDidMount() {
     const { latitude, longitude } = this.props.location
 
-    this.findCurrentSwell(this.state.swell)
+    this.findCurrentSwell()
 
     request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
       swell => {
-        this.setState({ swell: swell, requestSuccess: true })
+        this.setState({ swell: swell }, () => this.findCurrentSwell())
         localStorage.setItem('swell', JSON.stringify(swell))
       },
     )
   }
 
   findCurrentSwell() {
+    if (!this.state.swell || this.state.swell.length === 0) {
+      return
+    }
+
     const now = moment()
     const swellForecast = _.flatMap(this.state.swell)
 
@@ -40,15 +43,13 @@ const Swell = class extends Component {
 
     const currentSwell = swellForecast[currentSwellIndex]
 
-    if (currentSwell) {
-      this.setState({
-        type: currentSwell.type,
-        compassDirection: currentSwell.compassDirection,
-        direction: currentSwell.direction,
-        height: currentSwell.height,
-        period: currentSwell.period,
-      })
-    }
+    this.setState({
+      type: currentSwell.type,
+      compassDirection: currentSwell.compassDirection,
+      direction: currentSwell.direction,
+      height: currentSwell.height,
+      period: currentSwell.period,
+    })
   }
 
   isEmpty = obj => {
@@ -58,16 +59,14 @@ const Swell = class extends Component {
     return true
   }
 
-  render() {
-    const {
-      type,
-      period,
-      compassDirection,
-      height,
-      requestSuccess,
-    } = this.state
+  get hasData() {
+    return this.state.type && this.state.direction
+  }
 
-    if (!requestSuccess) {
+  render() {
+    const { type, period, compassDirection, height } = this.state
+
+    if (!this.hasData) {
       return (
         <Container>
           <Loading />
