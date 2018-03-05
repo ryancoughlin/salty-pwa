@@ -35,6 +35,10 @@ class Currently extends Component {
           <ConditionRow label={'Moon'} value={weather.moon.phase} />
           <ConditionRow label={'Humidity'} value={`${weather.humidity}%`} />
           <ConditionRow label={'UV Index'} value={`${weather.uvIndex}`} />
+          <ConditionRow
+            label={'Visibility'}
+            value={`${weather.visibility} mi`}
+          />
         </Details>
       </Container>
     )

@@ -12,8 +12,9 @@ const WaterTemperature = class extends Component {
 
     request(
       `/water-temperature?latitude=${latitude}&longitude=${longitude}`,
-    ).then(currentTemp => {
-      this.setState({ currentTemp: currentTemp.temperature })
+    ).then(latestReading => {
+      const currentTemp = latestReading.temperature
+      this.setState({ currentTemp })
       localStorage.setItem('currentTemp', JSON.stringify(currentTemp))
     })
   }
