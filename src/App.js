@@ -4,39 +4,34 @@ import { AnimatedSwitch, spring } from 'react-router-transition'
 import Location from './location/index'
 import TideTables from './tide-tables/index'
 
-// we need to map the `scale` prop we define below
-// to the transform style property
 function mapStyles(styles) {
+  console.log(styles)
   return {
     opacity: styles.opacity,
-    transform: `scale(${styles.scale})`,
+    transform: `translate3d(0, ${styles.transformY}px, 0)`,
   }
 }
 
-// wrap the `spring` helper to use a bouncy config
-function bounce(val) {
+function zoom(val) {
   return spring(val, {
-    stiffness: 330,
-    damping: 22,
+    stiffness: 135,
+    damping: 15,
   })
 }
 
-// child matches will...
 const bounceTransition = {
-  // start in a transparent, upscaled state
   atEnter: {
     opacity: 0,
-    scale: 1.2,
+    transformY: -20,
+    scale: 1,
   },
-  // leave in a transparent, downscaled state
   atLeave: {
-    opacity: bounce(0),
-    scale: bounce(0.8),
+    opacity: 0,
+    transformY: zoom(20),
   },
-  // and rest at an opaque, normally-scaled state
   atActive: {
-    opacity: bounce(1),
-    scale: bounce(1),
+    opacity: 1,
+    transformY: zoom(0),
   },
 }
 
