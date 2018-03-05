@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './header'
 import TideRow from './tide-row'
 import ModalHeader from '../common/modal-header'
+import Styles from '../assets/styles'
 
 class Location extends Component {
   state = {
@@ -14,17 +15,19 @@ class Location extends Component {
     return (
       <div>
         <ModalHeader />
-        {Object.keys(tides).map(date => {
-          const dayTides = tides[date]
-          return (
-            <div>
-              <Header date={date} />
-              {dayTides.map(dayTide => {
-                return <TideRow tide={dayTide} />
-              })}
-            </div>
-          )
-        })}
+        <Styles.Containers.Base>
+          {Object.keys(tides).map(date => {
+            const dayTides = tides[date]
+            return (
+              <div>
+                <Header date={date} />
+                {dayTides.map(dayTide => {
+                  return <TideRow tide={dayTide} />
+                })}
+              </div>
+            )
+          })}
+        </Styles.Containers.Base>
       </div>
     )
   }
