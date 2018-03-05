@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 import ConditionRow from './condition-row'
+import WaterTemperature from '../water-temperature'
 import { shortTimeFormat } from '../../utils/helpers'
 
 import Icon from '../../common/icon'
@@ -9,9 +10,7 @@ import tideIcon from '../../assets/images/tide.png'
 
 class Currently extends Component {
   render() {
-    const { weather } = this.props
-
-    console.log({ weather })
+    const { weather, location } = this.props
 
     return (
       <Container>
@@ -23,6 +22,7 @@ class Currently extends Component {
           </div>
         </Top>
         <Details>
+          <WaterTemperature location={location} />
           <ConditionRow
             label={'Sunrise'}
             value={shortTimeFormat(weather.sunrise)}

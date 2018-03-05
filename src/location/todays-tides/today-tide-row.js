@@ -43,6 +43,9 @@ const Container = glamorous.div(
     flexDirection: 'row',
     display: 'flex',
     marginBottom: 8,
+    ':last-of-type': {
+      marginBottom: 0,
+    },
   },
   props => ({
     textDecoration: props.pastTide ? 'line-through' : 'none',

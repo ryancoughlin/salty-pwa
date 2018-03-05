@@ -52,13 +52,6 @@ const Swell = class extends Component {
     })
   }
 
-  isEmpty = obj => {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) return false
-    }
-    return true
-  }
-
   get hasData() {
     return this.state.type && this.state.direction
   }

@@ -2,9 +2,13 @@ import glamorous from 'glamorous'
 import Colors from './colors'
 
 const numericFontFamily = 'overpass-mono, Menlo, Monaco, monospace'
+const mediumFontWeight = 500
+const semiBoldFontWeight = 600
+const boldFontWeight = 700
 
 const TidePhrase = glamorous.h1({
   fontSize: 34,
+  fontWeight: boldFontWeight,
   color: Colors.baseTextColor,
   lineHeight: 1.3,
 })
@@ -17,7 +21,7 @@ const SmallNumericType = glamorous.span({
 const SecondaryHeader = glamorous.h2(
   {
     fontSize: 20,
-    fontWeight: '500',
+    fontWeight: mediumFontWeight,
     marginBottom: 6,
   },
   props => ({
@@ -33,7 +37,7 @@ const Body = glamorous.h3({
 
 const SmallBody = glamorous.h4({
   fontSize: 15,
-  fontWeight: '500',
+  fontWeight: mediumFontWeight,
 })
 
 const Time = glamorous.time({

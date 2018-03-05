@@ -1,5 +1,5 @@
 export const Palette = {
-  DeepNavy: '#001B44',
+  Vulcan: '#0c1523',
   LightGray: '#93A0C1',
   Blue: '#2CACFF',
   DarkBlue: '#164F75',
@@ -7,8 +7,8 @@ export const Palette = {
 
 export const Colors = {
   Primary: Palette.Blue,
-  DarkBackground: Palette.DeepNavy,
-  BaseTextColor: Palette.DeepNavy,
+  DarkBackground: Palette.Vulcan,
+  BaseTextColor: Palette.Vulcan,
   SubtleTextColor: Palette.LightGray,
   SwellBlue: Palette.DarkBlue,
 }

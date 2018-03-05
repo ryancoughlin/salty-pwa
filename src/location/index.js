@@ -40,11 +40,8 @@ class Location extends Component {
 
       request(`/weather?latitude=${latitude}&longitude=${longitude}`).then(
         weather => {
-          console.log(JSON.stringify(weather))
           this.setState({ weather: weather })
           localStorage.setItem('weather', JSON.stringify(weather))
-
-          console.log('weather done')
         },
       )
     })
@@ -68,7 +65,7 @@ class Location extends Component {
           <CurrentWeather weather={weather} />
           <TodaysTides tides={tides} />
         </Styles.Containers.Base>
-        <Currently weather={weather} />
+        <Currently location={location} weather={weather} />
         <Styles.Containers.Base>
           <Swell location={location} />
           <TideChart location={location} />
