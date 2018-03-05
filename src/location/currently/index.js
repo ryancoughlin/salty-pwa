@@ -70,6 +70,7 @@ const Header = glamorous(Styles.Type.SecondaryHeader)({
 const Summary = glamorous(Styles.Type.SmallBody)({
   color: Styles.Colors.SubtleTextColor,
   fontWeight: 'normal',
+  paddingRight: 24,
 })
 
 export default Currently
