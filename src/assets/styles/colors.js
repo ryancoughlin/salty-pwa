@@ -3,6 +3,7 @@ export const Palette = {
   LightGray: '#93A0C1',
   Blue: '#2CACFF',
   DarkBlue: '#164F75',
+  CornFlowerBlue: '#3e3f72',
 }
 
 export const Colors = {
@@ -11,6 +12,7 @@ export const Colors = {
   BaseTextColor: Palette.Vulcan,
   SubtleTextColor: Palette.LightGray,
   SwellBlue: Palette.DarkBlue,
+  StationPin: Palette.CornFlowerBlue,
 }
 
 Colors.Palette = Palette

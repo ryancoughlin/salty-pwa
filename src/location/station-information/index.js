@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import Chart from './chart'
+import StationMap from './station-map'
 import Loading from '../../common/loading'
-import ChartHeader from '../../common/chart-header'
 import request from '../../utils/request'
 import Styles from '../../assets/styles'
 
-class TideChart extends Component {
+class StationInformation extends Component {
   state = {
     tideChart: JSON.parse(localStorage.getItem('tideChart')),
   }
@@ -27,15 +26,16 @@ class TideChart extends Component {
     if (!tideChart) return <Loading />
 
     return (
-      <Styles.Containers.Card>
-        <ChartHeader
-          headerText={'Water Levels'}
-          bodyText={'Over the next 24 hours'}
-        />
-        <Chart tideChart={tideChart} />
-      </Styles.Containers.Card>
+      <Container>
+        <StationMap />
+      </Container>
     )
   }
 }
 
-export default TideChart
+const Container = glamorous(Styles.Containers.Card)({
+  padding: 0,
+  overflow: 'hidden',
+})
+
+export default StationInformation

@@ -80,13 +80,9 @@ const Swell = class extends Component {
   }
 }
 
-const Container = glamorous.div({
+const Container = glamorous(Styles.Containers.Card)({
   backgroundImage: 'linear-gradient(-190deg, #8ADFFF 0%, #52BBFF 98%)',
   backgroundColor: Styles.Colors.Primary,
-  boxShadow: '0 0 20px 0 rgba(3, 23, 44, 0.14)',
-  padding: Styles.Spacing.baseSpacing,
-  marginBottom: Styles.Spacing.baseSpacing,
-  borderRadius: 6,
   maxHeight: '352',
 })
 

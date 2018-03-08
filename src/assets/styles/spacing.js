@@ -1,6 +1,6 @@
 export default {
   tinySpacing: 4,
-  smallSpacing: 10,
-  baseSpacing: 20,
-  largeSpacing: 44,
+  smallSpacing: 8,
+  baseSpacing: 24,
+  largeSpacing: 32,
 }

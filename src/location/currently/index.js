@@ -47,12 +47,15 @@ class Currently extends Component {
 
 const Container = glamorous.div({
   backgroundColor: Styles.Colors.DarkBackground,
-  padding: Styles.Spacing.baseSpacing,
+  paddingTop: Styles.Spacing.largeSpacing,
+  paddingRight: Styles.Spacing.baseSpacing,
+  paddingBottom: Styles.Spacing.baseSpacing,
+  paddingLeft: Styles.Spacing.baseSpacing,
   marginBottom: Styles.Spacing.baseSpacing,
 })
 
 const Details = glamorous.div({
-  marginTop: 16,
+  marginTop: Styles.Spacing.smallSpacing,
   marginLeft: 44,
   borderTopStyle: 'solid',
   borderTopWidth: 1,

@@ -8,6 +8,7 @@ import Currently from './currently'
 import CurrentWeather from './current-weather'
 import TodaysTides from './todays-tides'
 import Swell from './swell'
+import StationInformation from './station-information'
 import TideChart from './tide-chart'
 import Styles from '../assets/styles'
 
@@ -68,6 +69,7 @@ class Location extends Component {
         <Styles.Containers.Base>
           <Swell location={location} />
           <TideChart location={location} />
+          <StationInformation location={location} />
         </Styles.Containers.Base>
       </div>
     )

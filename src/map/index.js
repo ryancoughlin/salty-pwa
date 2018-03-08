@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import Styles from '../assets/styles'
 import { fetchLocation } from '../utils/location'
 import mapboxgl from 'mapbox-gl'
-import ModalHeader from '../common/modal-header'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
@@ -67,19 +65,10 @@ class Map extends Component {
   render() {
     return (
       <div className={'container'}>
-        <ModalHeader />
-        <div
-          ref={el => (this.mapContainer = el)}
-          style={{ width: '100vw', height: '100vh' }}
-        />
+        <Map />
       </div>
     )
   }
 }
-
-const Container = glamorous.div({
-  width: '100vw',
-  height: '100vh',
-})
 
 export default Map
