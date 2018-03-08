@@ -23,7 +23,7 @@ a {
   text-decoration: none;
 }
 
-@media screen and (min-width: 461px) and (max-width: 1600px) {
+@media screen and (min-width: 500px) and (max-width: 1600px) {
   body {
     background-color: #f8f8f8;
   }

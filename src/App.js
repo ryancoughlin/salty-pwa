@@ -9,13 +9,15 @@ function mapStyles(styles) {
   console.log(styles)
   return {
     opacity: styles.opacity,
-    transform: `translate3d(0, ${styles.transformY}px, 0)`,
+    transform: `translate3d(0, ${styles.transformY}px, 0) scale3d(${
+      styles.scale
+    }, ${styles.scale}, 1)`,
   }
 }
 
 function zoom(val) {
   return spring(val, {
-    stiffness: 135,
+    stiffness: 130,
     damping: 15,
   })
 }
@@ -23,16 +25,18 @@ function zoom(val) {
 const bounceTransition = {
   atEnter: {
     opacity: 0,
-    transformY: -20,
+    transformY: -5,
     scale: 1,
   },
   atLeave: {
     opacity: 0,
-    transformY: zoom(20),
+    transformY: zoom(5),
+    scale: zoom(0.9),
   },
   atActive: {
     opacity: 1,
     transformY: zoom(0),
+    scale: zoom(1),
   },
 }
 
