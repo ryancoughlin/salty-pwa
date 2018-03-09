@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { fetchLocation } from '../../utils/location'
 import mapboxgl from 'mapbox-gl'
 import Styles from '../../assets/styles'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -12,16 +11,16 @@ class StationMap extends Component {
   }
 
   componentDidMount() {
-    fetchLocation().then(location => {
-      const userLocation = [location.longitude, location.latitude]
-      this.setState({ userLocation })
-      localStorage.setItem('userLocation', JSON.stringify(userLocation))
-    })
+    const nearbyStation = this.props.stations[0]
+    const nearbyStationCoordinates = nearbyStation.location
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/snowcast/cje8m7qongh212sqss7q3yvx4',
-      center: this.state.userLocation,
+      center: [
+        nearbyStationCoordinates.coordinates[0],
+        nearbyStationCoordinates.coordinates[1],
+      ],
       zoom: 13,
       minZoom: 8,
       maxZoom: 13,
@@ -37,7 +36,10 @@ class StationMap extends Component {
             type: 'Feature',
             geometry: {
               type: 'Point',
-              coordinates: [-71.0589, 42.3601],
+              coordinates: [
+                nearbyStationCoordinates.coordinates[0],
+                nearbyStationCoordinates.coordinates[1],
+              ],
             },
           },
         },
@@ -58,7 +60,10 @@ class StationMap extends Component {
             type: 'Feature',
             geometry: {
               type: 'Point',
-              coordinates: [-71.0589, 42.3601],
+              coordinates: [
+                nearbyStationCoordinates.coordinates[0],
+                nearbyStationCoordinates.coordinates[1],
+              ],
             },
           },
         },

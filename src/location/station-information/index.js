@@ -7,27 +7,30 @@ import Styles from '../../assets/styles'
 
 class StationInformation extends Component {
   state = {
-    tideChart: JSON.parse(localStorage.getItem('tideChart')),
+    nearbyStations: JSON.parse(localStorage.getItem('nearbyStations')) || [],
   }
 
   componentDidMount() {
     const { latitude, longitude } = this.props.location
 
-    request(`/tide-chart?latitude=${latitude}&longitude=${longitude}`).then(
-      tideChart => {
-        this.setState({ tideChart: tideChart })
-        localStorage.setItem('tideChart', JSON.stringify(tideChart))
-      },
-    )
+    request(
+      `/nearby-stations?latitude=${latitude}&longitude=${longitude}`,
+    ).then(nearbyStations => {
+      this.setState({ nearbyStations })
+      localStorage.setItem('nearbyStations', JSON.stringify(nearbyStations))
+    })
   }
 
   render() {
-    const { tideChart } = this.state
-    if (!tideChart) return <Loading />
+    const { nearbyStations } = this.state
+    if (!nearbyStations) return <Loading />
 
     return (
       <Container>
-        <StationMap />
+        <StationMap
+          stations={nearbyStations}
+          userLocation={this.props.userLocation}
+        />
       </Container>
     )
   }
