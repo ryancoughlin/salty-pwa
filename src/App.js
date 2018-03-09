@@ -6,7 +6,6 @@ import TideTables from './tide-tables/index'
 import Map from './map/index'
 
 function mapStyles(styles) {
-  console.log(styles)
   return {
     opacity: styles.opacity,
     transform: `translate3d(0, ${styles.transformY}px, 0) scale3d(${
