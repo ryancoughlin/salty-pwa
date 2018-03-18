@@ -3,6 +3,7 @@ import glamorous from 'glamorous'
 import StationMap from './station-map'
 import Loading from '../../common/loading'
 import request from '../../utils/request'
+import { fetchLocation } from '../../utils/location'
 import Styles from '../../assets/styles'
 
 class StationInformation extends Component {
@@ -11,13 +12,15 @@ class StationInformation extends Component {
   }
 
   componentDidMount() {
-    const { latitude, longitude } = this.props.location
+    fetchLocation().then(location => {
+      const { latitude, longitude } = location
 
-    request(
-      `/nearby-stations?latitude=${latitude}&longitude=${longitude}`,
-    ).then(nearbyStations => {
-      this.setState({ nearbyStations })
-      localStorage.setItem('nearbyStations', JSON.stringify(nearbyStations))
+      request(
+        `/nearby-stations?latitude=${latitude}&longitude=${longitude}`,
+      ).then(nearbyStations => {
+        this.setState({ nearbyStations })
+        localStorage.setItem('nearbyStations', JSON.stringify(nearbyStations))
+      })
     })
   }
 

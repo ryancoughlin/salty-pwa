@@ -5,6 +5,7 @@ import glamorous from 'glamorous'
 import SwellChart from './chart'
 import Loading from '../../common/loading'
 import Styles from '../../assets/styles'
+import { fetchLocation } from '../../utils/location'
 import request from '../../utils/request'
 
 const Swell = class extends Component {
@@ -12,20 +13,40 @@ const Swell = class extends Component {
     type: '',
     direction: '',
     period: '',
-    swell: JSON.parse(localStorage.getItem('swell')),
+  }
+
+  componentWillMount() {
+    localStorage.getItem('swell') &&
+      this.setState({ swell: JSON.parse(localStorage.getItem('swell')) })
+    this.findCurrentSwell()
   }
 
   componentDidMount() {
-    const { latitude, longitude } = this.props.location
+    fetchLocation().then(location => {
+      const { longitude, latitude } = location
 
-    this.findCurrentSwell()
+      if (!localStorage.getItem('swell')) {
+        request(`/swell?latitude=${latitude}&longitude=${longitude}`)
+          .then(swell => {
+            console.log(swell)
+            this.setState({ swell: swell }, () => this.findCurrentSwell())
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      } else {
+        console.log('From localStorage')
+      }
+    })
+  }
 
-    request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
-      swell => {
-        this.setState({ swell: swell }, () => this.findCurrentSwell())
-        localStorage.setItem('swell', JSON.stringify(swell))
-      },
-    )
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('swell', JSON.stringify(nextState.swell))
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // eslint-disable-next-line
+    Raven.captureException(error, { extra: errorInfo })
   }
 
   findCurrentSwell() {

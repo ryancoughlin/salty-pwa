@@ -20,31 +20,40 @@ class Location extends Component {
   }
 
   componentDidMount() {
-    fetchLocation().then(location => {
-      const { latitude, longitude } = location
+    fetchLocation()
+      .then(location => {
+        const { latitude, longitude } = location
 
-      const coords = {
-        latitude: location.latitude,
-        longitude: location.longitude,
-      }
+        const coords = {
+          latitude: location.latitude,
+          longitude: location.longitude,
+        }
 
-      this.setState({ location: location })
-      localStorage.setItem('location', JSON.stringify(coords))
+        this.setState({ location: location })
+        localStorage.setItem('location', JSON.stringify(coords))
 
-      request(`/tides?latitude=${latitude}&longitude=${longitude}`).then(
-        tides => {
-          this.setState({ tides: tides })
-          localStorage.setItem('tides', JSON.stringify(tides))
-        },
-      )
+        request(`/tides?latitude=${latitude}&longitude=${longitude}`)
+          .then(tides => {
+            console.log('New tides')
+            this.setState({ tides: tides })
+            localStorage.setItem('tides', JSON.stringify(tides))
+          })
+          .catch(error => {
+            console.error(error)
+          })
 
-      request(`/weather?latitude=${latitude}&longitude=${longitude}`).then(
-        weather => {
-          this.setState({ weather: weather })
-          localStorage.setItem('weather', JSON.stringify(weather))
-        },
-      )
-    })
+        request(`/weather?latitude=${latitude}&longitude=${longitude}`)
+          .then(weather => {
+            this.setState({ weather: weather })
+            localStorage.setItem('weather', JSON.stringify(weather))
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      })
+      .catch(error => {
+        console.error(error)
+      })
   }
 
   get nextTide() {
@@ -67,9 +76,9 @@ class Location extends Component {
         </Styles.Containers.Base>
         <Currently location={location} weather={weather} />
         <Styles.Containers.Base>
-          <Swell location={location} />
+          <Swell />
           <TideChart location={location} />
-          <StationInformation location={location} />
+          <StationInformation />
         </Styles.Containers.Base>
       </div>
     )
