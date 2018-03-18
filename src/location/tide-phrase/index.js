@@ -8,7 +8,7 @@ import TideArrow from '../../common/tide-arrow'
 
 const TidePhrase = class extends Component {
   state = {
-    city: JSON.parse(localStorage.getItem('city')),
+    city: JSON.parse(localStorage.getItem('city')) || 'Loading...',
   }
 
   componentDidMount() {
@@ -20,7 +20,7 @@ const TidePhrase = class extends Component {
 
     return (
       <Container>
-        <TideArrow direction={nextTide.direction} tidePhrase />
+        <TideArrow direction={nextTide.type} tidePhrase />
         <InnerContainer>
           <Styles.Type.TidePhrase>
             {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
