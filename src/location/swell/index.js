@@ -46,12 +46,14 @@ const Swell = class extends Component {
   }
 
   findCurrentSwell() {
-    if (!this.state.swell || this.state.swell.length === 0) {
+    const { swell } = this.state
+
+    if (!swell || swell.length === 0) {
       return
     }
 
     const now = moment()
-    const swellForecast = _.flatMap(this.state.swell)
+    const swellForecast = _.flatMap(swell)
 
     const currentSwellIndex = _.findIndex(swellForecast, swell => {
       const time = moment.utc(swell.time).local()
