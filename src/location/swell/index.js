@@ -28,14 +28,11 @@ const Swell = class extends Component {
       if (!localStorage.getItem('swell')) {
         request(`/swell?latitude=${latitude}&longitude=${longitude}`)
           .then(swell => {
-            console.log(swell)
             this.setState({ swell: swell }, () => this.findCurrentSwell())
           })
           .catch(error => {
             console.error(error)
           })
-      } else {
-        console.log('From localStorage')
       }
     })
   }

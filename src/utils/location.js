@@ -5,7 +5,6 @@ export function fetchLocation() {
         resolve(position.coords)
       },
       error => {
-        console.log(error)
         reject(error)
       },
       {
