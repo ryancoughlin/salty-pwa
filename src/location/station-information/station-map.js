@@ -7,7 +7,7 @@ mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
 
 class StationMap extends Component {
   state = {
-    userLocation: JSON.parse(localStorage.getItem('userLocation')),
+    userLocation: JSON.parse(localStorage.getItem('userLocation')) | {},
   }
 
   componentDidMount() {
