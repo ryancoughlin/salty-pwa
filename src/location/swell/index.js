@@ -13,11 +13,10 @@ const Swell = class extends Component {
     type: '',
     direction: '',
     period: '',
+    swell: JSON.parse(localStorage.getItem('swell')),
   }
 
   componentWillMount() {
-    localStorage.getItem('swell') &&
-      this.setState({ swell: JSON.parse(localStorage.getItem('swell')) })
     this.findCurrentSwell()
   }
 
