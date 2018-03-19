@@ -1,6 +1,6 @@
 export function fetchLocation() {
   return new Promise((resolve, reject) => {
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
       position => {
         resolve(position.coords)
       },
