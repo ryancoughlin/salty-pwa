@@ -57,11 +57,6 @@ const TidePhrase = class extends Component {
   }
 }
 
-const CityName = glamorous(Link)({
-  textDecoration: 'underline',
-  color: Styles.Colors.SubtleTextColor,
-})
-
 const FadedText = glamorous.span({
   color: Styles.Colors.SubtleTextColor,
 })

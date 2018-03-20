@@ -19,7 +19,7 @@ const Arrow = glamorous(Styles.Type.Body)(
   },
   props => {
     if (props.tidePhrase) {
-      return { fontSize: 18, position: 'relative', top: 12, left: 8 }
+      return { fontSize: 18, position: 'relative', top: 12, left: 5 }
     } else {
       return null
     }

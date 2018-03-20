@@ -39,7 +39,7 @@ const isPastTide = time => {
 
 const Container = glamorous.div(
   {
-    marginLeft: 47,
+    marginLeft: 42,
     flexDirection: 'row',
     display: 'flex',
     marginBottom: 8,
@@ -53,5 +53,5 @@ const Container = glamorous.div(
 )
 
 const TideType = glamorous(Styles.Type.SmallBody)({
-  minWidth: 50,
+  minWidth: 54,
 })
