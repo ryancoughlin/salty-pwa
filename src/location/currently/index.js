@@ -6,7 +6,7 @@ import WaterTemperature from '../water-temperature'
 import { shortTimeFormat } from '../../utils/helpers'
 
 import Icon from '../../common/icon'
-import tideIcon from '../../assets/images/tide.png'
+import tideIcon from '../../assets/images/weather/snow.svg'
 
 class Currently extends Component {
   render() {
