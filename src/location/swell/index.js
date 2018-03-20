@@ -113,7 +113,6 @@ const Container = glamorous(Styles.Containers.Card)({
 const SwellHeight = glamorous(Styles.Type.SecondaryHeader)({
   color: Styles.Colors.SwellBlue,
   fontSize: 28,
-  fontWeight: '500',
   marginBottom: 16,
 })
 

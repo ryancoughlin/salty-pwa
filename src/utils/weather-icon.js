@@ -1,10 +1,10 @@
-import sunIcon from '../assets/images/weather/sunny.png'
-import partlySunnyIcon from '../assets/images/weather/partly-sunny.png'
-import cloudyIcon from '../assets/images/weather/cloudy.png'
-import rainIcon from '../assets/images/weather/rainy.png'
-import windIcon from '../assets/images/weather/wind.png'
-import fogIcon from '../assets/images/weather/fog.png'
-import snowIcon from '../assets/images/weather/snow.png'
+import sunIcon from '../assets/images/weather/sunny.svg'
+import partlySunnyIcon from '../assets/images/weather/partly-sunny.svg'
+import cloudyIcon from '../assets/images/weather/cloudy.svg'
+import rainIcon from '../assets/images/weather/rainy.svg'
+import windIcon from '../assets/images/weather/wind.svg'
+import fogIcon from '../assets/images/weather/foggy.svg'
+import snowIcon from '../assets/images/weather/snow.svg'
 
 const weatherTypes = {
   'clear-day': sunIcon,
