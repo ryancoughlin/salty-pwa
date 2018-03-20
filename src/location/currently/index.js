@@ -50,7 +50,7 @@ const Container = glamorous.div({
   paddingTop: Styles.Spacing.largeSpacing,
   paddingRight: Styles.Spacing.baseSpacing,
   paddingBottom: Styles.Spacing.baseSpacing,
-  paddingLeft: Styles.Spacing.baseSpacing / 2,
+  paddingLeft: Styles.Spacing.smallSpacing * 2,
   marginBottom: Styles.Spacing.baseSpacing,
 })
 

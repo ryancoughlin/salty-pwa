@@ -68,7 +68,7 @@ const Container = glamorous.div({
 })
 
 const InnerContainer = glamorous.div({
-  marginLeft: 20,
+  marginLeft: 16,
 })
 
 export default TidePhrase
