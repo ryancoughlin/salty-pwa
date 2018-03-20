@@ -55,7 +55,7 @@ const Container = glamorous.div({
 })
 
 const Details = glamorous.div({
-  marginTop: Styles.Spacing.smallSpacing,
+  marginTop: Styles.Spacing.baseSpacing,
   marginLeft: 36,
   borderTopStyle: 'solid',
   borderTopWidth: 1,

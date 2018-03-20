@@ -24,7 +24,7 @@ const Container = glamorous.div(
     justifyContent: 'space-between',
     borderBottomStyle: 'solid',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.04)',
+    borderBottomColor: 'rgba(255, 255, 255, 0.06)',
   },
   props => ({
     textDecoration: props.pastTide ? 'line-through' : 'none',
