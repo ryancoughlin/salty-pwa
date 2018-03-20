@@ -1,17 +1,26 @@
-export function fetchLocation() {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
+export const fetchLocation = () => {
+  console.log('Getting location...')
+  const geolocation = navigator.geolocation
+  const location = new Promise((resolve, reject) => {
+    if (!geolocation) {
+      reject(new Error('Geolocation is not supported by this browser!'))
+    }
+
+    geolocation.getCurrentPosition(
       position => {
         resolve(position.coords)
       },
       error => {
-        reject(error)
+        console.log(error)
+        reject(
+          new Error(
+            'Access denied! Please allow your browser for reading your location.',
+          ),
+        )
       },
-      {
-        enableHighAccuracy: true,
-        maximumAge: 1000 * 60,
-        timeout: 27000,
-      },
+      { maximumAge: 60 * 60 * 1000 },
     )
   })
+
+  return location
 }

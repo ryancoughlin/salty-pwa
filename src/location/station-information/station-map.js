@@ -83,7 +83,7 @@ class StationMap extends Component {
   }
 
   componentWillUnmount() {
-    this.map.remove()
+    this.map && this.map.remove()
   }
 
   render() {

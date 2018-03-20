@@ -18,7 +18,6 @@ class StationInformation extends Component {
       request(
         `/nearby-stations?latitude=${latitude}&longitude=${longitude}`,
       ).then(nearbyStations => {
-        console.log('Nearby Stations: ', nearbyStations)
         this.setState({ nearbyStations })
         localStorage.setItem('nearbyStations', JSON.stringify(nearbyStations))
       })
@@ -27,7 +26,7 @@ class StationInformation extends Component {
 
   render() {
     const { nearbyStations } = this.state
-    if (!nearbyStations) return <Loading />
+    if (!nearbyStations || nearbyStations.length === 0) return <Loading />
 
     return (
       <Container>

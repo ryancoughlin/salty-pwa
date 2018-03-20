@@ -21,19 +21,24 @@ const Swell = class extends Component {
   }
 
   componentDidMount() {
-    fetchLocation().then(location => {
-      const { longitude, latitude } = location
+    fetchLocation()
+      .then(location => {
+        const { longitude, latitude } = location
 
-      if (!localStorage.getItem('swell')) {
-        request(`/swell?latitude=${latitude}&longitude=${longitude}`)
-          .then(swell => {
-            this.setState({ swell: swell }, () => this.findCurrentSwell())
-          })
-          .catch(error => {
-            console.error(error)
-          })
-      }
-    })
+        console.log('About to request...')
+        if (!this.state.swell) {
+          console.log('Is requesting...')
+          request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
+            swell => {
+              console.log('About to set state...')
+              this.setState({ swell: swell }, () => this.findCurrentSwell())
+            },
+          )
+        }
+      })
+      .catch(error => {
+        console.error(error)
+      })
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -42,7 +47,7 @@ const Swell = class extends Component {
 
   componentDidCatch(error, errorInfo) {
     // eslint-disable-next-line
-    Raven.captureException(error, { extra: errorInfo })
+    Raven.captureException(error, { extra: errorInfo, state: this.state })
   }
 
   findCurrentSwell() {

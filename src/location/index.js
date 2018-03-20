@@ -22,19 +22,18 @@ class Location extends Component {
   componentDidMount() {
     fetchLocation()
       .then(location => {
-        const { latitude, longitude } = location
-
         const coords = {
           latitude: location.latitude,
           longitude: location.longitude,
         }
 
-        this.setState({ location: location })
+        this.setState({ location: coords })
         localStorage.setItem('location', JSON.stringify(coords))
 
-        request(`/tides?latitude=${latitude}&longitude=${longitude}`)
+        request(
+          `/tides?latitude=${coords.latitude}&longitude=${coords.longitude}`,
+        )
           .then(tides => {
-            console.log('New tides')
             this.setState({ tides: tides })
             localStorage.setItem('tides', JSON.stringify(tides))
           })
@@ -42,7 +41,9 @@ class Location extends Component {
             console.error(error)
           })
 
-        request(`/weather?latitude=${latitude}&longitude=${longitude}`)
+        request(
+          `/weather?latitude=${coords.latitude}&longitude=${coords.longitude}`,
+        )
           .then(weather => {
             this.setState({ weather: weather })
             localStorage.setItem('weather', JSON.stringify(weather))
@@ -54,6 +55,11 @@ class Location extends Component {
       .catch(error => {
         console.error(error)
       })
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // eslint-disable-next-line
+    Raven.captureException(error, { extra: errorInfo, state: this.state })
   }
 
   get nextTide() {
