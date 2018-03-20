@@ -5,7 +5,7 @@ import moment from 'moment'
 import TodayTideRow from './today-tide-row'
 import Styles from '../../assets/styles'
 import Icon from '../../common/icon'
-import tideIcon from '../../assets/images/tide.png'
+import tideIcon from '../../assets/images/tide.svg'
 
 const TodaysTides = ({ tides }) => (
   <Container>
