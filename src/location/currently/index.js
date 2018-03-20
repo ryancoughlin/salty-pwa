@@ -56,10 +56,10 @@ const Container = glamorous.div({
 
 const Details = glamorous.div({
   marginTop: Styles.Spacing.smallSpacing,
-  marginLeft: 44,
+  marginLeft: 36,
   borderTopStyle: 'solid',
   borderTopWidth: 1,
-  borderTopColor: 'rgba(255, 255, 255, 0.04)',
+  borderTopColor: 'rgba(255, 255, 255, 0.06)',
 })
 
 const Top = glamorous.div({
