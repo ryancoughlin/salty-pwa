@@ -8,8 +8,6 @@ import {
 } from 'victory'
 import glamorous from 'glamorous'
 import _ from 'lodash'
-
-import Styles from '../../assets/styles'
 import BarSegment from '../../common/bar-segment'
 
 export default class SwellChart extends Component {
@@ -27,9 +25,9 @@ export default class SwellChart extends Component {
       <Container>
         <VictoryChart
           containerComponent={
-            <VictoryContainer responsive={false} width={1850} />
+            <VictoryContainer responsive={false} width={1000} />
           }
-          width={1850}
+          width={1000}
           height={120}
           padding={{
             top: 40,

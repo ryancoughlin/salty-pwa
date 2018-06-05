@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
 import geocodeLocation from '../../utils/geocode'
 import Styles from '../../assets/styles'

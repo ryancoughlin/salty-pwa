@@ -7,6 +7,7 @@ import Loading from '../../common/loading'
 import Styles from '../../assets/styles'
 import { fetchLocation } from '../../utils/location'
 import request from '../../utils/request'
+import { swellType } from '../../utils/swell-type'
 
 const Swell = class extends Component {
   state = {
@@ -24,13 +25,9 @@ const Swell = class extends Component {
     fetchLocation()
       .then(location => {
         const { longitude, latitude } = location
-
-        console.log('About to request...')
         if (!this.state.swell) {
-          console.log('Is requesting...')
           request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
             swell => {
-              console.log('About to set state...')
               this.setState({ swell: swell }, () => this.findCurrentSwell())
             },
           )
@@ -68,7 +65,6 @@ const Swell = class extends Component {
     const currentSwell = swellForecast[currentSwellIndex]
 
     this.setState({
-      type: currentSwell.type,
       compassDirection: currentSwell.compassDirection,
       direction: currentSwell.direction,
       height: currentSwell.height,
@@ -77,11 +73,12 @@ const Swell = class extends Component {
   }
 
   get hasData() {
-    return this.state.type && this.state.direction
+    return this.state.direction
   }
 
   render() {
-    const { type, period, compassDirection, height } = this.state
+    const { period, compassDirection, height } = this.state
+    const { weather } = this.props
 
     if (!this.hasData) {
       return (
@@ -94,7 +91,7 @@ const Swell = class extends Component {
     return (
       <Container>
         <SwellHeight>{height}&apos;</SwellHeight>
-        <Headline>{type}</Headline>
+        <Headline>{swellType(weather.currentWind)}</Headline>
         <SwellPeriod>
           Swell period at {period}s from {compassDirection}
         </SwellPeriod>
