@@ -82,7 +82,7 @@ class Location extends Component {
         </Styles.Containers.Base>
         <Currently location={location} weather={weather} />
         <Styles.Containers.Base>
-          <Swell />
+          <Swell weather={weather} />
           <TideChart location={location} />
           <StationInformation />
         </Styles.Containers.Base>
