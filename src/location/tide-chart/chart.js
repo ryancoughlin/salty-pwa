@@ -3,9 +3,10 @@ import {
   VictoryLine,
   VictoryChart,
   VictoryContainer,
-  VictoryScatter,
-  VictoryAxis,
+  VictoryTheme,
+  VictoryLabel,
 } from 'victory'
+import moment from 'moment'
 import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 
@@ -21,11 +22,13 @@ export default class TideChart extends Component {
     return (
       <Container>
         <VictoryChart
+          theme={VictoryTheme.material}
+          animate={{ duration: 1000 }}
           containerComponent={<VictoryContainer />}
           height={200}
           padding={{
             top: 24,
-            right: 0,
+            right: 24,
             bottom: 24,
             left: 30,
           }}
@@ -43,6 +46,12 @@ export default class TideChart extends Component {
                 strokeWidth: 3,
               },
             }}
+          />
+          <VictoryLine
+            data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 12 }]}
+            style={{ data: { stroke: 'red' } }}
+            labels={['NOW']}
+            labelComponent={<VictoryLabel angle={90} y={50} />}
           />
         </VictoryChart>
       </Container>
