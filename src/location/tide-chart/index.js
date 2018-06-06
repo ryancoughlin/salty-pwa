@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import glamorous from 'glamorous'
 import Chart from './chart'
 import Loading from '../../common/loading'
 import ChartHeader from '../../common/chart-header'
