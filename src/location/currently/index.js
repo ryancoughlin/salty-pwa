@@ -34,7 +34,7 @@ class Currently extends Component {
           <ConditionRow label={'Pressure'} value={`${weather.pressure} mb`} />
           <ConditionRow label={'Moon'} value={weather.moon.phase} />
           <ConditionRow label={'Humidity'} value={`${weather.humidity}%`} />
-          <ConditionRow label={'UV Index'} value={`${weather.uvIndex}`} />
+          <ConditionRow label={'UV Index'} value={`${weather.uvIndex} / 10`} />
           <ConditionRow
             label={'Visibility'}
             value={`${weather.visibility} mi`}
