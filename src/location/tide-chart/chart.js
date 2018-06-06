@@ -25,7 +25,7 @@ export default class TideChart extends Component {
           height={200}
           padding={{
             top: 24,
-            right: 24,
+            right: 0,
             bottom: 24,
             left: 30,
           }}
@@ -41,25 +41,6 @@ export default class TideChart extends Component {
               data: {
                 stroke: Styles.Colors.Primary,
                 strokeWidth: 3,
-              },
-            }}
-          />
-          <VictoryScatter
-            x="time"
-            y="height"
-            data={this.tides}
-            labels={datum => `${datum.y}'`}
-            size={5}
-            style={{
-              labels: {
-                fontSize: 14,
-                fontFamily: 'overpass-mono',
-                fill: '#164F75',
-              },
-              data: {
-                strokeWidth: 3,
-                fill: Styles.Colors.Primary,
-                stroke: 'white',
               },
             }}
           />
