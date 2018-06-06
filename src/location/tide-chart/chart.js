@@ -21,34 +21,16 @@ export default class TideChart extends Component {
     return (
       <Container>
         <VictoryChart
-          containerComponent={
-            <VictoryContainer responsive={false} width={1150} />
-          }
-          width={1150}
-          height={150}
+          containerComponent={<VictoryContainer />}
+          height={200}
           padding={{
             top: 24,
             right: 24,
             bottom: 24,
-            left: 16,
+            left: 30,
           }}
           scale={{ x: 'time', y: 'linear' }}
         >
-          <VictoryAxis
-            offsetY={30}
-            scale={{ x: 'time' }}
-            tickValues={this.tides.map(tide => tide.time)}
-            tickFormat={x => x.getHours()}
-            style={{
-              axis: { stroke: 'transparent' },
-              tickLabels: {
-                fontSize: 10,
-                padding: 5,
-                fontFamily: 'overpass-mono',
-                fill: '#164F75',
-              },
-            }}
-          />
           <VictoryLine
             data={this.tides}
             interpolation="basis"
