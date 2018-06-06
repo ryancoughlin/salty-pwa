@@ -26,13 +26,13 @@ class TideChart extends Component {
     if (!tideChart) return <Loading />
 
     return (
-      <Styles.Containers.Card>
+      <div>
         <ChartHeader
           headerText={'Water Levels'}
           bodyText={'Over the next 24 hours'}
         />
         <Chart tideChart={tideChart} />
-      </Styles.Containers.Card>
+      </div>
     )
   }
 }
