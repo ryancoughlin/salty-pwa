@@ -79,11 +79,11 @@ class Location extends Component {
           <TidePhrase location={location} nextTide={this.nextTide} />
           <CurrentWeather weather={weather} />
           <TodaysTides tides={tides} />
+          <TideChart location={location} />
         </Styles.Containers.Base>
         <Currently location={location} weather={weather} />
         <Styles.Containers.Base>
           <Swell weather={weather} />
-          <TideChart location={location} />
           <StationInformation />
         </Styles.Containers.Base>
       </div>
