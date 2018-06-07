@@ -89,8 +89,12 @@ export default class TideChart extends Component {
           <VictoryLine
             data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 12 }]}
             labels={['NOW']}
-            labelComponent={<VictoryLabel angle={90} y={30} />}
+            labelComponent={<VictoryLabel angle={90} y={44} />}
             style={{
+              labels: {
+                fill: Styles.Colors.Highlight,
+                fontSize: 12,
+              },
               data: {
                 stroke: Styles.Colors.Highlight,
                 strokeWidth: 2,
