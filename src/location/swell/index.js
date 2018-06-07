@@ -11,7 +11,7 @@ import { swellType } from '../../utils/swell-type'
 
 const Swell = class extends Component {
   state = {
-    type: '',
+    compassDirection: '',
     direction: '',
     period: '',
     swell: JSON.parse(localStorage.getItem('swell')),
