@@ -27,10 +27,6 @@ class TideChart extends Component {
 
     return (
       <div>
-        <ChartHeader
-          headerText={'Water Levels'}
-          bodyText={'Over the next 24 hours'}
-        />
         <Chart tideChart={tideChart} />
       </div>
     )
