@@ -27,7 +27,7 @@ export default class TideChart extends Component {
           containerComponent={<VictoryContainer />}
           height={170}
           padding={{
-            top: 24,
+            top: 5,
             right: 24,
             bottom: 24,
             left: 30,

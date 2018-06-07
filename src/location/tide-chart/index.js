@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import glamorous from 'glamorous'
 import Chart from './chart'
 import Loading from '../../common/loading'
-import ChartHeader from '../../common/chart-header'
 import request from '../../utils/request'
 import Styles from '../../assets/styles'
 
@@ -26,11 +26,14 @@ class TideChart extends Component {
     if (!tideChart) return <Loading />
 
     return (
-      <div>
+      <Container>
         <Chart tideChart={tideChart} />
-      </div>
+      </Container>
     )
   }
 }
+const Container = glamorous.div({
+  marginBottom: Styles.Spacing.baseSpacing,
+})
 
 export default TideChart
