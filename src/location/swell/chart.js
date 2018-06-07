@@ -8,26 +8,30 @@ import {
 } from 'victory'
 import glamorous from 'glamorous'
 import _ from 'lodash'
+import moment from 'moment'
 import BarSegment from '../../common/bar-segment'
 
 export default class SwellChart extends Component {
   get data() {
-    return _.flatMap(this.props.swell, day =>
-      _.map(day, swell => ({
-        ...swell,
-        time: new Date(swell.time),
-      })),
-    )
+    return _.flatMap(this.props.swell)
+      .filter(hour => {
+        const time = moment.utc(hour.time).local()
+        return moment().diff(time) <= 0
+      })
+      .map(swell => {
+        return {
+          ...swell,
+          time: new Date(swell.time),
+        }
+      })
+      .reverse()
   }
 
   render() {
     return (
       <Container>
         <VictoryChart
-          containerComponent={
-            <VictoryContainer responsive={false} width={1000} />
-          }
-          width={1000}
+          containerComponent={<VictoryContainer />}
           height={120}
           padding={{
             top: 40,
