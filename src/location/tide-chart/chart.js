@@ -4,6 +4,7 @@ import {
   VictoryChart,
   VictoryContainer,
   VictoryTheme,
+  VictoryAxis,
   VictoryLabel,
 } from 'victory'
 import moment from 'moment'
@@ -22,10 +23,9 @@ export default class TideChart extends Component {
     return (
       <Container>
         <VictoryChart
-          theme={VictoryTheme.material}
           animate={{ duration: 1000 }}
           containerComponent={<VictoryContainer />}
-          height={200}
+          height={170}
           padding={{
             top: 24,
             right: 24,
@@ -34,6 +34,45 @@ export default class TideChart extends Component {
           }}
           scale={{ x: 'time', y: 'linear' }}
         >
+          <VictoryAxis
+            dependentAxis
+            orientation="left"
+            scale="linear"
+            style={{
+              axis: { stroke: Styles.Colors.SubtleTextColor },
+              grid: {
+                stroke: 'lightgrey',
+                strokeWidth: 1,
+                opacity: 0.9,
+                strokeDasharray: '0.2em',
+              },
+              ticks: { stroke: Styles.Colors.SubtleTextColor, size: 4 },
+              tickLabels: {
+                fill: Styles.Colors.SubtleTextColor,
+                fontSize: 12,
+                fontFamily: 'overpass-mono',
+              },
+              axisLabel: {
+                fill: Styles.Colors.SubtleTextColor,
+                fontSize: 12,
+                fontFamily: 'overpass-mono',
+              },
+            }}
+          />
+          <VictoryAxis
+            dependentAxis
+            orientation="bottom"
+            scale="time"
+            style={{
+              axis: { stroke: Styles.Colors.SubtleTextColor },
+              grid: { strokeWidth: 1 },
+              tickLabels: {
+                fill: Styles.Colors.SubtleTextColor,
+                fontSize: 12,
+                fontFamily: 'overpass-mono',
+              },
+            }}
+          />
           <VictoryLine
             data={this.tides}
             interpolation="basis"
@@ -43,15 +82,20 @@ export default class TideChart extends Component {
             style={{
               data: {
                 stroke: Styles.Colors.Primary,
-                strokeWidth: 3,
+                strokeWidth: 2,
               },
             }}
           />
           <VictoryLine
             data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 12 }]}
-            style={{ data: { stroke: 'red' } }}
             labels={['NOW']}
-            labelComponent={<VictoryLabel angle={90} y={50} />}
+            labelComponent={<VictoryLabel angle={90} y={30} />}
+            style={{
+              data: {
+                stroke: Styles.Colors.Highlight,
+                strokeWidth: 2,
+              },
+            }}
           />
         </VictoryChart>
       </Container>
