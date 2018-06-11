@@ -6,14 +6,17 @@ import {
   VictoryAxis,
   VictoryLabel,
 } from 'victory'
+import moment from 'moment'
 import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 
 export default class TideChart extends Component {
   get tides() {
-    return this.props.tideChart.map(tide => ({
-      ...tide,
-      time: new Date(tide.time),
+    const today = moment().format('MM/DD/YYYY')
+    const todaysTides = this.props.tideChart[today]
+    return todaysTides.map(prediction => ({
+      ...prediction,
+      time: new Date(prediction.time),
     }))
   }
 
