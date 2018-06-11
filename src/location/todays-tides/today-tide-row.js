@@ -14,6 +14,12 @@ export default class NextTideRow extends Component {
         <TideType>{_.upperFirst(tide.type)}</TideType>
         <Styles.Type.Time>
           {shortTimeFormat(tide.time)} / {formatTideHeight(tide.height)}
+          <span>
+            {moment
+              .utc(tide.time)
+              .local()
+              .format('hh:mma')}
+          </span>
         </Styles.Type.Time>
       </Container>
     )
