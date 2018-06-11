@@ -13,6 +13,7 @@ import Styles from '../../assets/styles'
 
 export default class TideChart extends Component {
   get tides() {
+    console.log(this.props.tideChart)
     return this.props.tideChart.map(tide => ({
       ...tide,
       time: new Date(tide.time),
@@ -89,7 +90,7 @@ export default class TideChart extends Component {
           <VictoryLine
             data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 12 }]}
             labels={['NOW']}
-            labelComponent={<VictoryLabel angle={90} y={44} />}
+            labelComponent={<VictoryLabel angle={90} y={23} />}
             style={{
               labels: {
                 fill: Styles.Colors.Highlight,
