@@ -24,7 +24,7 @@ export default class SwellChart extends Component {
           time: new Date(swell.time),
         }
       })
-      .reverse()
+      .slice(0, 9)
   }
 
   render() {
