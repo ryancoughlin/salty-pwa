@@ -15,7 +15,7 @@ export default class RemainingTideTime extends Component {
   }
 
   get formattedTime() {
-    const time = moment.utc(this.props.nextTide.time).local()
+    const time = moment(this.props.nextTide.time)
     const diff = moment.duration(time.diff(moment()))
 
     return `${this.padNumbers(diff.hours())}:${this.padNumbers(
