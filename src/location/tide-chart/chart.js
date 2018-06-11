@@ -3,17 +3,14 @@ import {
   VictoryLine,
   VictoryChart,
   VictoryContainer,
-  VictoryTheme,
   VictoryAxis,
   VictoryLabel,
 } from 'victory'
-import moment from 'moment'
 import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 
 export default class TideChart extends Component {
   get tides() {
-    console.log(this.props.tideChart)
     return this.props.tideChart.map(tide => ({
       ...tide,
       time: new Date(tide.time),

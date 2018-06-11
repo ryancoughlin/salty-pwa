@@ -81,8 +81,6 @@ const Swell = class extends Component {
       return now.diff(time) <= 0
     })
 
-    console.log(wind, wind[currentWindIndex])
-
     return wind[currentWindIndex].windSpeed
   }
 
