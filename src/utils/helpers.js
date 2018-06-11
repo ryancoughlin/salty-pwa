@@ -1,8 +1,7 @@
 import moment from 'moment'
 
 export function shortTimeFormat(time) {
-  return moment
-    .utc(time)
+  return moment(time)
     .local()
     .format('hh:mma')
 }

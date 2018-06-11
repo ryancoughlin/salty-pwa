@@ -28,8 +28,7 @@ const isPastTide = time => {
   const now = moment()
 
   if (
-    moment
-      .utc(time)
+    moment(time)
       .local()
       .diff(now, 'minutes') < 0
   ) {
