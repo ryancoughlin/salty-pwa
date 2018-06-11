@@ -10,10 +10,6 @@ import request from '../../utils/request'
 import { swellType } from '../../utils/swell-type'
 
 const Swell = class extends Component {
-  componentWillMount() {
-    this.findCurrentSwell()
-  }
-
   componentDidMount() {
     fetchLocation()
       .then(location => {
@@ -51,7 +47,7 @@ const Swell = class extends Component {
 
     const currentSwell = swellForecast[currentSwellIndex]
 
-    this.setState({
+    console.this.setState({
       compassDirection: currentSwell.compassDirection,
       direction: currentSwell.direction,
       height: currentSwell.height,
