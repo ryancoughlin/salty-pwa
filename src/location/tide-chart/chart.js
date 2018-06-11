@@ -16,7 +16,7 @@ export default class TideChart extends Component {
     const todaysTides = this.props.tideChart[today]
     return todaysTides.map(prediction => ({
       ...prediction,
-      time: new Date(prediction.time),
+      time: moment(prediction.time),
     }))
   }
 
