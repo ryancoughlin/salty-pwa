@@ -16,7 +16,7 @@ const Swell = class extends Component {
         const { longitude, latitude } = location
         request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
           swell => {
-            this.setState({ swell: swell }, () => this.findCurrentSwell())
+            this.setState({ swell }, () => this.findCurrentSwell())
           },
         )
       })
@@ -48,7 +48,7 @@ const Swell = class extends Component {
     const currentSwell = swellForecast[currentSwellIndex]
 
     // eslint-disable-next-line
-    Raven.context({ extra: { currentSwell: currentSwell } })
+    Raven.setExtraContext({ currentSwell })
 
     this.setState({
       compassDirection: currentSwell.compassDirection,
