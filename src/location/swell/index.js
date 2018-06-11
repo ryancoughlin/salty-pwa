@@ -71,7 +71,7 @@ const Swell = class extends Component {
     if (!this.state) {
       return (
         <Container>
-          <Loading />
+          <Loading inline />
         </Container>
       )
     }
@@ -93,7 +93,7 @@ const Swell = class extends Component {
 const Container = glamorous(Styles.Containers.Card)({
   backgroundImage: 'linear-gradient(-190deg, #8ADFFF 0%, #52BBFF 98%)',
   backgroundColor: Styles.Colors.Primary,
-  maxHeight: '352',
+  minHeight: '202',
 })
 
 const SwellHeight = glamorous(Styles.Type.SecondaryHeader)({
