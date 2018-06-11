@@ -47,7 +47,7 @@ const Swell = class extends Component {
 
     const currentSwell = swellForecast[currentSwellIndex]
 
-    console.this.setState({
+    this.setState({
       compassDirection: currentSwell.compassDirection,
       direction: currentSwell.direction,
       height: currentSwell.height,
@@ -67,14 +67,8 @@ const Swell = class extends Component {
     return wind[currentWindIndex].windSpeed
   }
 
-  get hasData() {
-    return this.state.compassDirection
-  }
-
   render() {
-    const { period, compassDirection, height } = this.state
-
-    if (!this.hasData) {
+    if (!this.state) {
       return (
         <Container>
           <Loading />
@@ -84,10 +78,11 @@ const Swell = class extends Component {
 
     return (
       <Container>
-        <SwellHeight>{height}&apos;</SwellHeight>
+        <SwellHeight>{this.state.height}&apos;</SwellHeight>
         <Headline>{swellType(this.currentWindSpeed())}</Headline>
         <SwellPeriod>
-          Swell period at {period}s from {compassDirection}
+          Swell period at {this.state.period}s from{' '}
+          {this.state.compassDirection}
         </SwellPeriod>
         <SwellChart swell={this.state.swell} />
       </Container>
