@@ -96,7 +96,7 @@ const Swell = class extends Component {
 const Container = glamorous(Styles.Containers.Card)({
   backgroundImage: 'linear-gradient(-190deg, #8ADFFF 0%, #52BBFF 98%)',
   backgroundColor: Styles.Colors.Primary,
-  minHeight: '202',
+  minHeight: '150',
 })
 
 const SwellHeight = glamorous(Styles.Type.SecondaryHeader)({
