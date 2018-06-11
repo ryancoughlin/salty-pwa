@@ -72,13 +72,26 @@ const Swell = class extends Component {
     })
   }
 
+  currentWindSpeed() {
+    const wind = this.props.weather.wind
+
+    const now = moment()
+    const currentWindIndex = _.findIndex(wind, hourly => {
+      const time = moment.utc(hourly.time).local()
+      return now.diff(time) <= 0
+    })
+
+    console.log(wind, wind[currentWindIndex])
+
+    return wind[currentWindIndex].windSpeed
+  }
+
   get hasData() {
-    return this.state.direction
+    return this.state.compassDirection
   }
 
   render() {
     const { period, compassDirection, height } = this.state
-    const { weather } = this.props
 
     if (!this.hasData) {
       return (
@@ -91,7 +104,7 @@ const Swell = class extends Component {
     return (
       <Container>
         <SwellHeight>{height}&apos;</SwellHeight>
-        <Headline>{swellType(weather.currentWind)}</Headline>
+        <Headline>{swellType(this.currentWindSpeed())}</Headline>
         <SwellPeriod>
           Swell period at {period}s from {compassDirection}
         </SwellPeriod>
