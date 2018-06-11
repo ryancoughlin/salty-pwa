@@ -26,6 +26,9 @@ const TidePhrase = class extends Component {
   render() {
     const { nextTide } = this.props
 
+    // eslint-disable-next-line
+    Raven.setExtraContext({ nextTide })
+
     return (
       <Container>
         <TideArrow direction={nextTide.type} tidePhrase />
