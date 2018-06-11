@@ -38,6 +38,7 @@ const Body = glamorous.h3({
 const SmallBody = glamorous.h4({
   fontSize: 15,
   fontWeight: mediumFontWeight,
+  lineHeight: 1.4,
 })
 
 const Time = glamorous.time({
