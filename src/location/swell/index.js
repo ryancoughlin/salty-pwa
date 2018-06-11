@@ -47,6 +47,9 @@ const Swell = class extends Component {
 
     const currentSwell = swellForecast[currentSwellIndex]
 
+    // eslint-disable-next-line
+    Raven.context({ extra: { currentSwell: currentSwell } })
+
     this.setState({
       compassDirection: currentSwell.compassDirection,
       direction: currentSwell.direction,
