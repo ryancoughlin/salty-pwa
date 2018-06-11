@@ -7,10 +7,7 @@ import TideArrow from '../common/tide-arrow'
 
 export default class extends Component {
   get prettyTideTime() {
-    return moment
-      .utc(this.props.tide.time)
-      .local()
-      .format('hh:mma')
+    return moment(this.props.tide.time).format('hh:mma')
   }
 
   render() {
