@@ -8,6 +8,7 @@ mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
 class StationMap extends Component {
   componentDidMount() {
     const nearbyStation = this.props.stations[0]
+    console.log(nearbyStation)
     const nearbyStationCoordinates = nearbyStation.location
 
     this.map = new mapboxgl.Map({

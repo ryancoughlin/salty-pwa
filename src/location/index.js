@@ -84,8 +84,8 @@ class Location extends Component {
         <Currently location={location} weather={weather} />
         <Styles.Containers.Base>
           <Swell weather={weather} />
-          <StationInformation />
         </Styles.Containers.Base>
+        <StationInformation />
       </div>
     )
   }

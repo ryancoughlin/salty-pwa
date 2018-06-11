@@ -31,14 +31,34 @@ class StationInformation extends Component {
     return (
       <Container>
         <StationMap stations={nearbyStations} />
+        <StationHeader>
+          <NearestStationTitle>Station nearest you</NearestStationTitle>
+          <Styles.Type.SecondaryHeader>
+            {nearbyStations[0].name}
+          </Styles.Type.SecondaryHeader>
+        </StationHeader>
       </Container>
     )
   }
 }
 
-const Container = glamorous(Styles.Containers.Card)({
+const Container = glamorous.div({
   padding: 0,
   overflow: 'hidden',
+})
+
+const NearestStationTitle = glamorous.div({
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
+  fontSize: 10,
+  marginBottom: Styles.Spacing.smallSpacing,
+})
+
+const StationHeader = glamorous.div({
+  paddingLeft: Styles.Spacing.baseSpacing,
+  paddingTop: Styles.Spacing.baseSpacing,
+  paddingBottom: Styles.Spacing.smallSpacing,
+  backgroundColor: 'white',
 })
 
 export default StationInformation
