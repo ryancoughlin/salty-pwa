@@ -17,6 +17,9 @@ class TideChart extends Component {
       tideChart => {
         this.setState({ tideChart: tideChart })
         localStorage.setItem('tideChart', JSON.stringify(tideChart))
+
+        // eslint-disable-next-line
+        Raven.setExtraContext({ tideChart })
       },
     )
   }
