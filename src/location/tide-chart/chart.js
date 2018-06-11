@@ -10,6 +10,8 @@ import moment from 'moment'
 import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 
+const AXIS_FONT_SIZE = 12
+
 export default class TideChart extends Component {
   get tides() {
     const today = moment().format('MM/DD/YYYY')
@@ -50,12 +52,12 @@ export default class TideChart extends Component {
               ticks: { stroke: Styles.Colors.SubtleTextColor, size: 4 },
               tickLabels: {
                 fill: Styles.Colors.SubtleTextColor,
-                fontSize: 12,
+                fontSize: AXIS_FONT_SIZE,
                 fontFamily: 'overpass-mono',
               },
               axisLabel: {
                 fill: Styles.Colors.SubtleTextColor,
-                fontSize: 12,
+                fontSize: AXIS_FONT_SIZE,
                 fontFamily: 'overpass-mono',
               },
             }}
@@ -69,7 +71,7 @@ export default class TideChart extends Component {
               grid: { strokeWidth: 1 },
               tickLabels: {
                 fill: Styles.Colors.SubtleTextColor,
-                fontSize: 12,
+                fontSize: AXIS_FONT_SIZE,
                 fontFamily: 'overpass-mono',
               },
             }}
@@ -88,13 +90,17 @@ export default class TideChart extends Component {
             }}
           />
           <VictoryLine
-            data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 12 }]}
+            data={[
+              { x: new Date(), y: 0 },
+              { x: new Date(), y: AXIS_FONT_SIZE },
+            ]}
             labels={['NOW']}
-            labelComponent={<VictoryLabel angle={90} y={23} />}
+            labelComponent={<VictoryLabel angle={90} y={20} />}
             style={{
               labels: {
                 fill: Styles.Colors.Highlight,
-                fontSize: 12,
+                fontFamily: 'overpass-mono',
+                fontSize: AXIS_FONT_SIZE,
               },
               data: {
                 stroke: Styles.Colors.Highlight,
