@@ -10,13 +10,6 @@ import request from '../../utils/request'
 import { swellType } from '../../utils/swell-type'
 
 const Swell = class extends Component {
-  state = {
-    compassDirection: '',
-    direction: '',
-    period: '',
-    swell: JSON.parse(localStorage.getItem('swell')),
-  }
-
   componentWillMount() {
     this.findCurrentSwell()
   }
@@ -25,21 +18,15 @@ const Swell = class extends Component {
     fetchLocation()
       .then(location => {
         const { longitude, latitude } = location
-        if (!this.state.swell) {
-          request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
-            swell => {
-              this.setState({ swell: swell }, () => this.findCurrentSwell())
-            },
-          )
-        }
+        request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(
+          swell => {
+            this.setState({ swell: swell }, () => this.findCurrentSwell())
+          },
+        )
       })
       .catch(error => {
         console.error(error)
       })
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('swell', JSON.stringify(nextState.swell))
   }
 
   componentDidCatch(error, errorInfo) {
