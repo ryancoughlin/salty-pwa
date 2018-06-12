@@ -24,6 +24,15 @@ class TideChart extends Component {
     )
   }
 
+  componentDidCatch(error, errorInfo) {
+    // eslint-disable-next-line
+    Raven.captureException(error, {
+      extra: errorInfo,
+      state: this.state,
+      location: this.props.location,
+    })
+  }
+
   render() {
     const { tideChart } = this.state
     if (!tideChart) return <Loading />

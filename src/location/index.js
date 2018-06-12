@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import request from '../utils/request'
 import findNextTide from '../utils/find-next-tide'
 import { fetchLocation } from '../utils/location'
+import { logLocalStorage } from '../utils/helpers'
 import Loading from '../common/loading'
 import TidePhrase from './tide-phrase'
 import Currently from './currently'
@@ -59,7 +60,11 @@ class Location extends Component {
 
   componentDidCatch(error, errorInfo) {
     // eslint-disable-next-line
-    Raven.captureException(error, { extra: errorInfo, state: this.state })
+    Raven.captureException(error, {
+      extra: errorInfo,
+      state: this.state,
+      localStorage: logLocalStorage(),
+    })
   }
 
   get nextTide() {
