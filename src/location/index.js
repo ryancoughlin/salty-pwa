@@ -62,7 +62,12 @@ class Location extends Component {
     // eslint-disable-next-line
     Raven.captureException(error, {
       extra: errorInfo,
+    })
+
+    // eslint-disable-next-line
+    Raven.setExtraContext({
       state: this.state,
+      location: this.props.location,
       localStorage: logLocalStorage(),
     })
   }
