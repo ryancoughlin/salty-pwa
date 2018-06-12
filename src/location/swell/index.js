@@ -25,9 +25,9 @@ const Swell = class extends Component {
       })
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error, info) {
     // eslint-disable-next-line
-    Raven.captureException(error, { extra: errorInfo, state: this.state })
+    Raven.captureException(error, { extra: info, state: this.state })
   }
 
   findCurrentSwell() {

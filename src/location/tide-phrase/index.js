@@ -14,10 +14,10 @@ const TidePhrase = class extends Component {
     this.getCityName()
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error, info) {
     // eslint-disable-next-line
     Raven.captureException(error, {
-      extra: errorInfo,
+      extra: info,
       state: this.state,
       props: { ...this.props },
     })

@@ -24,10 +24,10 @@ class TideChart extends Component {
     )
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error, info) {
     // eslint-disable-next-line
     Raven.captureException(error, {
-      extra: errorInfo,
+      extra: info,
     })
 
     // eslint-disable-next-line
