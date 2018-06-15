@@ -10,7 +10,7 @@ import moment from 'moment'
 import glamorous from 'glamorous'
 import Styles from '../../assets/styles'
 
-const AXIS_FONT_SIZE = 12
+const AXIS_FONT_SIZE = 14
 
 export default class TideChart extends Component {
   get tides() {
@@ -28,10 +28,10 @@ export default class TideChart extends Component {
         <VictoryChart
           animate={{ duration: 1000 }}
           containerComponent={<VictoryContainer />}
-          height={170}
+          height={200}
           padding={{
             top: 5,
-            right: 24,
+            right: 10,
             bottom: 24,
             left: 30,
           }}
