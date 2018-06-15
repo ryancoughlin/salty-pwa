@@ -42,7 +42,7 @@ const Text = glamorous.div({
 const TextMedium = glamorous.h4({
   fontSize: 15,
   fontWeight: mediumFontWeight,
-  lineHeight: 1.4,
+  lineHeight: 1,
 })
 
 const Time = glamorous.time({
