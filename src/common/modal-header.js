@@ -14,11 +14,15 @@ const ModalHeader = () => (
 const Container = glamorous.div({
   display: 'flex',
   height: 64,
+  backgroundColor: 'white',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  paddingRight: Styles.Spacing.smallSpacing,
+  paddingRight: Styles.Spacing.baseSpacing,
   position: 'relative',
   zIndex: 1,
+  borderBottomColor: Styles.Colors.Palette.LightGray,
+  borderBottomWidth: 1,
+  borderBottomStyle: 'solid',
 })
 
 const Close = glamorous.span({
