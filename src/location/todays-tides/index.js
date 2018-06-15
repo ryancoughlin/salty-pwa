@@ -51,7 +51,7 @@ const ViewTideTable = glamorous(Link)({
 
 const Container = glamorous.div({
   marginTop: 20,
-  marginBottom: Styles.Spacing.baseSpacing,
+  marginBottom: Styles.Spacing.Default,
 })
 
 export default TodaysTides

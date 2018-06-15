@@ -17,7 +17,7 @@ const Container = glamorous.div({
   backgroundColor: 'white',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  paddingRight: Styles.Spacing.baseSpacing,
+  paddingRight: Styles.Spacing.Default,
   position: 'relative',
   zIndex: 1,
   borderBottomColor: Styles.Colors.Palette.LightGray,

@@ -20,7 +20,7 @@ export default class extends Component {
 const Container = glamorous.div({
   display: 'flex',
   height: 70,
-  paddingHorizontal: Styles.Spacing.baseSpacing,
+  paddingHorizontal: Styles.Spacing.Default,
   alignItems: 'flex-end',
   position: 'sticky',
   top: 0,

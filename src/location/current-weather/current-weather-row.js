@@ -23,5 +23,5 @@ export default class CurrentWeatherRow extends Component {
 
 const Container = glamorous.div({
   display: 'flex',
-  marginBottom: Styles.Spacing.baseSpacing,
+  marginBottom: Styles.Spacing.Default,
 })

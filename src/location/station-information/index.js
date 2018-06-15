@@ -55,8 +55,8 @@ const NearestStationTitle = glamorous.div({
 })
 
 const StationHeader = glamorous.div({
-  paddingLeft: Styles.Spacing.baseSpacing,
-  paddingTop: Styles.Spacing.baseSpacing,
+  paddingLeft: Styles.Spacing.Default,
+  paddingTop: Styles.Spacing.Default,
   paddingBottom: Styles.Spacing.smallSpacing,
   backgroundColor: 'white',
 })

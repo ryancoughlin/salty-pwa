@@ -49,7 +49,7 @@ class TideChart extends Component {
   }
 }
 const Container = glamorous.div({
-  marginBottom: Styles.Spacing.baseSpacing,
+  marginBottom: Styles.Spacing.Default,
 })
 
 export default TideChart

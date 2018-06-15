@@ -10,7 +10,7 @@ const ChartHeader = ({ headerText, bodyText }) => (
 )
 
 const Container = glamorous.div({
-  marginBottom: Styles.Spacing.baseSpacing,
+  marginBottom: Styles.Spacing.Default,
 })
 
 const Byline = glamorous(Styles.Type.TextMedium)({
