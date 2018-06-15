@@ -31,7 +31,7 @@ const Container = glamorous.div(
   }),
 )
 
-const Label = glamorous(Styles.Type.SmallBody)({
+const Label = glamorous(Styles.Type.TextMedium)({
   color: 'white',
 })
 

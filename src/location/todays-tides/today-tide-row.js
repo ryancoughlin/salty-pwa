@@ -47,6 +47,6 @@ const Container = glamorous.div(
   }),
 )
 
-const TideType = glamorous(Styles.Type.SmallBody)({
+const TideType = glamorous(Styles.Type.TextMedium)({
   minWidth: 54,
 })

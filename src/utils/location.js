@@ -10,11 +10,7 @@ export const fetchLocation = () => {
         resolve(position.coords)
       },
       error => {
-        reject(
-          new Error(
-            'Access denied! Please allow your browser for reading your location.',
-          ),
-        )
+        reject(error)
       },
       { maximumAge: 60 * 60 * 1000 },
     )

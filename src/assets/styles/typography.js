@@ -3,7 +3,6 @@ import Colors from './colors'
 
 const numericFontFamily = 'overpass-mono, Menlo, Monaco, monospace'
 const mediumFontWeight = 500
-const semiBoldFontWeight = 600
 const boldFontWeight = 700
 
 const TidePhrase = glamorous.h1({
@@ -35,7 +34,12 @@ const Body = glamorous.h3({
   fontWeight: 'normal',
 })
 
-const SmallBody = glamorous.h4({
+const Text = glamorous.div({
+  fontSize: 15,
+  lineHeight: 1.4,
+})
+
+const TextMedium = glamorous.h4({
   fontSize: 15,
   fontWeight: mediumFontWeight,
   lineHeight: 1.4,
@@ -52,7 +56,8 @@ Type.TidePhrase = TidePhrase
 Type.SmallNumericType = SmallNumericType
 Type.Body = Body
 Type.Time = Time
-Type.SmallBody = SmallBody
+Type.Text = Text
+Type.TextMedium = TextMedium
 Type.SecondaryHeader = SecondaryHeader
 
 export default Type

@@ -4,6 +4,7 @@ import findNextTide from '../utils/find-next-tide'
 import { fetchLocation } from '../utils/location'
 import { logLocalStorage } from '../utils/helpers'
 import Loading from '../common/loading'
+import Error from '../common/error'
 import TidePhrase from './tide-phrase'
 import Currently from './currently'
 import CurrentWeather from './current-weather'
@@ -18,6 +19,8 @@ class Location extends Component {
     tides: JSON.parse(localStorage.getItem('tides')),
     weather: JSON.parse(localStorage.getItem('weather')),
     location: JSON.parse(localStorage.getItem('location')),
+    locationError: null,
+    hasLocationError: false,
   }
 
   componentDidMount() {
@@ -54,7 +57,7 @@ class Location extends Component {
           })
       })
       .catch(error => {
-        console.error(error)
+        this.setState({ hasLocationError: true, locationError: error })
       })
   }
 
@@ -79,7 +82,17 @@ class Location extends Component {
   }
 
   render() {
-    const { tides, weather, location } = this.state
+    const {
+      tides,
+      weather,
+      location,
+      hasLocationError,
+      locationError,
+    } = this.state
+
+    if (hasLocationError) {
+      return <Error error={locationError} />
+    }
 
     if (!tides || !weather || !location) {
       return <Loading />

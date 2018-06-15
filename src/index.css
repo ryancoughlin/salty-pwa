@@ -1,5 +1,16 @@
+html,
+body,
+#app,
+#root,
+.switch-wrapper,
+#app > div {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100vh;
+  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
@@ -40,4 +51,5 @@ a {
 .switch-wrapper > div {
   position: absolute;
   width: 100%;
+  height: 100%;
 }

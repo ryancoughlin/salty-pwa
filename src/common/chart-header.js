@@ -13,7 +13,7 @@ const Container = glamorous.div({
   marginBottom: Styles.Spacing.baseSpacing,
 })
 
-const Byline = glamorous(Styles.Type.SmallBody)({
+const Byline = glamorous(Styles.Type.TextMedium)({
   fontWeight: 'normal',
   color: Styles.Colors.SubtleTextColor,
 })

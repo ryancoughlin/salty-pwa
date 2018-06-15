@@ -40,7 +40,7 @@ const Left = glamorous.div({
   flexDirection: 'row',
 })
 
-const TideType = glamorous(Styles.Type.SmallBody)({
+const TideType = glamorous(Styles.Type.TextMedium)({
   width: 52,
   textTransform: 'capitalize',
 })

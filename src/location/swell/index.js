@@ -109,7 +109,7 @@ const Headline = glamorous(Styles.Type.SecondaryHeader)({
   color: Styles.Colors.SwellBlue,
 })
 
-const SwellPeriod = glamorous(Styles.Type.SmallBody)({
+const SwellPeriod = glamorous(Styles.Type.TextMedium)({
   color: Styles.Colors.SwellBlue,
   fontWeight: 'normal',
   marginTop: 3,
