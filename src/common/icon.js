@@ -1,7 +1,9 @@
 import React from 'react'
 import glamorous from 'glamorous'
 
-const Icon = ({ source, style }) => <IconContainer src={source} />
+const Icon = ({ source, style }) => (
+  <IconContainer src={source} alt={`icon-${source}`} />
+)
 
 const IconContainer = glamorous.img({
   width: 20,
