@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import request from '../utils/request'
 import findNextTide from '../utils/find-next-tide'
 import { fetchLocation } from '../utils/location'
-import { logLocalStorage } from '../utils/helpers'
+import { logLocalStorage, shouldFetchTides } from '../utils/helpers'
 import Loading from '../common/loading'
 import Error from '../common/error'
 import TidePhrase from './tide-phrase'
@@ -34,6 +34,8 @@ class Location extends Component {
         this.setState({ location: coords })
         localStorage.setItem('location', JSON.stringify(coords))
 
+        const foo = shouldFetchTides()
+        console.log('foo', JSON.stringify(foo, null, 2))
         request(
           `/tides?latitude=${coords.latitude}&longitude=${coords.longitude}`,
         )

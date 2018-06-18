@@ -21,8 +21,8 @@ class Location extends Component {
             return (
               <div>
                 <Header date={date} />
-                {dayTides.map(dayTide => {
-                  return <TideRow tide={dayTide} />
+                {dayTides.map((dayTide, index) => {
+                  return <TideRow tide={dayTide} key={index} />
                 })}
               </div>
             )
