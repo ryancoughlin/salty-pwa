@@ -14,6 +14,10 @@ export function logLocalStorage() {
 export function shouldFetchTides() {
   const cachedTides = JSON.parse(localStorage.getItem('tides'))
 
+  if (cachedTides === null) {
+    return true
+  }
+
   const lastCachedTide = cachedTides[_.last(Object.keys(cachedTides))][0]
   console.log('lastCachedTide', JSON.stringify(lastCachedTide, null, 2))
 
