@@ -38,8 +38,14 @@ class Location extends Component {
           `/tides?latitude=${coords.latitude}&longitude=${coords.longitude}`,
         )
           .then(tides => {
-            this.setState({ tides: tides })
-            localStorage.setItem('tides', JSON.stringify(tides))
+            console.log('tides', tides)
+
+            if (Object.keys(tides).length === 0) {
+              console.log('empty tide response')
+            } else {
+              this.setState({ tides: tides })
+              localStorage.setItem('tides', JSON.stringify(tides))
+            }
           })
           .catch(error => {
             console.error(error)

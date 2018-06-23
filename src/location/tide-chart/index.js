@@ -15,8 +15,12 @@ class TideChart extends Component {
 
     request(`/tide-chart?latitude=${latitude}&longitude=${longitude}`).then(
       tideChart => {
-        this.setState({ tideChart: tideChart })
-        localStorage.setItem('tideChart', JSON.stringify(tideChart))
+        if (Object.keys(tideChart).length === 0) {
+          console.log('empty tide response')
+        } else {
+          this.setState({ tideChart: tideChart })
+          localStorage.setItem('tideChart', JSON.stringify(tideChart))
+        }
 
         // eslint-disable-next-line
         Raven.setExtraContext({ tideChart })
