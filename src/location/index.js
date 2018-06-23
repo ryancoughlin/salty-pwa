@@ -75,8 +75,6 @@ class Location extends Component {
       location: this.props.location,
       localStorage: logLocalStorage(),
     })
-
-    localStorage.clear()
   }
 
   get nextTide() {
