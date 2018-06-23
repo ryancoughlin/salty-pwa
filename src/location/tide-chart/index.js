@@ -7,7 +7,7 @@ import Styles from '../../assets/styles'
 
 class TideChart extends Component {
   state = {
-    tideChart: JSON.parse(localStorage.getItem('tideChart')),
+    tideChart: JSON.parse(localStorage.getItem('tideChart')) || null,
   }
 
   componentDidMount() {
@@ -18,6 +18,7 @@ class TideChart extends Component {
         if (Object.keys(tideChart).length === 0) {
           console.log('empty tide response')
         } else {
+          console.log('Setting state because we have data')
           this.setState({ tideChart: tideChart })
           localStorage.setItem('tideChart', JSON.stringify(tideChart))
         }
@@ -43,7 +44,7 @@ class TideChart extends Component {
 
   render() {
     const { tideChart } = this.state
-    if (!tideChart) return <Loading />
+    if (!tideChart || Object.keys(tideChart).length === 0) return <Loading />
 
     return (
       <Container>

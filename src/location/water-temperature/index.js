@@ -4,7 +4,7 @@ import request from '../../utils/request'
 
 const WaterTemperature = class extends Component {
   state = {
-    currentTemp: JSON.parse(localStorage.getItem('currentTemp')) || '',
+    currentTemp: JSON.parse(localStorage.getItem('currentTemp')) || null,
   }
 
   componentDidMount() {
@@ -13,9 +13,13 @@ const WaterTemperature = class extends Component {
     request(
       `/water-temperature?latitude=${latitude}&longitude=${longitude}`,
     ).then(latestReading => {
-      const currentTemp = latestReading.temperature
-      this.setState({ currentTemp })
-      localStorage.setItem('currentTemp', JSON.stringify(currentTemp))
+      if (Object.keys(latestReading).length === 0) {
+        console.log('empty water tempature response')
+      } else {
+        const currentTemp = latestReading.temperature
+        this.setState({ currentTemp })
+        localStorage.setItem('currentTemp', JSON.stringify(currentTemp))
+      }
     })
   }
 
