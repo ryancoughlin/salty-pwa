@@ -40,7 +40,12 @@ class Location extends Component {
           .then(tides => {
             console.log('tides', tides)
 
+            console.log(
+              'Object.keys(tides).length === 0',
+              Object.keys(tides).length > 0,
+            )
             if (Object.keys(tides).length === 0) {
+              console.log('CONDITION PASSED')
               console.log('empty tide response')
             } else {
               this.setState({ tides: tides })
