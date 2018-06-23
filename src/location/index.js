@@ -16,9 +16,9 @@ import Styles from '../assets/styles'
 
 class Location extends Component {
   state = {
-    tides: JSON.parse(localStorage.getItem('tides')),
-    weather: JSON.parse(localStorage.getItem('weather')),
-    location: JSON.parse(localStorage.getItem('location')),
+    tides: JSON.parse(localStorage.getItem('tides')) || null,
+    weather: JSON.parse(localStorage.getItem('weather')) || null,
+    location: JSON.parse(localStorage.getItem('location')) || null,
     locationError: null,
     hasLocationError: false,
   }
@@ -34,8 +34,6 @@ class Location extends Component {
         this.setState({ location: coords })
         localStorage.setItem('location', JSON.stringify(coords))
 
-        const foo = shouldFetchTides()
-        console.log('foo', JSON.stringify(foo, null, 2))
         request(
           `/tides?latitude=${coords.latitude}&longitude=${coords.longitude}`,
         )
