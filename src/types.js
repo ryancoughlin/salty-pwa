@@ -1,0 +1,3 @@
+export const FETCH_TIDES = 'FETCH_TIDES'
+export const FETCH_LOCATION = 'FETCH_LOCATION'
+export const FETCH_WEATHER = 'FETCH_WEATHER'

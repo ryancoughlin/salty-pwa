@@ -1,4 +1,4 @@
-export const fetchLocation = () => {
+export const userLocation = () => {
   const geolocation = navigator.geolocation
   const location = new Promise((resolve, reject) => {
     if (!geolocation) {

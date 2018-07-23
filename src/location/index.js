@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import request from '../utils/request'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../actions'
 import findNextTide from '../utils/find-next-tide'
-import { fetchLocation } from '../utils/location'
-import { logLocalStorage, shouldFetchTides } from '../utils/helpers'
 import Loading from '../common/loading'
 import Error from '../common/error'
 import TidePhrase from './tide-phrase'
@@ -24,52 +24,13 @@ class Location extends Component {
   }
 
   componentDidMount() {
-    fetchLocation()
-      .then(location => {
-        const coords = {
-          latitude: location.latitude,
-          longitude: location.longitude,
-        }
+    const { location } = this.state
+    this.props.fetchLocation()
 
-        this.setState({ location: coords })
-        localStorage.setItem('location', JSON.stringify(coords))
-
-        request(
-          `/tides?latitude=${coords.latitude}&longitude=${coords.longitude}`,
-        )
-          .then(tides => {
-            console.log('tides', tides)
-
-            console.log(
-              'Object.keys(tides).length === 0',
-              Object.keys(tides).length > 0,
-            )
-            if (Object.keys(tides).length === 0) {
-              console.log('CONDITION PASSED')
-              console.log('empty tide response')
-            } else {
-              this.setState({ tides: tides })
-              localStorage.setItem('tides', JSON.stringify(tides))
-            }
-          })
-          .catch(error => {
-            console.error(error)
-          })
-
-        request(
-          `/weather?latitude=${coords.latitude}&longitude=${coords.longitude}`,
-        )
-          .then(weather => {
-            this.setState({ weather: weather })
-            localStorage.setItem('weather', JSON.stringify(weather))
-          })
-          .catch(error => {
-            console.error(error)
-          })
-      })
-      .catch(error => {
-        this.setState({ hasLocationError: true, locationError: error })
-      })
+    if (this.state.location) {
+      this.props.fetchTides(location)
+      this.props.fetchWeather(location)
+    }
   }
 
   componentDidCatch(error, info) {
@@ -81,8 +42,7 @@ class Location extends Component {
     // eslint-disable-next-line
     Raven.setExtraContext({
       state: this.state,
-      location: this.props.location,
-      localStorage: logLocalStorage(),
+      location: this.state.location,
     })
   }
 
@@ -125,4 +85,13 @@ class Location extends Component {
   }
 }
 
-export default Location
+const mapStateToProps = ({ data }) => ({
+  location: data.location,
+  tides: data.tides,
+})
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(actions, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Location)
