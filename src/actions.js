@@ -1,7 +1,13 @@
 import request from './utils/request'
 import { userLocation } from './utils/location'
+import geocodeLocation from './utils/geocode'
 
-import { FETCH_TIDES, FETCH_LOCATION, FETCH_WEATHER } from './types'
+import {
+  FETCH_TIDES,
+  FETCH_LOCATION,
+  FETCH_WEATHER,
+  GET_LOCATION_NAME,
+} from './types'
 
 export function fetchLocation() {
   return dispatch => {
@@ -10,6 +16,9 @@ export function fetchLocation() {
         type: FETCH_LOCATION,
         location: location,
       })
+
+      this.fetchTides(location)
+      this.fetchWeather(location)
     })
   }
 }
@@ -42,6 +51,31 @@ export function fetchWeather(location) {
         dispatch({
           type: FETCH_WEATHER,
           weather: weather,
+        })
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+}
+
+export function getLocationName(location) {
+  return dispatch => {
+    geocodeLocation(location)
+      .then(result => {
+        const cityComponents = result.results[0].address_components.filter(
+          function(addr) {
+            return addr.types[0] === 'locality'
+              ? 1
+              : addr.types[0] === 'administrative_area_level_1' ? 1 : 0
+          },
+        )
+
+        const locationName = cityComponents[0].long_name
+
+        dispatch({
+          type: GET_LOCATION_NAME,
+          locationName: locationName,
         })
       })
       .catch(error => {

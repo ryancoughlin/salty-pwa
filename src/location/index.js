@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import findNextTide from '../utils/find-next-tide'
 import Loading from '../common/loading'
-import Error from '../common/error'
 import TidePhrase from './tide-phrase'
 import Currently from './currently'
 import CurrentWeather from './current-weather'
@@ -15,22 +14,8 @@ import TideChart from './tide-chart'
 import Styles from '../assets/styles'
 
 class Location extends Component {
-  state = {
-    tides: JSON.parse(localStorage.getItem('tides')) || null,
-    weather: JSON.parse(localStorage.getItem('weather')) || null,
-    location: JSON.parse(localStorage.getItem('location')) || null,
-    locationError: null,
-    hasLocationError: false,
-  }
-
   componentDidMount() {
-    const { location } = this.state
     this.props.fetchLocation()
-
-    if (this.state.location) {
-      this.props.fetchTides(location)
-      this.props.fetchWeather(location)
-    }
   }
 
   componentDidCatch(error, info) {
@@ -41,27 +26,17 @@ class Location extends Component {
 
     // eslint-disable-next-line
     Raven.setExtraContext({
-      state: this.state,
-      location: this.state.location,
+      props: this.props,
+      location: this.props.location,
     })
   }
 
   get nextTide() {
-    return findNextTide(this.state.tides)
+    return findNextTide(this.props.tides)
   }
 
   render() {
-    const {
-      tides,
-      weather,
-      location,
-      hasLocationError,
-      locationError,
-    } = this.state
-
-    if (hasLocationError) {
-      return <Error error={locationError} />
-    }
+    const { tides, weather, location } = this.props
 
     if (!tides || !weather || !location) {
       return <Loading />
@@ -88,6 +63,7 @@ class Location extends Component {
 const mapStateToProps = ({ data }) => ({
   location: data.location,
   tides: data.tides,
+  weather: data.weather,
 })
 
 const mapDispatchToProps = dispatch => ({

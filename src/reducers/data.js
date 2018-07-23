@@ -1,4 +1,9 @@
-import { FETCH_TIDES, FETCH_LOCATION, FETCH_WEATHER } from '../types'
+import {
+  FETCH_TIDES,
+  FETCH_LOCATION,
+  FETCH_WEATHER,
+  GET_LOCATION_NAME,
+} from '../types'
 
 const initialState = {}
 
@@ -7,17 +12,22 @@ export default function(state = initialState, action) {
     case FETCH_LOCATION:
       return {
         ...state,
-        ...action.location,
+        location: action.location,
       }
     case FETCH_TIDES:
       return {
         ...state,
-        ...action.tides,
+        tides: action.tides,
       }
     case FETCH_WEATHER:
       return {
         ...state,
-        ...action.weather,
+        weather: action.weather,
+      }
+    case GET_LOCATION_NAME:
+      return {
+        ...state,
+        locationName: action.locationName,
       }
     default:
       return state

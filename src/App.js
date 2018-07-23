@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AnimatedSwitch, spring } from 'react-router-transition'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import { store, persistor } from './store'
+import configureStore from './store'
 import Location from './location/index'
 import TideTables from './tide-tables/index'
 import Map from './map/index'
+
+const { store, persistor } = configureStore()
 
 function mapStyles(styles) {
   return {
