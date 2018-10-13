@@ -32,7 +32,7 @@ export default class SwellChart extends Component {
       <Container>
         <VictoryChart
           containerComponent={<VictoryContainer />}
-          height={120}
+          height={150}
           padding={{
             top: 40,
             right: 24,
@@ -48,7 +48,7 @@ export default class SwellChart extends Component {
             data={this.data}
             labels={datum => `${datum.y}'`}
             labelComponent={
-              <VictoryLabel dx={2} text={datum => `${datum.y}'`} />
+              <VictoryLabel dx={4} dy={-3} text={datum => `${datum.y}'`} />
             }
             style={{
               labels: {

@@ -109,7 +109,7 @@ const Swell = class extends Component {
 
 const Container = glamorous(UI.Container.Base)({
   backgroundColor: '#6BCBFF',
-  minHeight: '150',
+  minHeight: '300',
 })
 
 const Title = glamorous(UI.Type.SecondaryHeader)({
@@ -119,6 +119,7 @@ const Title = glamorous(UI.Type.SecondaryHeader)({
 const SeaForecastTitle = glamorous(UI.Type.TextMedium)({
   marginTop: 16,
   marginBottom: 16,
+  color: '#005080',
 })
 
 export default Swell
