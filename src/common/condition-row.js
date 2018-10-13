@@ -24,28 +24,19 @@ const Container = glamorous.div(
     justifyContent: 'space-between',
     borderBottomStyle: 'solid',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.06)',
   },
   props => ({
     textDecoration: props.pastTide ? 'line-through' : 'none',
-    borderBottomColor: props.color,
+    borderBottomColor: props.dark
+      ? 'rgba(18, 78, 118, 0.3)'
+      : 'rgba(255, 255, 255, 0.06)',
   }),
 )
 
-const Label = glamorous(UI.Type.TextMedium)(
-  {
-    color: 'white',
-  },
-  props => ({
-    color: props.color,
-  }),
-)
+const Label = glamorous(UI.Type.TextMedium)(props => ({
+  color: props.dark ? '#005080' : '#ffffff',
+}))
 
-const Value = glamorous(UI.Type.SmallNumericType)(
-  {
-    color: 'white',
-  },
-  props => ({
-    color: props.color,
-  }),
-)
+const Value = glamorous(UI.Type.SmallNumericType)(props => ({
+  color: props.dark ? '#005080' : '#ffffff',
+}))

@@ -90,18 +90,9 @@ const Swell = class extends Component {
           value={`${this.state.height}' / ${swellType(
             this.currentWindSpeed(),
           )}`}
-          color={'#005080'}
+          dark
         />
-        <ConditionRow
-          label={'Period'}
-          value={`${this.state.period}s`}
-          color={'#005080'}
-        />
-        <ConditionRow
-          label={'Direction'}
-          value={this.state.compassDirection}
-          color={'#005080'}
-        />
+        <ConditionRow label={'Period'} value={`${this.state.period}s`} dark />
         <SeaForecastTitle>Sea Forecast</SeaForecastTitle>
         <SwellChart swell={this.state.swell} />
       </Container>
