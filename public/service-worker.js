@@ -38,9 +38,8 @@ self.addEventListener('install', function(event) {
             // We could also cache any static assets like CSS or images
             const urlsToCache = [
               '/',
-              '/wave-loader.svg',
-              'index.html',
-              assets['main.js'],
+              '/styles/styles.css',
+              '/script/webpack-bundle.js',
             ]
             cache.addAll(urlsToCache)
           })
