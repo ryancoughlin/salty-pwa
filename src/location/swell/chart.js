@@ -52,7 +52,7 @@ export default class SwellChart extends Component {
             }
             style={{
               labels: {
-                fontSize: 14,
+                fontSize: 16,
                 fontFamily: 'overpass-mono',
                 fill: '#164F75',
               },
