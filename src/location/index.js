@@ -44,12 +44,12 @@ class Location extends Component {
 
     return (
       <div className={'container'}>
-        <UI.Containers.Base>
+        <UI.Container.Base>
           <TidePhrase location={location} nextTide={this.nextTide} />
           <CurrentWeather weather={weather} />
           <TodaysTides tides={tides} />
           <TideChart location={location} />
-        </UI.Containers.Base>
+        </UI.Container.Base>
         <Currently location={location} weather={weather} />
         <Swell weather={weather} />
         <StationInformation />

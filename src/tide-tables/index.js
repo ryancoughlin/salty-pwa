@@ -12,7 +12,7 @@ class Tides extends Component {
     return (
       <div className={'container'}>
         <ModalHeader />
-        <UI.Containers.Base>
+        <UI.Container.Base>
           {Object.keys(tides).map(date => {
             const dayTides = tides[date]
             return (
@@ -24,7 +24,7 @@ class Tides extends Component {
               </div>
             )
           })}
-        </UI.Containers.Base>
+        </UI.Container.Base>
       </div>
     )
   }
