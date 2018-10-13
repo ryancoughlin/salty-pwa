@@ -5,13 +5,14 @@ class BarSegment extends React.Component {
   render() {
     return (
       <g>
-        <Bar {...this.props} style={{ fill: this.props.color, width: 1 }} />
+        <Bar {...this.props} style={{ fill: this.props.color, width: 9 }} />
+
         <rect
-          x={this.props.x - 8}
-          y={this.props.y0}
-          width="16"
+          x={this.props.x - 5}
+          y={this.props.y - 6}
+          width="9"
           height="2"
-          fill={this.props.color}
+          fill="#A6DBFF"
         />
 
         <g

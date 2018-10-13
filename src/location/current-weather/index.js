@@ -1,6 +1,6 @@
 import React from 'react'
 import glamorous from 'glamorous'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 import CurrentWeatherRow from './current-weather-row'
 
 const CurrentWeather = ({ weather }) => (
@@ -11,8 +11,8 @@ const CurrentWeather = ({ weather }) => (
 )
 
 const Container = glamorous.div({
-  marginBottom: Styles.Spacing.largeSpacing,
-  marginTop: Styles.Spacing.largeSpacing,
+  marginBottom: UI.Spacing.largeSpacing,
+  marginTop: UI.Spacing.largeSpacing,
 })
 
 export default CurrentWeather

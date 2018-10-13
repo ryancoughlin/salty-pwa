@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import Icon from '../../common/icon'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 import weatherIcon from '../../utils/weather-icon'
 
 export default class CurrentWeatherRow extends Component {
@@ -15,7 +15,7 @@ export default class CurrentWeatherRow extends Component {
     return (
       <Container>
         <Icon source={this.prepareIcon} />
-        <Styles.Type.Body>{weather}</Styles.Type.Body>
+        <UI.Type.Body>{weather}</UI.Type.Body>
       </Container>
     )
   }
@@ -23,5 +23,5 @@ export default class CurrentWeatherRow extends Component {
 
 const Container = glamorous.div({
   display: 'flex',
-  marginBottom: Styles.Spacing.Default,
+  marginBottom: UI.Spacing.Default,
 })

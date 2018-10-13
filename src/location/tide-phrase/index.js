@@ -3,7 +3,7 @@ import glamorous from 'glamorous'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../actions'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 import RemainingTideTime from './remaining-tide-time'
 import TideArrow from '../../common/tide-arrow'
 
@@ -27,13 +27,13 @@ const TidePhrase = class extends Component {
       <Container>
         <TideArrow direction={nextTide.type} tidePhrase />
         <InnerContainer>
-          <Styles.Type.TidePhrase>
+          <UI.Type.TidePhrase>
             {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
             <FadedText>
               Tide
               <br />in <a>{this.props.locationName}</a>
             </FadedText>
-          </Styles.Type.TidePhrase>
+          </UI.Type.TidePhrase>
           <RemainingTideTime nextTide={nextTide} />
         </InnerContainer>
       </Container>
@@ -42,7 +42,7 @@ const TidePhrase = class extends Component {
 }
 
 const FadedText = glamorous.span({
-  color: Styles.Colors.SubtleTextColor,
+  color: UI.Colors.SubtleTextColor,
 })
 
 const Container = glamorous.div({

@@ -5,7 +5,7 @@ const numericFontFamily = 'overpass-mono, Menlo, Monaco, monospace'
 const mediumFontWeight = 500
 const boldFontWeight = 700
 
-const TidePhrase = glamorous.h1({
+const TidePhrase = glamorous.div({
   fontSize: 34,
   fontWeight: boldFontWeight,
   color: Colors.baseTextColor,
@@ -17,9 +17,9 @@ const SmallNumericType = glamorous.span({
   fontSize: 15,
 })
 
-const SecondaryHeader = glamorous.h2(
+const SecondaryHeader = glamorous.div(
   {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: mediumFontWeight,
     marginBottom: 10,
   },
@@ -28,7 +28,7 @@ const SecondaryHeader = glamorous.h2(
   }),
 )
 
-const Body = glamorous.h3({
+const Body = glamorous.div({
   fontSize: 18,
   color: Colors.baseTextColor,
   fontWeight: 'normal',

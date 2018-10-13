@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import moment from 'moment'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 
 export default class RemainingTideTime extends Component {
   componentDidMount() {
@@ -33,10 +33,10 @@ export default class RemainingTideTime extends Component {
 
   render() {
     return (
-      <Styles.Type.SmallNumericType>
+      <UI.Type.SmallNumericType>
         {this.formattedTime}
         {this.formattedTideDirection}
-      </Styles.Type.SmallNumericType>
+      </UI.Type.SmallNumericType>
     )
   }
 }

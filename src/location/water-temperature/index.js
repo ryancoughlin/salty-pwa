@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ConditionRow from '../currently/condition-row'
+import ConditionRow from '../../common/condition-row'
 import request from '../../utils/request'
 
 const WaterTemperature = class extends Component {

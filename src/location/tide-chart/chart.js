@@ -8,7 +8,7 @@ import {
 } from 'victory'
 import moment from 'moment'
 import glamorous from 'glamorous'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 
 const AXIS_FONT_SIZE = 14
 
@@ -42,21 +42,21 @@ export default class TideChart extends Component {
             orientation="left"
             scale="linear"
             style={{
-              axis: { stroke: Styles.Colors.SubtleTextColor },
+              axis: { stroke: UI.Colors.SubtleTextColor },
               grid: {
                 stroke: 'lightgrey',
                 strokeWidth: 1,
                 opacity: 0.9,
                 strokeDasharray: '0.2em',
               },
-              ticks: { stroke: Styles.Colors.SubtleTextColor, size: 4 },
+              ticks: { stroke: UI.Colors.SubtleTextColor, size: 4 },
               tickLabels: {
-                fill: Styles.Colors.SubtleTextColor,
+                fill: UI.Colors.SubtleTextColor,
                 fontSize: AXIS_FONT_SIZE,
                 fontFamily: 'overpass-mono',
               },
               axisLabel: {
-                fill: Styles.Colors.SubtleTextColor,
+                fill: UI.Colors.SubtleTextColor,
                 fontSize: AXIS_FONT_SIZE,
                 fontFamily: 'overpass-mono',
               },
@@ -66,10 +66,10 @@ export default class TideChart extends Component {
             orientation="bottom"
             scale="time"
             style={{
-              axis: { stroke: Styles.Colors.SubtleTextColor },
+              axis: { stroke: UI.Colors.SubtleTextColor },
               grid: { strokeWidth: 1 },
               tickLabels: {
-                fill: Styles.Colors.SubtleTextColor,
+                fill: UI.Colors.SubtleTextColor,
                 fontSize: AXIS_FONT_SIZE,
                 fontFamily: 'overpass-mono',
               },
@@ -83,7 +83,7 @@ export default class TideChart extends Component {
             scale={{ x: 'time' }}
             style={{
               data: {
-                stroke: Styles.Colors.Primary,
+                stroke: UI.Colors.Primary,
                 strokeWidth: 2,
               },
             }}
@@ -94,12 +94,12 @@ export default class TideChart extends Component {
             labelComponent={<VictoryLabel angle={90} y={20} />}
             style={{
               labels: {
-                fill: Styles.Colors.Highlight,
+                fill: UI.Colors.Highlight,
                 fontFamily: 'overpass-mono',
                 fontSize: AXIS_FONT_SIZE,
               },
               data: {
-                stroke: Styles.Colors.Highlight,
+                stroke: UI.Colors.Highlight,
                 strokeWidth: 2,
               },
             }}

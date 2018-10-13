@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import glamorous from 'glamorous'
 
 import moment from 'moment'
-import Styles from '../assets/styles'
+import UI from '../assets/styles'
 import TideArrow from '../common/tide-arrow'
 
 export default class extends Component {
@@ -40,11 +40,11 @@ const Left = glamorous.div({
   flexDirection: 'row',
 })
 
-const TideType = glamorous(Styles.Type.TextMedium)({
+const TideType = glamorous(UI.Type.TextMedium)({
   width: 52,
   textTransform: 'capitalize',
 })
 
-const Numeric = glamorous(Styles.Type.SmallNumericType)({
+const Numeric = glamorous(UI.Type.SmallNumericType)({
   textAlign: 'right',
 })

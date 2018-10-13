@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import Styles from '../assets/styles'
+import UI from '../assets/styles'
 import moment from 'moment'
 
 export default class extends Component {
@@ -20,14 +20,14 @@ export default class extends Component {
 const Container = glamorous.div({
   display: 'flex',
   height: 70,
-  paddingHorizontal: Styles.Spacing.Default,
+  paddingHorizontal: UI.Spacing.Default,
   alignItems: 'flex-end',
   position: 'sticky',
   top: 0,
   backgroundColor: 'white',
 })
 
-const Header = glamorous(Styles.Type.SecondaryHeader)({
-  paddingBottom: Styles.Spacing.smallSpacing,
+const Header = glamorous(UI.Type.SecondaryHeader)({
+  paddingBottom: UI.Spacing.smallSpacing,
   marginBottom: 0,
 })

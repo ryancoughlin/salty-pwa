@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
-import Styles from '../assets/styles'
+import UI from '../assets/styles'
 
 const ModalHeader = () => (
   <Container>
@@ -17,10 +17,10 @@ const Container = glamorous.div({
   backgroundColor: 'white',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  paddingRight: Styles.Spacing.Default,
+  paddingRight: UI.Spacing.Default,
   position: 'relative',
   zIndex: 1,
-  borderBottomColor: Styles.Colors.Palette.LightGray,
+  borderBottomColor: UI.Colors.Palette.LightGray,
   borderBottomWidth: 1,
   borderBottomStyle: 'solid',
 })

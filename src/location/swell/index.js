@@ -4,7 +4,8 @@ import _ from 'lodash'
 import glamorous from 'glamorous'
 import SwellChart from './chart'
 import Loading from '../../common/loading'
-import Styles from '../../assets/styles'
+import ConditionRow from '../../common/condition-row'
+import UI from '../../assets/ui'
 import { userLocation } from '../../utils/location'
 import request from '../../utils/request'
 import { swellType } from '../../utils/swell-type'
@@ -81,38 +82,44 @@ const Swell = class extends Component {
 
     return (
       <Container>
-        <SwellHeight>{this.state.height}&apos;</SwellHeight>
-        <Headline>{swellType(this.currentWindSpeed())}</Headline>
-        <SwellPeriod>
-          Swell period at {this.state.period}s from{' '}
-          {this.state.compassDirection}
-        </SwellPeriod>
+        <Title>Seas</Title>
+        <ConditionRow
+          label={'Wave Height'}
+          value={`${this.state.height}' / ${swellType(
+            this.currentWindSpeed(),
+          )}`}
+          color={'#005080'}
+        />
+        <ConditionRow
+          label={'Period'}
+          value={`${this.state.period}s`}
+          color={'#005080'}
+        />
+        <ConditionRow
+          label={'Direction'}
+          value={this.state.compassDirection}
+          color={'#005080'}
+        />
+        <SeaForecastTitle>Sea Forecast</SeaForecastTitle>
         <SwellChart swell={this.state.swell} />
       </Container>
     )
   }
 }
 
-const Container = glamorous(Styles.Containers.Card)({
-  backgroundImage: 'linear-gradient(-190deg, #8ADFFF 0%, #52BBFF 98%)',
-  backgroundColor: Styles.Colors.Primary,
-  minHeight: '150',
+const Container = glamorous(UI.Container.Base)({
+  backgroundColor: '#6BCBFF',
+  minHeight: '300',
 })
 
-const SwellHeight = glamorous(Styles.Type.SecondaryHeader)({
-  color: Styles.Colors.SwellBlue,
-  fontSize: 28,
+const Title = glamorous(UI.Type.SecondaryHeader)({
+  color: UI.Colors.SwellBlue,
+})
+
+const SeaForecastTitle = glamorous(UI.Type.TextMedium)({
+  marginTop: 16,
   marginBottom: 16,
-})
-
-const Headline = glamorous(Styles.Type.SecondaryHeader)({
-  color: Styles.Colors.SwellBlue,
-})
-
-const SwellPeriod = glamorous(Styles.Type.TextMedium)({
-  color: Styles.Colors.SwellBlue,
-  fontWeight: 'normal',
-  marginTop: 3,
+  color: '#005080',
 })
 
 export default Swell

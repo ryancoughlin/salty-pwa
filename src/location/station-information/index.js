@@ -4,7 +4,7 @@ import StationMap from './station-map'
 import Loading from '../../common/loading'
 import request from '../../utils/request'
 import { userLocation } from '../../utils/location'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 
 class StationInformation extends Component {
   state = {
@@ -33,9 +33,9 @@ class StationInformation extends Component {
         <StationMap stations={nearbyStations} />
         <StationHeader>
           <NearestStationTitle>Station nearest you</NearestStationTitle>
-          <Styles.Type.SecondaryHeader>
+          <UI.Type.SecondaryHeader>
             {nearbyStations[0].name}
-          </Styles.Type.SecondaryHeader>
+          </UI.Type.SecondaryHeader>
         </StationHeader>
       </Container>
     )
@@ -51,13 +51,13 @@ const NearestStationTitle = glamorous.div({
   textTransform: 'uppercase',
   fontWeight: 'bold',
   fontSize: 10,
-  marginBottom: Styles.Spacing.smallSpacing,
+  marginBottom: UI.Spacing.smallSpacing,
 })
 
 const StationHeader = glamorous.div({
-  paddingLeft: Styles.Spacing.Default,
-  paddingTop: Styles.Spacing.Default,
-  paddingBottom: Styles.Spacing.smallSpacing,
+  paddingLeft: UI.Spacing.Default,
+  paddingTop: UI.Spacing.Default,
+  paddingBottom: UI.Spacing.smallSpacing,
   backgroundColor: 'white',
 })
 
