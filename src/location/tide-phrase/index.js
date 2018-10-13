@@ -8,10 +8,6 @@ import RemainingTideTime from './remaining-tide-time'
 import TideArrow from '../../common/tide-arrow'
 
 const TidePhrase = class extends Component {
-  componentDidMount() {
-    this.props.getLocationName(this.props.location)
-  }
-
   componentDidCatch(error, info) {
     // eslint-disable-next-line
     Raven.captureException(error, {
@@ -61,6 +57,7 @@ const InnerContainer = glamorous.div({
 
 const mapStateToProps = ({ data }) => ({
   locationName: data.locationName,
+  location: data.location,
 })
 
 const mapDispatchToProps = dispatch => ({

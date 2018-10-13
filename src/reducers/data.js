@@ -1,6 +1,6 @@
 import {
   FETCH_TIDES,
-  FETCH_LOCATION,
+  FETCH_USER_LOCATION,
   FETCH_WEATHER,
   GET_LOCATION_NAME,
 } from '../types'
@@ -9,7 +9,7 @@ const initialState = {}
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case FETCH_LOCATION:
+    case FETCH_USER_LOCATION:
       return {
         ...state,
         location: action.location,

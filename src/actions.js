@@ -4,7 +4,7 @@ import geocodeLocation from './utils/geocode'
 
 import {
   FETCH_TIDES,
-  FETCH_LOCATION,
+  FETCH_USER_LOCATION,
   FETCH_WEATHER,
   GET_LOCATION_NAME,
 } from './types'
@@ -13,12 +13,13 @@ export function fetchLocation() {
   return dispatch => {
     userLocation().then(location => {
       dispatch({
-        type: FETCH_LOCATION,
+        type: FETCH_USER_LOCATION,
         location: location,
       })
 
-      this.fetchTides(location)
-      this.fetchWeather(location)
+      fetchTides(location)
+      fetchWeather(location)
+      getLocationName(location)
     })
   }
 }
