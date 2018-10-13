@@ -1,21 +1,21 @@
 import React from 'react'
 import glamorous from 'glamorous'
-import Styles from '../assets/styles'
+import UI from '../assets/styles'
 
 const ChartHeader = ({ headerText, bodyText }) => (
   <Container>
-    <Styles.Type.SecondaryHeader>{headerText}</Styles.Type.SecondaryHeader>
+    <UI.Type.SecondaryHeader>{headerText}</UI.Type.SecondaryHeader>
     <Byline>{bodyText}</Byline>
   </Container>
 )
 
 const Container = glamorous.div({
-  marginBottom: Styles.Spacing.Default,
+  marginBottom: UI.Spacing.Default,
 })
 
-const Byline = glamorous(Styles.Type.TextMedium)({
+const Byline = glamorous(UI.Type.TextMedium)({
   fontWeight: 'normal',
-  color: Styles.Colors.SubtleTextColor,
+  color: UI.Colors.SubtleTextColor,
 })
 
 export default ChartHeader

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
 import moment from 'moment'
 import TodayTideRow from './today-tide-row'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 import Icon from '../../common/icon'
 import tideIcon from '../../assets/images/tide.svg'
 
@@ -12,9 +12,7 @@ const TodaysTides = ({ tides }) => (
     <InnerContainer>
       <Header>
         <Icon source={tideIcon} />
-        <Styles.Type.SecondaryHeader>
-          Today&apos;s Tides
-        </Styles.Type.SecondaryHeader>
+        <UI.Type.SecondaryHeader>Today&apos;s Tides</UI.Type.SecondaryHeader>
       </Header>
       <ViewTideTable to="/tables">View tides</ViewTideTable>
     </InnerContainer>
@@ -43,15 +41,15 @@ const Header = glamorous.div({
 const ViewTideTable = glamorous(Link)({
   fontSize: 16,
   fontWeight: '500',
-  color: Styles.Colors.Primary,
+  color: UI.Colors.Primary,
   ':visited': {
-    color: Styles.Colors.Primary,
+    color: UI.Colors.Primary,
   },
 })
 
 const Container = glamorous.div({
   marginTop: 20,
-  marginBottom: Styles.Spacing.Default,
+  marginBottom: UI.Spacing.Default,
 })
 
 export default TodaysTides

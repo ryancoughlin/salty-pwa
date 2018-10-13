@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Header from './header'
 import TideRow from './tide-row'
 import ModalHeader from '../common/modal-header'
-import Styles from '../assets/styles'
+import UI from '../assets/styles'
 
 class Tides extends Component {
   render() {
@@ -12,7 +12,7 @@ class Tides extends Component {
     return (
       <div className={'container'}>
         <ModalHeader />
-        <Styles.Containers.Base>
+        <UI.Containers.Base>
           {Object.keys(tides).map(date => {
             const dayTides = tides[date]
             return (
@@ -24,7 +24,7 @@ class Tides extends Component {
               </div>
             )
           })}
-        </Styles.Containers.Base>
+        </UI.Containers.Base>
       </div>
     )
   }

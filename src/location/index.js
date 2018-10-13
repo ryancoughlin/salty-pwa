@@ -11,7 +11,7 @@ import TodaysTides from './todays-tides'
 import Swell from './swell'
 import StationInformation from './station-information'
 import TideChart from './tide-chart'
-import Styles from '../assets/styles'
+import UI from '../assets/styles'
 
 class Location extends Component {
   componentDidMount() {
@@ -44,16 +44,14 @@ class Location extends Component {
 
     return (
       <div className={'container'}>
-        <Styles.Containers.Base>
+        <UI.Containers.Base>
           <TidePhrase location={location} nextTide={this.nextTide} />
           <CurrentWeather weather={weather} />
           <TodaysTides tides={tides} />
           <TideChart location={location} />
-        </Styles.Containers.Base>
+        </UI.Containers.Base>
         <Currently location={location} weather={weather} />
-        <Styles.Containers.Base>
-          <Swell weather={weather} />
-        </Styles.Containers.Base>
+        <Swell weather={weather} />
         <StationInformation />
       </div>
     )

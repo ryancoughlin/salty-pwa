@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import Styles from '../../assets/styles'
-import ConditionRow from './condition-row'
+import UI from '../../assets/styles'
+import ConditionRow from '../../common/condition-row'
 import WaterTemperature from '../water-temperature'
 import { shortTimeFormat } from '../../utils/helpers'
 
@@ -46,16 +46,15 @@ class Currently extends Component {
 }
 
 const Container = glamorous.div({
-  backgroundColor: Styles.Colors.DarkBackground,
-  paddingTop: Styles.Spacing.largeSpacing,
-  paddingRight: Styles.Spacing.Default,
-  paddingBottom: Styles.Spacing.Default,
-  paddingLeft: Styles.Spacing.smallSpacing * 2,
-  marginBottom: Styles.Spacing.Default,
+  backgroundColor: UI.Colors.DarkBackground,
+  paddingTop: UI.Spacing.largeSpacing,
+  paddingRight: UI.Spacing.Default,
+  paddingBottom: UI.Spacing.Default,
+  paddingLeft: UI.Spacing.smallSpacing * 2,
 })
 
 const Details = glamorous.div({
-  marginTop: Styles.Spacing.Default,
+  marginTop: UI.Spacing.Default,
   marginLeft: 36,
   borderTopStyle: 'solid',
   borderTopWidth: 1,
@@ -66,12 +65,12 @@ const Top = glamorous.div({
   display: 'flex',
 })
 
-const Header = glamorous(Styles.Type.SecondaryHeader)({
+const Header = glamorous(UI.Type.SecondaryHeader)({
   color: 'white',
 })
 
-const Summary = glamorous(Styles.Type.TextMedium)({
-  color: Styles.Colors.SubtleTextColor,
+const Summary = glamorous(UI.Type.TextMedium)({
+  color: UI.Colors.SubtleTextColor,
   fontWeight: 'normal',
   paddingRight: 24,
 })

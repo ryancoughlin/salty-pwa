@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
@@ -41,7 +41,7 @@ class StationMap extends Component {
           },
         },
         paint: {
-          'circle-color': Styles.Colors.StationPin,
+          'circle-color': UI.Colors.StationPin,
           'circle-radius': 16,
           'circle-stroke-width': 5,
           'circle-stroke-color': 'rgba(62, 63, 112, 0.24)',

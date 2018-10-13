@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import Styles from '../../assets/styles'
+import UI from '../assets/ui'
 
 export default class ConditionRow extends Component {
   render() {
     const { label, value } = this.props
 
     return (
-      <Container>
-        <Label>{label}</Label>
-        <Value>{value}</Value>
+      <Container {...this.props}>
+        <Label {...this.props}>{label}</Label>
+        <Value {...this.props}>{value}</Value>
       </Container>
     )
   }
@@ -28,13 +28,24 @@ const Container = glamorous.div(
   },
   props => ({
     textDecoration: props.pastTide ? 'line-through' : 'none',
+    borderBottomColor: props.color,
   }),
 )
 
-const Label = glamorous(Styles.Type.TextMedium)({
-  color: 'white',
-})
+const Label = glamorous(UI.Type.TextMedium)(
+  {
+    color: 'white',
+  },
+  props => ({
+    color: props.color,
+  }),
+)
 
-const Value = glamorous(Styles.Type.SmallNumericType)({
-  color: 'white',
-})
+const Value = glamorous(UI.Type.SmallNumericType)(
+  {
+    color: 'white',
+  },
+  props => ({
+    color: props.color,
+  }),
+)

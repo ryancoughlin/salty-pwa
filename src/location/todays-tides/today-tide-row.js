@@ -3,7 +3,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import glamorous from 'glamorous'
 import { shortTimeFormat } from '../../utils/helpers'
-import Styles from '../../assets/styles'
+import UI from '../../assets/styles'
 
 export default class NextTideRow extends Component {
   render() {
@@ -12,9 +12,9 @@ export default class NextTideRow extends Component {
     return (
       <Container pastTide={isPastTide(tide.time)}>
         <TideType>{_.upperFirst(tide.type)}</TideType>
-        <Styles.Type.Time>
+        <UI.Type.Time>
           {shortTimeFormat(tide.time)} / {formatTideHeight(tide.height)}
-        </Styles.Type.Time>
+        </UI.Type.Time>
       </Container>
     )
   }
@@ -47,6 +47,6 @@ const Container = glamorous.div(
   }),
 )
 
-const TideType = glamorous(Styles.Type.TextMedium)({
+const TideType = glamorous(UI.Type.TextMedium)({
   minWidth: 54,
 })
