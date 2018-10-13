@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Header from './header'
 import TideRow from './tide-row'
 import ModalHeader from '../common/modal-header'
 import Styles from '../assets/styles'
 
-class Location extends Component {
-  state = {
-    tides: JSON.parse(localStorage.getItem('tides')),
-  }
-
+class Tides extends Component {
   render() {
-    const { tides } = this.state
+    const { tides } = this.props
 
     return (
       <div className={'container'}>
@@ -33,4 +30,8 @@ class Location extends Component {
   }
 }
 
-export default Location
+const mapStateToProps = ({ data }) => ({
+  tides: data.tides,
+})
+
+export default connect(mapStateToProps)(Tides)

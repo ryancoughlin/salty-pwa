@@ -5,13 +5,13 @@ import glamorous from 'glamorous'
 import SwellChart from './chart'
 import Loading from '../../common/loading'
 import Styles from '../../assets/styles'
-import { fetchLocation } from '../../utils/location'
+import { userLocation } from '../../utils/location'
 import request from '../../utils/request'
 import { swellType } from '../../utils/swell-type'
 
 const Swell = class extends Component {
   componentDidMount() {
-    fetchLocation()
+    userLocation()
       .then(location => {
         const { longitude, latitude } = location
         request(`/swell?latitude=${latitude}&longitude=${longitude}`).then(

@@ -3,7 +3,7 @@ import glamorous from 'glamorous'
 import StationMap from './station-map'
 import Loading from '../../common/loading'
 import request from '../../utils/request'
-import { fetchLocation } from '../../utils/location'
+import { userLocation } from '../../utils/location'
 import Styles from '../../assets/styles'
 
 class StationInformation extends Component {
@@ -12,7 +12,7 @@ class StationInformation extends Component {
   }
 
   componentDidMount() {
-    fetchLocation().then(location => {
+    userLocation().then(location => {
       const { latitude, longitude } = location
 
       request(

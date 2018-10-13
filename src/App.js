@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AnimatedSwitch, spring } from 'react-router-transition'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from './store'
 import Location from './location/index'
 import TideTables from './tide-tables/index'
 import Map from './map/index'
+import Loading from './common/loading'
 
 function mapStyles(styles) {
   return {
@@ -42,19 +46,23 @@ const bounceTransition = {
 class App extends Component {
   render() {
     return (
-      <Router>
-        <AnimatedSwitch
-          atEnter={bounceTransition.atEnter}
-          atLeave={bounceTransition.atLeave}
-          atActive={bounceTransition.atActive}
-          mapStyles={mapStyles}
-          className="switch-wrapper"
-        >
-          <Route exact path="/" component={Location} />
-          <Route exact path="/tables" component={TideTables} />
-          <Route exact path="/map" component={Map} />
-        </AnimatedSwitch>
-      </Router>
+      <Provider store={store}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <Router>
+            <AnimatedSwitch
+              atEnter={bounceTransition.atEnter}
+              atLeave={bounceTransition.atLeave}
+              atActive={bounceTransition.atActive}
+              mapStyles={mapStyles}
+              className="switch-wrapper"
+            >
+              <Route exact path="/" component={Location} />
+              <Route exact path="/tables" component={TideTables} />
+              <Route exact path="/map" component={Map} />
+            </AnimatedSwitch>
+          </Router>
+        </PersistGate>
+      </Provider>
     )
   }
 }

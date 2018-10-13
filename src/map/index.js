@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import { fetchLocation } from '../utils/location'
+import { userLocation } from '../utils/location'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
@@ -12,7 +12,7 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    fetchLocation().then(location => {
+    userLocation().then(location => {
       const userLocation = [location.longitude, location.latitude]
       this.setState({ userLocation })
       localStorage.setItem('userLocation', JSON.stringify(userLocation))
