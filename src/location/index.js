@@ -11,7 +11,7 @@ import TodaysTides from './todays-tides'
 import Swell from './swell'
 import StationInformation from './station-information'
 import TideChart from './tide-chart'
-import UI from '../assets/styles'
+import UI from '../assets/ui'
 
 class Location extends Component {
   componentDidMount() {

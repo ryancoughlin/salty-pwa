@@ -3,7 +3,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import glamorous from 'glamorous'
 import { shortTimeFormat } from '../../utils/helpers'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 
 export default class NextTideRow extends Component {
   render() {

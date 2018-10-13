@@ -1,6 +1,6 @@
 import React from 'react'
 import glamorous from 'glamorous'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 import CurrentWeatherRow from './current-weather-row'
 
 const CurrentWeather = ({ weather }) => (

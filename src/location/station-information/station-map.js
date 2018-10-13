@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`

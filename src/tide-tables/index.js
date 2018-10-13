@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Header from './header'
 import TideRow from './tide-row'
 import ModalHeader from '../common/modal-header'
-import UI from '../assets/styles'
+import UI from '../assets/ui'
 
 class Tides extends Component {
   render() {

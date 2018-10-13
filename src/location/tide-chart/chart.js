@@ -8,7 +8,7 @@ import {
 } from 'victory'
 import moment from 'moment'
 import glamorous from 'glamorous'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 
 const AXIS_FONT_SIZE = 14
 

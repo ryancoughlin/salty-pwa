@@ -3,7 +3,7 @@ import glamorous from 'glamorous'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../actions'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 import RemainingTideTime from './remaining-tide-time'
 import TideArrow from '../../common/tide-arrow'
 

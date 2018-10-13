@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import UI from '../assets/styles'
+import UI from '../assets/ui'
 import moment from 'moment'
 
 export default class extends Component {

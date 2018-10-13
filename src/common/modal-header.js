@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
-import UI from '../assets/styles'
+import UI from '../assets/ui'
 
 const ModalHeader = () => (
   <Container>

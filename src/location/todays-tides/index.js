@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
 import moment from 'moment'
 import TodayTideRow from './today-tide-row'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 import Icon from '../../common/icon'
 import tideIcon from '../../assets/images/tide.svg'
 

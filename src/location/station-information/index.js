@@ -4,7 +4,7 @@ import StationMap from './station-map'
 import Loading from '../../common/loading'
 import request from '../../utils/request'
 import { userLocation } from '../../utils/location'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 
 class StationInformation extends Component {
   state = {

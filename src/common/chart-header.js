@@ -1,6 +1,6 @@
 import React from 'react'
 import glamorous from 'glamorous'
-import UI from '../assets/styles'
+import UI from '../assets/ui'
 
 const ChartHeader = ({ headerText, bodyText }) => (
   <Container>

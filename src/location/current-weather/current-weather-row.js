@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import Icon from '../../common/icon'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 import weatherIcon from '../../utils/weather-icon'
 
 export default class CurrentWeatherRow extends Component {
