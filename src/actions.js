@@ -4,6 +4,7 @@ import geocodeLocation from './utils/geocode'
 
 import {
   FETCH_TIDES,
+  FETCH_TIDE_CHART,
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
   GET_LOCATION_NAME,
@@ -17,24 +18,48 @@ export function fetchLocation() {
         location: location,
       })
 
-      fetchTides(location)
-      fetchWeather(location)
-      getLocationName(location)
+      this.fetchTides(location)
+      this.fetchTideChart(location)
+      this.fetchWeather(location)
+      this.getLocationName(location)
     })
   }
 }
 
 export function fetchTides(location) {
+  console.log('tides')
   const { latitude, longitude } = location
   return dispatch => {
     request(`/tides?latitude=${latitude}&longitude=${longitude}`)
       .then(tides => {
+        console.log('tides')
         if (Object.keys(tides).length === 0) {
           console.log('empty tide response')
         } else {
           dispatch({
             type: FETCH_TIDES,
             tides: tides,
+          })
+        }
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+}
+
+export function fetchTideChart(location) {
+  const { latitude, longitude } = location
+  return dispatch => {
+    request(`/tide-chart?latitude=${latitude}&longitude=${longitude}`)
+      .then(data => {
+        debugger
+        if (Object.keys(data).length === 0) {
+          console.log('empty tide response')
+        } else {
+          dispatch({
+            type: FETCH_TIDE_CHART,
+            tideChart: data,
           })
         }
       })

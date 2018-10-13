@@ -1,5 +1,6 @@
 import {
   FETCH_TIDES,
+  FETCH_TIDE_CHART,
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
   GET_LOCATION_NAME,
@@ -18,6 +19,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         tides: action.tides,
+      }
+    case FETCH_TIDE_CHART:
+      return {
+        ...state,
+        tideChart: action.tideChart,
       }
     case FETCH_WEATHER:
       return {
