@@ -12,7 +12,7 @@ const TodaysTides = ({ tides }) => (
     <InnerContainer>
       <Header>
         <Icon source={tideIcon} />
-        <UI.Type.SecondaryHeader>Today&apos;s Tides</UI.Type.SecondaryHeader>
+        <UI.Type.TextMedium>Today</UI.Type.TextMedium>
       </Header>
       <ViewTideTable to="/tables">View tides</ViewTideTable>
     </InnerContainer>

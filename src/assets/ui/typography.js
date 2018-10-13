@@ -19,7 +19,7 @@ const SmallNumericType = glamorous.span({
 
 const SecondaryHeader = glamorous.div(
   {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: mediumFontWeight,
     marginBottom: 10,
   },
