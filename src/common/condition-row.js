@@ -28,7 +28,7 @@ const Container = glamorous.div(
     textDecoration: props.pastTide ? 'line-through' : 'none',
     borderBottomColor: props.dark
       ? 'rgba(18, 78, 118, 0.3)'
-      : 'rgba(255, 255, 255, 0.06)',
+      : 'rgba(255, 255, 255, 0.2)',
   }),
 )
 

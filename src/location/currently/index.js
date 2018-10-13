@@ -44,7 +44,7 @@ const Details = glamorous.div({
   marginTop: UI.Spacing.Default,
   borderTopStyle: 'solid',
   borderTopWidth: 1,
-  borderTopColor: 'rgba(255, 255, 255, 0.06)',
+  borderTopColor: 'rgba(255, 255, 255, 0.2)',
 })
 
 const Header = glamorous(UI.Type.SecondaryHeader)({
