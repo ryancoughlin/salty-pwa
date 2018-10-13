@@ -8,7 +8,6 @@ import Styles from '../assets/styles'
 class Tides extends Component {
   render() {
     const { tides } = this.props
-    console.log('TCL: Location -> render -> tides', tides)
 
     return (
       <div className={'container'}>
