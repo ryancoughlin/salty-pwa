@@ -13,13 +13,13 @@ if (process.env.NODE_ENV === 'development') {
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storage,
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export default () => {
-  const store = createStore(persistedReducer, applyMiddleware(...middlewares))
-  const persistor = persistStore(store)
-  return { store, persistor }
-}
+export const store = createStore(
+  persistedReducer,
+  applyMiddleware(...middlewares),
+)
+export const persistor = persistStore(store)

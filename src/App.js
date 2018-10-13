@@ -3,12 +3,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AnimatedSwitch, spring } from 'react-router-transition'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import configureStore from './store'
+import { persistor, store } from './store'
 import Location from './location/index'
 import TideTables from './tide-tables/index'
 import Map from './map/index'
-
-const { store, persistor } = configureStore()
+import Loading from './common/loading'
 
 function mapStyles(styles) {
   return {
@@ -48,7 +47,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
           <Router>
             <AnimatedSwitch
               atEnter={bounceTransition.atEnter}
