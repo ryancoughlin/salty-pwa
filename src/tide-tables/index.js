@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import Header from './header'
 import TideRow from './tide-row'
 import ModalHeader from '../common/modal-header'
