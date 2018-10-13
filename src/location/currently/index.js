@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import UI from '../../assets/styles'
+import UI from '../../assets/ui'
 import ConditionRow from '../../common/condition-row'
 import WaterTemperature from '../water-temperature'
 import { shortTimeFormat } from '../../utils/helpers'
-
-import Icon from '../../common/icon'
-import tideIcon from '../../assets/images/weather/snow.svg'
 
 class Currently extends Component {
   render() {
@@ -14,13 +11,8 @@ class Currently extends Component {
 
     return (
       <Container>
-        <Top>
-          <Icon source={tideIcon} />
-          <div>
-            <Header>Current Conditions</Header>
-            <Summary>{weather.summary}</Summary>
-          </div>
-        </Top>
+        <Header>Current Conditions</Header>
+        <Summary>{weather.summary}</Summary>
         <Details>
           <WaterTemperature location={location} />
           <ConditionRow
@@ -45,24 +37,15 @@ class Currently extends Component {
   }
 }
 
-const Container = glamorous.div({
+const Container = glamorous(UI.Container.Base)({
   backgroundColor: UI.Colors.DarkBackground,
-  paddingTop: UI.Spacing.largeSpacing,
-  paddingRight: UI.Spacing.Default,
-  paddingBottom: UI.Spacing.Default,
-  paddingLeft: UI.Spacing.smallSpacing * 2,
 })
 
 const Details = glamorous.div({
   marginTop: UI.Spacing.Default,
-  marginLeft: 36,
   borderTopStyle: 'solid',
   borderTopWidth: 1,
   borderTopColor: 'rgba(255, 255, 255, 0.06)',
-})
-
-const Top = glamorous.div({
-  display: 'flex',
 })
 
 const Header = glamorous(UI.Type.SecondaryHeader)({
@@ -72,7 +55,7 @@ const Header = glamorous(UI.Type.SecondaryHeader)({
 const Summary = glamorous(UI.Type.TextMedium)({
   color: UI.Colors.SubtleTextColor,
   fontWeight: 'normal',
-  paddingRight: 24,
+  paddingRight: 32,
 })
 
 export default Currently
