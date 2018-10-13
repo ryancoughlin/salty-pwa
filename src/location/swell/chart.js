@@ -10,6 +10,7 @@ import glamorous from 'glamorous'
 import _ from 'lodash'
 import moment from 'moment'
 import BarSegment from '../../common/bar-segment'
+import UI from '../../assets/ui'
 
 export default class SwellChart extends Component {
   get data() {
@@ -42,7 +43,7 @@ export default class SwellChart extends Component {
           scale={{ x: 'time', y: 'linear' }}
         >
           <VictoryBar
-            dataComponent={<BarSegment color={'#164F75'} />}
+            dataComponent={<BarSegment color={UI.Colors.SwellBlue} />}
             y="height"
             x="time"
             data={this.data}
@@ -54,7 +55,7 @@ export default class SwellChart extends Component {
               labels: {
                 fontSize: 16,
                 fontFamily: 'overpass-mono',
-                fill: '#164F75',
+                fill: UI.Colors.SwellBlue,
               },
             }}
           />

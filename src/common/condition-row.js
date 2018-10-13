@@ -34,9 +34,9 @@ const Container = glamorous.div(
 )
 
 const Label = glamorous(UI.Type.TextMedium)(props => ({
-  color: props.dark ? '#005080' : '#ffffff',
+  color: props.dark ? UI.Colors.SwellBlue : '#ffffff',
 }))
 
 const Value = glamorous(UI.Type.SmallNumericType)(props => ({
-  color: props.dark ? '#005080' : '#ffffff',
+  color: props.dark ? UI.Colors.SwellBlue : '#ffffff',
 }))

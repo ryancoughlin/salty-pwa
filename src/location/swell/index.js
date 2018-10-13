@@ -112,7 +112,7 @@ const Title = glamorous(UI.Type.SecondaryHeader)({
 const SeaForecastTitle = glamorous(UI.Type.TextMedium)({
   marginTop: 16,
   marginBottom: 16,
-  color: '#005080',
+  color: UI.Colors.SwellBlue,
 })
 
 export default Swell

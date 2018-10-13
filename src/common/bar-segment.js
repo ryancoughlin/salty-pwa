@@ -12,7 +12,7 @@ class BarSegment extends React.Component {
           y={this.props.y - 6}
           width="9"
           height="2"
-          fill="#A6DBFF"
+          fill="#003656"
         />
 
         <g

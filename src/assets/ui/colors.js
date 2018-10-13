@@ -2,7 +2,7 @@ export const Palette = {
   Vulcan: '#0c1523',
   LightGray: '#93A0C1',
   Blue: '#2CACFF',
-  DarkBlue: '#164F75',
+  DarkBlue: '#003656',
   CornFlowerBlue: '#3e3f72',
   MySin: '#f6b441',
 }
