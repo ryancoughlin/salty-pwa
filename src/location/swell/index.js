@@ -93,7 +93,7 @@ const Swell = class extends Component {
           dark
         />
         <ConditionRow label={'Period'} value={`${this.state.period}s`} dark />
-        <SeaForecastTitle>Sea Forecast</SeaForecastTitle>
+        <SeaForecastTitle>Next 24 hours</SeaForecastTitle>
         <SwellChart swell={this.state.swell} />
       </Container>
     )

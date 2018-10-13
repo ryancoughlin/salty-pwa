@@ -21,7 +21,6 @@ const Container = glamorous.div(
     display: 'flex',
     height: 40,
     alignItems: 'center',
-    justifyContent: 'space-between',
     borderBottomStyle: 'solid',
     borderBottomWidth: 1,
   },
@@ -35,6 +34,7 @@ const Container = glamorous.div(
 
 const Label = glamorous(UI.Type.TextMedium)(props => ({
   color: props.dark ? UI.Colors.SwellBlue : '#ffffff',
+  minWidth: 130,
 }))
 
 const Value = glamorous(UI.Type.SmallNumericType)(props => ({
