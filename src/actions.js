@@ -53,7 +53,6 @@ export function fetchTideChart(location) {
   return dispatch => {
     request(`/tide-chart?latitude=${latitude}&longitude=${longitude}`)
       .then(data => {
-        debugger
         if (Object.keys(data).length === 0) {
           console.log('empty tide response')
         } else {
