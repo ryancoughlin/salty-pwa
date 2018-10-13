@@ -6,8 +6,6 @@ var CACHE_NAME = 'my-pwa-cache-v1'
 
 // Delete old caches that are not our current one!
 self.addEventListener('activate', event => {
-  console.log('activate')
-
   const cacheWhitelist = [CACHE_NAME]
   event.waitUntil(
     caches.keys().then(keyList =>
@@ -25,7 +23,6 @@ self.addEventListener('activate', event => {
 
 // The first time the user starts up the PWA, 'install' is triggered.
 self.addEventListener('install', function(event) {
-  console.log('[Servicework] Install')
   if (doCache) {
     event.waitUntil(
       caches.open(CACHE_NAME).then(function(cache) {
@@ -41,12 +38,11 @@ self.addEventListener('install', function(event) {
             // We could also cache any static assets like CSS or images
             const urlsToCache = [
               '/',
-              'public/wave-loader.svg',
+              '/wave-loader.svg',
               'index.html',
               assets['main.js'],
             ]
             cache.addAll(urlsToCache)
-            console.log('cached')
           })
       }),
     )

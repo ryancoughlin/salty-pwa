@@ -21,12 +21,14 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
+    "sw-precache": "^5.2.1",
     "victory": "^0.25.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-netlify": "build-create-react-app-netlify",
+    "build-netlify":
+      "build-create-react-app-netlify && sw-precache --config=sw-precache-config.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
