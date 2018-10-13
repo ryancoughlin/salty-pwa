@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import glamorous from 'glamorous'
 import UI from '../../assets/ui'
 import ConditionRow from '../../common/condition-row'
 import { shortTimeFormat } from '../../utils/helpers'
 
-class Currently extends Component {
+class CurrentConditions extends Component {
   render() {
     const { weather } = this.props
 
@@ -56,4 +57,8 @@ const Summary = glamorous(UI.Type.TextMedium)({
   paddingRight: 32,
 })
 
-export default Currently
+const mapStateToProps = ({ data }) => ({
+  location: data.location,
+  weather: data.weather,
+})
+export default connect(mapStateToProps)(CurrentConditions)

@@ -50,8 +50,8 @@ class Location extends Component {
           <TodaysTides tides={tides} />
           <TideChart location={location} />
         </UI.Container.Base>
-        <Currently location={location} weather={weather} />
         <Swell weather={weather} />
+        <Currently />
         <StationInformation />
       </div>
     )
