@@ -48,7 +48,6 @@ const FadedText = glamorous.span({
 const Container = glamorous.div({
   display: 'flex',
   flexDirection: 'row',
-  marginTop: 60,
 })
 
 const InnerContainer = glamorous.div({
