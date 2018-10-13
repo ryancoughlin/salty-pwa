@@ -4,6 +4,7 @@ import _ from 'lodash'
 import glamorous from 'glamorous'
 import SwellChart from './chart'
 import Loading from '../../common/loading'
+import WaterTemperature from '../water-temperature'
 import ConditionRow from '../../common/condition-row'
 import UI from '../../assets/ui'
 import { userLocation } from '../../utils/location'
@@ -83,6 +84,7 @@ const Swell = class extends Component {
     return (
       <Container>
         <Title>Seas</Title>
+        <WaterTemperature />
         <ConditionRow
           label={'Wave Height'}
           value={`${this.state.height}' / ${swellType(

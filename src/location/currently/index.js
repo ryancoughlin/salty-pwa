@@ -2,19 +2,17 @@ import React, { Component } from 'react'
 import glamorous from 'glamorous'
 import UI from '../../assets/ui'
 import ConditionRow from '../../common/condition-row'
-import WaterTemperature from '../water-temperature'
 import { shortTimeFormat } from '../../utils/helpers'
 
 class Currently extends Component {
   render() {
-    const { weather, location } = this.props
+    const { weather } = this.props
 
     return (
       <Container>
         <Header>Current Conditions</Header>
         <Summary>{weather.summary}</Summary>
         <Details>
-          <WaterTemperature location={location} />
           <ConditionRow
             label={'Sunrise'}
             value={shortTimeFormat(weather.sunrise)}

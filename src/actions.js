@@ -7,6 +7,7 @@ import {
   FETCH_TIDE_CHART,
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
+  FETCH_WATER_TEMPERATURE,
   GET_LOCATION_NAME,
 } from './types'
 
@@ -20,6 +21,7 @@ export function fetchLocation() {
 
       this.fetchTides(location)
       this.fetchTideChart(location)
+      this.fetchWaterTemperature(location)
       this.fetchWeather(location)
       this.getLocationName(location)
     })
@@ -59,6 +61,26 @@ export function fetchTideChart(location) {
           dispatch({
             type: FETCH_TIDE_CHART,
             tideChart: data,
+          })
+        }
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+}
+
+export function fetchWaterTemperature(location) {
+  const { latitude, longitude } = location
+  return dispatch => {
+    request(`/water-temperature?latitude=${latitude}&longitude=${longitude}`)
+      .then(data => {
+        if (Object.keys(data).length === 0) {
+          console.log('empty tide response')
+        } else {
+          dispatch({
+            type: FETCH_WATER_TEMPERATURE,
+            waterTemperature: data,
           })
         }
       })

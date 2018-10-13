@@ -44,6 +44,7 @@ const Container = glamorous.div(
   },
   props => ({
     textDecoration: props.pastTide ? 'line-through' : 'none',
+    opacity: props.pastTide ? '0.5' : '1',
   }),
 )
 
