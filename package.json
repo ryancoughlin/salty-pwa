@@ -5,47 +5,53 @@
   "dependencies": {
     "build-create-react-app-netlify": "^1.1.2",
     "glamor": "^2.20.40",
-    "glamorous": "^4.11.6",
-    "lodash": "^4.17.5",
-    "mapbox-gl": "^0.44.1",
-    "moment": "^2.20.1",
+    "glamorous": "^4.13.1",
+    "lodash": "^4.17.11",
+    "mapbox-gl": "^0.44.2",
+    "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "react-inlinesvg": "^0.7.5",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
+    "react-redux": "^5.1.0",
+    "react-router-dom": "^4.3.1",
     "react-router-transition": "^1.2.1",
-    "react-scripts": "1.1.1",
+    "react-scripts": "2.0.5",
     "react-svg-inline": "^2.1.1",
-    "redux": "^4.0.0",
+    "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "sw-precache": "^5.2.1",
-    "victory": "^0.25.6"
+    "victory": "^0.25.7"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build-netlify":
-      "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "build-netlify": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.18.1",
     "eslint-config-react-app": "^2.1.0",
-    "eslint-plugin-flowtype": "^2.46.1",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.50.3",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-react": "^7.11.1",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0",
-    "prettier": "^1.10.2"
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,json,css,md}": ["prettier --write", "git add"]
-  }
+    "*.{js,ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
