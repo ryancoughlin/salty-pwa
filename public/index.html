@@ -8,29 +8,24 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="manifest" href="%process.env.ASSET_PATH%/manifest.json">
+  <link rel="shortcut icon" href="%process.env.ASSET_PATH%/icons/favicon.ico">
 
+  <script>
+    // Check that service workers are registered
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
 
-  <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/icons/favicon.ico">
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-
-  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/icons/favicon-16x16.png">
-  <link rel="manifest" href="%PUBLIC_URL%/icons/site.webmanifest">
-  <link rel="mask-icon" href="%PUBLIC_URL%/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="%process.env.ASSET_PATH%/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="%process.env.ASSET_PATH%/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="%process.env.ASSET_PATH%/icons/favicon-16x16.png">
+  <link rel="manifest" href="%process.env.ASSET_PATH%/icons/site.webmanifest">
+  <link rel="mask-icon" href="%process.env.ASSET_PATH%/icons/safari-pinned-tab.svg" color="#5bbad5">
 
   <meta property="og:title" content="Salty" />
   <meta property="og:type" content="article" />

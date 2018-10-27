@@ -1,12 +1,12 @@
 import React from 'react'
-import glamorous from 'glamorous'
+import styled from 'react-emotion'
 import SVGInline from 'react-svg-inline'
 import info from '../assets/images/info.svg'
 import tide from '../assets/images/tide.svg'
 
 console.log('TIDE', tide)
 
-const SVG = glamorous(SVGInline)(
+const SVG = styled(SVGInline)(
   {
     position: 'relative',
   },
