@@ -1,21 +1,25 @@
-/*eslint-env node*/
-
-const WorkboxPlugin = require('workbox-webpack-plugin')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const htmlPlugin = require('html-webpack-plugin')
+const cleanPlugin = require('clean-webpack-plugin')
+const workboxPlugin = require('workbox-webpack-plugin')
+
+const dist = 'build'
+
 const ASSET_PATH = process.env.ASSET_PATH || '/'
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'index_bundle.js',
+    path: path.join(__dirname, '/build'),
+    filename: 'index.js',
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new cleanPlugin([dist]),
+    new htmlPlugin({
       template: './src/index.html',
+      filename: './index.html',
     }),
-    new WorkboxPlugin.GenerateSW(),
+    new workboxPlugin.GenerateSW(),
   ],
   module: {
     rules: [
@@ -24,9 +28,6 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react'],
-          },
         },
       },
       {
