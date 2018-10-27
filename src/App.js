@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from './store'
 import Location from './location/index'
 import TideTables from './tide-tables/index'
-import Map from './map/index'
+import NearestBuoy from './nearest-buoy'
 import Loading from './common/loading'
 
 function mapStyles(styles) {
@@ -58,7 +58,7 @@ class App extends Component {
             >
               <Route exact path="/" component={Location} />
               <Route exact path="/tables" component={TideTables} />
-              <Route exact path="/map" component={Map} />
+              <Route exact path="/nearest-buoy" component={NearestBuoy} />
             </AnimatedSwitch>
           </Router>
         </PersistGate>

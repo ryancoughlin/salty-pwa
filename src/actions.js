@@ -8,6 +8,7 @@ import {
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
   FETCH_WATER_TEMPERATURE,
+  FETCH_NEARBY_STATIONS,
   GET_LOCATION_NAME,
 } from './types'
 
@@ -19,11 +20,12 @@ export function fetchLocation() {
         location: location,
       })
 
+      this.getLocationName(location)
       this.fetchTides(location)
       this.fetchTideChart(location)
-      this.fetchWaterTemperature(location)
       this.fetchWeather(location)
-      this.getLocationName(location)
+      this.fetchWaterTemperature(location)
+      this.fetchNearbyStations(location)
     })
   }
 }
@@ -98,6 +100,22 @@ export function fetchWeather(location) {
         dispatch({
           type: FETCH_WEATHER,
           weather: weather,
+        })
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+}
+
+export function fetchNearbyStations(location) {
+  const { latitude, longitude } = location
+  return dispatch => {
+    request(`/nearby-stations?latitude=${latitude}&longitude=${longitude}`)
+      .then(nearbyStations => {
+        dispatch({
+          type: FETCH_NEARBY_STATIONS,
+          nearbyStations: nearbyStations,
         })
       })
       .catch(error => {

@@ -9,7 +9,6 @@ import Currently from './currently'
 import CurrentWeather from './current-weather'
 import TodaysTides from './todays-tides'
 import Swell from './swell'
-import StationInformation from './station-information'
 import TideChart from './tide-chart'
 import UI from '../assets/ui'
 
@@ -36,7 +35,7 @@ class Location extends Component {
   }
 
   render() {
-    const { tides, weather, location } = this.props
+    const { tides, weather, location, nearbyStations } = this.props
 
     if (!tides || !weather || !location) {
       return <Loading />
@@ -47,12 +46,11 @@ class Location extends Component {
         <UI.Container.Base>
           <TidePhrase location={location} nextTide={this.nextTide} />
           <CurrentWeather weather={weather} />
-          <TodaysTides tides={tides} />
+          <TodaysTides tides={tides} nearbyStations={nearbyStations} />
           <TideChart location={location} />
         </UI.Container.Base>
         <Swell weather={weather} />
         <Currently />
-        <StationInformation />
       </div>
     )
   }
@@ -62,6 +60,7 @@ const mapStateToProps = ({ data }) => ({
   location: data.location,
   tides: data.tides,
   weather: data.weather,
+  nearbyStations: data.nearbyStations,
 })
 
 const mapDispatchToProps = dispatch => ({

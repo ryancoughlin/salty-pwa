@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl'
-import UI from '../../assets/ui'
+import UI from '../assets/ui'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
 
-class StationMap extends Component {
+class Map extends Component {
   componentDidMount() {
     const nearbyStation = this.props.stations[0]
-    console.log(nearbyStation)
     const nearbyStationCoordinates = nearbyStation.location
 
     this.map = new mapboxgl.Map({
@@ -91,10 +90,10 @@ class StationMap extends Component {
     return (
       <div
         ref={el => (this.mapContainer = el)}
-        style={{ width: '100%', height: '340px' }}
+        style={{ width: '100vw', height: '100vh' }}
       />
     )
   }
 }
 
-export default StationMap
+export default Map
