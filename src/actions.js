@@ -31,7 +31,6 @@ export function fetchLocation() {
 }
 
 export function fetchTides(location) {
-  console.log('tides')
   const { latitude, longitude } = location
   return dispatch => {
     request(`/tides?latitude=${latitude}&longitude=${longitude}`)
@@ -132,7 +131,9 @@ export function getLocationName(location) {
           function(addr) {
             return addr.types[0] === 'locality'
               ? 1
-              : addr.types[0] === 'administrative_area_level_1' ? 1 : 0
+              : addr.types[0] === 'administrative_area_level_1'
+                ? 1
+                : 0
           },
         )
 

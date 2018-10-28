@@ -1,5 +1,3 @@
-console.log('API!!!!!------', process.env.API_URL)
-
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
