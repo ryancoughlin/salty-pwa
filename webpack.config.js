@@ -4,6 +4,8 @@ const cleanPlugin = require('clean-webpack-plugin')
 const htmlPlugin = require('html-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 
 console.log('KEY!!!!!!!!!!!!!!!', process.env.SENTRY_KEY)
 module.exports = {
@@ -37,7 +39,11 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new Dotenv(),
+    new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin(),
+  ],
   devServer: {
     contentBase: './dist',
     port: 3000,

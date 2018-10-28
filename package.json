@@ -99,6 +99,7 @@
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
     "react-hot-loader": "^4.3.11",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-sentry-plugin": "^1.16.0",
     "workbox-cli": "^3.6.3"
