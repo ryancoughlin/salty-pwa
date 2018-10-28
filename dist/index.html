@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
-  <link rel="manifest" href="%process.env.ASSET_PATH%/manifest.json">
-  <link rel="shortcut icon" href="%process.env.ASSET_PATH%/icons/favicon.ico">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="shortcut icon" href="/icons/favicon.ico">
 
   <script>
     // Check that service workers are registered
@@ -21,11 +21,11 @@
     }
   </script>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="%process.env.ASSET_PATH%/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="%process.env.ASSET_PATH%/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="%process.env.ASSET_PATH%/icons/favicon-16x16.png">
-  <link rel="manifest" href="%process.env.ASSET_PATH%/icons/site.webmanifest">
-  <link rel="mask-icon" href="%process.env.ASSET_PATH%/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/site.webmanifest">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
 
   <meta property="og:title" content="Salty" />
   <meta property="og:type" content="article" />
@@ -42,6 +42,7 @@
       You need to enable JavaScript to run this app.
     </noscript>
   <div id="root"></div>
+  <script src="/bundle.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
@@ -70,8 +71,6 @@
 
     gtag('config', 'UA-115508722-1')
   </script>
-  <script src="https://cdn.ravenjs.com/3.26.2/raven.min.js" crossorigin="anonymous" asyc></script>
-
   <!-- Start of Async Drift Code -->
   <script>
     !(function() {
@@ -126,9 +125,6 @@
     })()
     drift.SNIPPET_VERSION = '0.3.1'
     drift.load('8cyb5z5zyrhh')
-  </script>
-  <script>
-    Raven.config('https://776d52cbac12489295fa0d496f72d47d@sentry.io/305666').install()
   </script>
 </body>
 

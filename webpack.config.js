@@ -3,32 +3,17 @@ const path = require('path')
 const htmlPlugin = require('html-webpack-plugin')
 const cleanPlugin = require('clean-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
+const SentryPlugin = require('webpack-sentry-plugin')
 
+console.log('KEY!!!!!!!!!!!!!!!', process.env.SENTRY_KEY)
 module.exports = {
   entry: ['./src/index.js'],
-  output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
-  },
-  plugins: [
-    new workboxPlugin.GenerateSW(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-  devServer: {
-    contentBase: './dist',
-    port: 3000,
-    compress: true,
-    hot: true,
-  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: ['babel-loader'],
       },
       {
         test: /\.svg$/,
@@ -47,8 +32,25 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-  externals: {
-    moment: 'moment',
-    react: 'react',
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js',
+  },
+  plugins: [
+    new workboxPlugin.GenerateSW(),
+    new webpack.HotModuleReplacementPlugin(),
+    new SentryPlugin({
+      organization: 'salty',
+      project: 'salty-pwa',
+      apiKey: process.env.SENTRY_KEY,
+      release: process.env.GIT_SHA,
+    }),
+  ],
+  devServer: {
+    contentBase: './dist',
+    port: 3000,
+    compress: true,
+    hot: true,
   },
 }
