@@ -1,9 +1,3 @@
 {
     "presets": ["@babel/preset-env", "@babel/preset-react"],
-    "plugins": [
-        "emotion",
-        "transform-async-to-promises",
-        "transform-object-rest-spread",
-        "transform-class-properties"
-    ]
 }

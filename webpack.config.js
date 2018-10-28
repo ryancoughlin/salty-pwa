@@ -1,26 +1,26 @@
+const webpack = require('webpack')
 const path = require('path')
 const htmlPlugin = require('html-webpack-plugin')
 const cleanPlugin = require('clean-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
 
-const dist = 'build'
-
-const ASSET_PATH = process.env.ASSET_PATH || '/'
-
 module.exports = {
-  entry: './src/index.js',
+  entry: ['./src/index.js'],
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'index.js',
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   plugins: [
-    new cleanPlugin([dist]),
-    new htmlPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-    }),
     new workboxPlugin.GenerateSW(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
+  devServer: {
+    contentBase: './dist',
+    port: 3000,
+    compress: true,
+    hot: true,
+  },
   module: {
     rules: [
       {
@@ -43,6 +43,9 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
     ],
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
   },
   externals: {
     moment: 'moment',

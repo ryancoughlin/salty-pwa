@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'react-emotion'
 import glamorous from 'glamorous'
 import SVGInline from 'react-svg-inline'
 import info from '../assets/images/info.svg'
