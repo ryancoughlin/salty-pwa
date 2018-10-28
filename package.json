@@ -72,8 +72,6 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "build-netlify": "node scripts/build.js && sw-precache --config=sw-precache-config.js",
-    "test": "node scripts/test.js --env=jsdom",
     "precommit": "lint-staged"
   },
   "devDependencies": {
