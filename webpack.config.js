@@ -3,7 +3,6 @@ const path = require('path')
 const cleanPlugin = require('clean-webpack-plugin')
 const htmlPlugin = require('html-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
-const SentryCliPlugin = require('@sentry/webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
 console.log('KEY!!!!!!!!!!!!!!!', process.env.SENTRY_KEY)
@@ -38,16 +37,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  plugins: [
-    new Dotenv(),
-    new webpack.HotModuleReplacementPlugin(),
-    new SentryCliPlugin({
-      include: '.',
-      ignoreFile: '.sentrycliignore',
-      ignore: ['node_modules', 'webpack.config.js'],
-      configFile: 'sentry.properties',
-    }),
-  ],
+  plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin()],
   devServer: {
     contentBase: './dist',
     port: 3000,
