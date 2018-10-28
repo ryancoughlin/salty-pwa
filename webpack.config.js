@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const path = require('path')
 const cleanPlugin = require('clean-webpack-plugin')
 const htmlPlugin = require('html-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
