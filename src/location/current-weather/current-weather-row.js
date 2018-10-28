@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import Icon from '../../common/icon'
 import UI from '../../assets/ui'
-import weatherIcon from '../../utils/weather-icon'
 
 export default class CurrentWeatherRow extends Component {
-  get prepareIcon() {
-    return weatherIcon(this.props.icon)
-  }
-
   render() {
-    const { weather } = this.props
+    const { weather, icon } = this.props
 
     return (
       <Container>
-        <Icon source={this.prepareIcon} />
+        {icon}
         <UI.Type.Body>{weather}</UI.Type.Body>
       </Container>
     )

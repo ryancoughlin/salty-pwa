@@ -7,7 +7,7 @@ import Icon from '../common/icon'
 const NearestBuoyText = ({ nearbyStations }) => (
   <Container>
     <SmallText>
-      <Icon.Tide size="12" />
+      <Icon.Info size="8" />
       Tide data from&nbsp;
       <ViewNearestBuoyLink to="/nearest-buoy">
         {nearbyStations[0].name}

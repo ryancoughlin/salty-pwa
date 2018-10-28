@@ -39,16 +39,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new cleanPlugin(['/dist']),
-    new htmlPlugin({
-      filename: 'index.html',
-    }),
     new Dotenv(),
-    new workboxPlugin.GenerateSW({
-      swDest: 'sw.js',
-      clientsClaim: true,
-      skipWaiting: true,
-    }),
     new webpack.HotModuleReplacementPlugin(),
     new SentryCliPlugin({
       include: '.',
