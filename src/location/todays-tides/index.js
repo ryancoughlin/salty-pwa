@@ -11,7 +11,9 @@ const TodaysTides = ({ tides, nearbyStations }) => (
   <Container>
     <InnerContainer>
       <Header>
-        <Icon.Tide />
+        <IconContainer>
+          <Icon.Tide />
+        </IconContainer>
         <UI.Type.SecondaryHeader>Today's Tides</UI.Type.SecondaryHeader>
       </Header>
       <ViewTideTable to="/tables">View tides</ViewTideTable>
@@ -39,6 +41,10 @@ const InnerContainer = glamorous.div({
 
 const Header = glamorous.div({
   display: 'flex',
+})
+
+const IconContainer = glamorous.div({
+  marginRight: 16,
 })
 
 const ViewTideTable = glamorous(Link)({

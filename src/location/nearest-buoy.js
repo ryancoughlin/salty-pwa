@@ -8,7 +8,7 @@ const NearestBuoyText = ({ nearbyStations }) => (
   <Container>
     <SmallText>
       <Icon.Info size="8" />
-      Tide data from&nbsp;
+      Nearest buoy is&nbsp;
       <ViewNearestBuoyLink to="/nearest-buoy">
         {nearbyStations[0].name}
       </ViewNearestBuoyLink>
@@ -17,12 +17,13 @@ const NearestBuoyText = ({ nearbyStations }) => (
 )
 
 const Container = glamorous.div({
-  marginTop: UI.Spacing.smallSpacing,
+  marginTop: 16,
 })
 
 const SmallText = glamorous(UI.Type.Text)({
   fontSize: 12,
   fontWeight: '500',
+  marginLeft: 32,
 })
 
 const ViewNearestBuoyLink = glamorous(Link)({

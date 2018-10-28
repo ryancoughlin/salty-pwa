@@ -7,7 +7,6 @@ import Raven from 'raven-js'
 
 class TideChart extends Component {
   componentDidCatch(error, info) {
-    // eslint-disable-next-line
     Raven.captureException(error, {
       extra: info,
       props: this.props,

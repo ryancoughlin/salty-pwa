@@ -15,7 +15,6 @@ import snow from '../assets/images/weather/snow.svg'
 const SVG = styled(SVGInline)(
   {
     position: 'relative',
-    marginRight: 16,
   },
   props => ({
     svg: {

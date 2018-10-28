@@ -8,7 +8,7 @@ export default class CurrentWeatherRow extends Component {
 
     return (
       <Container>
-        {icon}
+        <IconContainer>{icon}</IconContainer>
         <UI.Type.Body>{weather}</UI.Type.Body>
       </Container>
     )
@@ -18,4 +18,8 @@ export default class CurrentWeatherRow extends Component {
 const Container = glamorous.div({
   display: 'flex',
   marginBottom: UI.Spacing.Default,
+})
+
+const IconContainer = glamorous.div({
+  marginRight: 20,
 })
