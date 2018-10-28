@@ -1,9 +1,10 @@
 const webpack = require('webpack')
 const path = require('path')
-const htmlPlugin = require('html-webpack-plugin')
 const cleanPlugin = require('clean-webpack-plugin')
+const htmlPlugin = require('html-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
-const SentryPlugin = require('webpack-sentry-plugin')
+const SentryCliPlugin = require('@sentry/webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 console.log('KEY!!!!!!!!!!!!!!!', process.env.SENTRY_KEY)
 module.exports = {
@@ -38,19 +39,27 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new workboxPlugin.GenerateSW(),
+    new cleanPlugin(['/dist']),
+    new htmlPlugin({
+      filename: 'index.html',
+    }),
+    new Dotenv(),
+    new workboxPlugin.GenerateSW({
+      swDest: 'sw.js',
+      clientsClaim: true,
+      skipWaiting: true,
+    }),
     new webpack.HotModuleReplacementPlugin(),
-    new SentryPlugin({
-      organization: 'salty',
-      project: 'salty-pwa',
-      apiKey: process.env.SENTRY_KEY,
-      release: process.env.GIT_SHA,
+    new SentryCliPlugin({
+      include: '.',
+      ignoreFile: '.sentrycliignore',
+      ignore: ['node_modules', 'webpack.config.js'],
+      configFile: 'sentry.properties',
     }),
   ],
   devServer: {
     contentBase: './dist',
     port: 3000,
-    compress: true,
     hot: true,
   },
 }

@@ -9,6 +9,8 @@ import TideTables from './tide-tables/index'
 import NearestBuoy from './nearest-buoy'
 import Loading from './common/loading'
 
+console.log('KEY!!!!!!!!!!!!!!!', process.env.SENTRY_AUTH_TOKEN)
+
 function mapStyles(styles) {
   return {
     opacity: styles.opacity,

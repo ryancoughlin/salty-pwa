@@ -11,6 +11,7 @@ import TodaysTides from './todays-tides'
 import Swell from './swell'
 import TideChart from './tide-chart'
 import UI from '../assets/ui'
+import Raven from 'raven-js'
 
 class Location extends Component {
   componentDidMount() {
@@ -67,4 +68,7 @@ const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Location)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Location)

@@ -6,6 +6,7 @@ import * as actions from '../../actions'
 import UI from '../../assets/ui'
 import RemainingTideTime from './remaining-tide-time'
 import TideArrow from '../../common/tide-arrow'
+import Raven from 'raven-js'
 
 const TidePhrase = class extends Component {
   componentDidCatch(error, info) {
@@ -31,7 +32,8 @@ const TidePhrase = class extends Component {
             {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
             <FadedText>
               Tide
-              <br />in <a>{this.props.locationName}</a>
+              <br />
+              in <a>{this.props.locationName}</a>
             </FadedText>
           </UI.Type.TidePhrase>
           <RemainingTideTime nextTide={nextTide} />
@@ -63,4 +65,7 @@ const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TidePhrase)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TidePhrase)

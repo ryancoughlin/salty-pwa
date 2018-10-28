@@ -1,3 +1,5 @@
+console.log('API!!!!!------', process.env.API_URL)
+
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
@@ -11,7 +13,7 @@ const request = function(path) {
     method: 'get',
   }
 
-  const response = fetch(`${process.env.REACT_APP_BASE_URL}${path}`, params)
+  const response = fetch(`${process.env.API_URL}${path}`, params)
 
   response.catch(error => {
     console.error(error)
