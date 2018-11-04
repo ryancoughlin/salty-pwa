@@ -36,7 +36,15 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new Dotenv(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      },
+    }),
+  ],
   devServer: {
     contentBase: './dist',
     port: 3000,
