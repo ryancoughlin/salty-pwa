@@ -17,9 +17,21 @@ module.exports = merge(common, {
     children: true,
   },
   optimization: {
+    runtimeChunk: 'single', // enable "runtime" chunk
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
     minimizer: [
       new UglifyJSPlugin({
         sourceMap: true,
+        parallel: true,
+        cache: true,
         uglifyOptions: {
           compress: {
             inline: false,
@@ -27,18 +39,6 @@ module.exports = merge(common, {
         },
       }),
     ],
-    runtimeChunk: false,
-    splitChunks: {
-      cacheGroups: {
-        default: false,
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor_app',
-          chunks: 'all',
-          minChunks: 2,
-        },
-      },
-    },
   },
   plugins: [
     new webpack.DefinePlugin({

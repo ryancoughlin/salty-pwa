@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const workboxPlugin = require('workbox-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: ['./src/index.js'],
@@ -12,11 +13,14 @@ module.exports = {
         process.env.NODE_ENV === 'production' ? 'production' : 'development',
       ),
     }),
+    new HTMLWebpackPlugin({
+      template: './src/index.html',
+    }),
   ],
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].[hash].js',
   },
   module: {
     rules: [
