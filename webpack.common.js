@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
@@ -8,6 +9,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       ENV: JSON.stringify(
         process.env.NODE_ENV === 'production' ? 'production' : 'development',
