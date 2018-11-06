@@ -2,6 +2,7 @@
   "name": "salty-pwa",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
   "dependencies": {
     "css-loader": "1.0.0",
     "dotenv-webpack": "^1.5.7",
