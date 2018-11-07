@@ -51,8 +51,8 @@ class Location extends Component {
             nextTide={this.nextTide}
             nearbyStations={nearbyStations}
           />
-          <TodaysTides tides={tides} nearbyStations={nearbyStations} />
           <TideChart location={location} />
+          <TodaysTides tides={tides} nearbyStations={nearbyStations} />
         </UI.Container.Base>
         <Swell weather={weather} />
         <Currently />

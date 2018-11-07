@@ -112,8 +112,5 @@ export default class TideChart extends Component {
 
 const Container = glamorous.div({
   width: '100%',
-  overflowX: 'scroll',
-  overflowY: 'hidden',
-  whiteSpace: 'nowrap',
-  WebkitOverflowScrolling: 'touch',
+  marginTop: 40,
 });
