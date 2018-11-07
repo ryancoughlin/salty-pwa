@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import glamorous from 'glamorous'
-import Chart from './chart'
-import UI from '../../assets/ui'
-import Raven from 'raven-js'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import glamorous from 'glamorous';
+import Chart from './chart';
+import UI from '../../assets/ui';
+import Raven from 'raven-js';
 
 class TideChart extends Component {
   componentDidCatch(error, info) {
     Raven.captureException(error, {
       extra: info,
       props: this.props,
-    })
+    });
   }
 
   render() {
-    const { tideChart } = this.props
+    const { tideChart } = this.props;
 
     return (
       <Container>
         {tideChart ? <Chart tideChart={tideChart} /> : <div>Loading...</div>}
       </Container>
-    )
+    );
   }
 }
 const Container = glamorous.div({
   marginBottom: UI.Spacing.Default,
-})
+});
 
 const mapStateToProps = ({ data }) => ({
   tideChart: data.tideChart,
-})
+});
 
-export default connect(mapStateToProps)(TideChart)
+export default connect(mapStateToProps)(TideChart);

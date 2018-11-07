@@ -1,11 +1,11 @@
-import glamorous from 'glamorous'
+import glamorous from 'glamorous';
 
 const Base = glamorous.div({
   padding: 32,
-})
+});
 
-const Container = {}
+const Container = {};
 
-Container.Base = Base
+Container.Base = Base;
 
-export default Container
+export default Container;

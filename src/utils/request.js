@@ -1,29 +1,29 @@
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
-}
+};
 
-const request = function(path) {
+const request = function (path) {
   const params = {
     headers: {
       ...DEFAULT_HEADERS,
     },
     method: 'get',
-  }
+  };
 
-  const response = fetch(`${process.env.API_URL}${path}`, params)
+  const response = fetch(`${process.env.API_URL}${path}`, params);
 
-  response.catch(error => {
-    console.error(error)
-  })
+  response.catch((error) => {
+    console.error(error);
+  });
 
-  return response.then(res => {
-    console.log({ res })
+  return response.then((res) => {
+    console.log({ res });
     if (res.ok) {
-      return res.json()
+      return res.json();
     }
-    return res.json().then(json => Promise.reject(json))
-  })
-}
+    return res.json().then(json => Promise.reject(json));
+  });
+};
 
-export default request
+export default request;

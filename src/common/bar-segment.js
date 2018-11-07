@@ -1,5 +1,5 @@
-import React from 'react'
-import { Bar } from 'victory'
+import React from 'react';
+import { Bar } from 'victory';
 
 class BarSegment extends React.Component {
   render() {
@@ -27,8 +27,8 @@ class BarSegment extends React.Component {
           />
         </g>
       </g>
-    )
+    );
   }
 }
 
-export default BarSegment
+export default BarSegment;

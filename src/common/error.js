@@ -1,6 +1,6 @@
-import React from 'react'
-import glamorous from 'glamorous'
-import UI from '../assets/ui'
+import React from 'react';
+import glamorous from 'glamorous';
+import UI from '../assets/ui';
 
 const Error = props => (
   <Container {...props}>
@@ -12,7 +12,7 @@ const Error = props => (
       </UI.Type.Text>
     </div>
   </Container>
-)
+);
 
 const Container = glamorous.div({
   padding: UI.Spacing.largeSpacing,
@@ -21,6 +21,6 @@ const Container = glamorous.div({
   height: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-})
+});
 
-export default Error
+export default Error;

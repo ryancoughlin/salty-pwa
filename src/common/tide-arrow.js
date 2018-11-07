@@ -1,13 +1,13 @@
-import React from 'react'
-import glamorous from 'glamorous'
-import UI from '../assets/ui'
+import React from 'react';
+import glamorous from 'glamorous';
+import UI from '../assets/ui';
 
 const TideArrow = props =>
-  props.direction === 'high' ? (
+  (props.direction === 'high' ? (
     <Arrow {...props}>↑</Arrow>
   ) : (
     <Arrow {...props}>↓</Arrow>
-  )
+  ));
 
 const Arrow = glamorous(UI.Type.Body)(
   {
@@ -16,17 +16,17 @@ const Arrow = glamorous(UI.Type.Body)(
     fontWeight: 'bold',
     marginRight: UI.Spacing.smallSpacing,
   },
-  props => {
+  (props) => {
     if (props.tideDirection) {
       return {
         fontSize: 18,
         position: 'relative',
         top: 12,
         left: 5,
-      }
+      };
     }
-    return null
+    return null;
   },
-)
+);
 
-export default TideArrow
+export default TideArrow;

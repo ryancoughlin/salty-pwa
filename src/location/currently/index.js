@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import glamorous from 'glamorous'
-import UI from '../../assets/ui'
-import ConditionRow from '../../common/condition-row'
-import { shortTimeFormat } from '../../utils/helpers'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import glamorous from 'glamorous';
+import UI from '../../assets/ui';
+import ConditionRow from '../../common/condition-row';
+import { shortTimeFormat } from '../../utils/helpers';
 
 class CurrentConditions extends Component {
   render() {
-    const { weather } = this.props
+    const { weather } = this.props;
 
     return (
       <Container>
@@ -29,30 +29,30 @@ class CurrentConditions extends Component {
           <ConditionRow label="Visibility" value={`${weather.visibility} mi`} />
         </Details>
       </Container>
-    )
+    );
   }
 }
 
 const Container = glamorous(UI.Container.Base)({
   backgroundColor: UI.Colors.DarkBackground,
-})
+});
 
 const Details = glamorous.div({
   marginTop: UI.Spacing.Default,
-})
+});
 
 const Header = glamorous(UI.Type.SecondaryHeader)({
   color: 'white',
-})
+});
 
 const Summary = glamorous(UI.Type.TextMedium)({
   color: UI.Colors.SubtleTextColor,
   fontWeight: 'normal',
   paddingRight: 32,
-})
+});
 
 const mapStateToProps = ({ data }) => ({
   location: data.location,
   weather: data.weather,
-})
-export default connect(mapStateToProps)(CurrentConditions)
+});
+export default connect(mapStateToProps)(CurrentConditions);

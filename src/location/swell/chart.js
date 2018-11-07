@@ -1,29 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   VictoryBar,
   VictoryChart,
   VictoryAxis,
   VictoryLabel,
   VictoryContainer,
-} from 'victory'
-import glamorous from 'glamorous'
-import _ from 'lodash'
-import moment from 'moment'
-import BarSegment from '../../common/bar-segment'
-import UI from '../../assets/ui'
+} from 'victory';
+import glamorous from 'glamorous';
+import _ from 'lodash';
+import moment from 'moment';
+import BarSegment from '../../common/bar-segment';
+import UI from '../../assets/ui';
 
 export default class SwellChart extends Component {
   get data() {
     return _.flatMap(this.props.swell)
-      .filter(hour => {
-        const time = moment.utc(hour.time).local()
-        return moment().diff(time) <= 0
+      .filter((hour) => {
+        const time = moment.utc(hour.time).local();
+        return moment().diff(time) <= 0;
       })
       .map(swell => ({
         ...swell,
         time: new Date(swell.time),
       }))
-      .slice(0, 7)
+      .slice(0, 7);
   }
 
   render() {
@@ -74,7 +74,7 @@ export default class SwellChart extends Component {
           />
         </VictoryChart>
       </Container>
-    )
+    );
   }
 }
 
@@ -84,4 +84,4 @@ const Container = glamorous.div({
   overflowY: 'hidden',
   whiteSpace: 'nowrap',
   WebkitOverflowScrolling: 'touch',
-})
+});

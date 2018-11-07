@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   VictoryLine,
   VictoryChart,
   VictoryContainer,
   VictoryAxis,
   VictoryLabel,
-} from 'victory'
-import moment from 'moment'
-import glamorous from 'glamorous'
-import UI from '../../assets/ui'
+} from 'victory';
+import moment from 'moment';
+import glamorous from 'glamorous';
+import UI from '../../assets/ui';
 
-const AXIS_FONT_SIZE = 14
+const AXIS_FONT_SIZE = 14;
 
 export default class TideChart extends Component {
   get tides() {
-    const today = moment().format('MM/DD/YYYY')
-    const todaysTides = this.props.tideChart[today]
+    const today = moment().format('MM/DD/YYYY');
+    const todaysTides = this.props.tideChart[today];
     return todaysTides.map(prediction => ({
       ...prediction,
       time: moment(prediction.time),
-    }))
+    }));
   }
 
   render() {
@@ -106,7 +106,7 @@ export default class TideChart extends Component {
           />
         </VictoryChart>
       </Container>
-    )
+    );
   }
 }
 
@@ -116,4 +116,4 @@ const Container = glamorous.div({
   overflowY: 'hidden',
   whiteSpace: 'nowrap',
   WebkitOverflowScrolling: 'touch',
-})
+});

@@ -5,7 +5,7 @@ export const Palette = {
   DarkBlue: '#003656',
   CornFlowerBlue: '#3e3f72',
   MySin: '#f6b441',
-}
+};
 
 export const Colors = {
   Primary: Palette.Blue,
@@ -15,8 +15,8 @@ export const Colors = {
   SwellBlue: Palette.DarkBlue,
   StationPin: Palette.CornFlowerBlue,
   Highlight: Palette.MySin,
-}
+};
 
-Colors.Palette = Palette
+Colors.Palette = Palette;
 
-export default Colors
+export default Colors;

@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import glamorous from 'glamorous'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as actions from '../../actions'
-import UI from '../../assets/ui'
-import RemainingTideTime from './remaining-tide-time'
-import TideArrow from '../../common/tide-arrow'
-import Raven from 'raven-js'
-import LocationName from './location-name'
-import TideDirection from './tide-direction'
-import NearestBuoy from './nearest-buoy'
+import React, { Component } from 'react';
+import glamorous from 'glamorous';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../actions';
+import UI from '../../assets/ui';
+import RemainingTideTime from './remaining-tide-time';
+import TideArrow from '../../common/tide-arrow';
+import Raven from 'raven-js';
+import LocationName from './location-name';
+import TideDirection from './tide-direction';
+import NearestBuoy from './nearest-buoy';
 
 const Overview = class extends Component {
   componentDidCatch(error, info) {
@@ -18,11 +18,11 @@ const Overview = class extends Component {
       extra: info,
       state: this.state,
       props: { ...this.props },
-    })
+    });
   }
 
   render() {
-    const { nextTide, locationName, nearbyStations } = this.props
+    const { nextTide, locationName, nearbyStations } = this.props;
     return (
       <Container>
         <LocationName locationName={locationName} />
@@ -32,22 +32,22 @@ const Overview = class extends Component {
         <TideDirection nextTide={nextTide} />
         <RemainingTideTime nextTide={nextTide} />
       </Container>
-    )
+    );
   }
-}
+};
 
-const Container = glamorous.div({})
+const Container = glamorous.div({});
 
 const mapStateToProps = ({ data }) => ({
   locationName: data.locationName,
   location: data.location,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(actions, dispatch),
-})
+});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Overview)
+)(Overview);

@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import glamorous from 'glamorous'
-import UI from '../assets/ui'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import glamorous from 'glamorous';
+import UI from '../assets/ui';
 
 const ModalHeader = () => (
   <Container>
@@ -9,7 +9,7 @@ const ModalHeader = () => (
       <Close>×</Close>
     </Link>
   </Container>
-)
+);
 
 const Container = glamorous.div({
   display: 'flex',
@@ -23,11 +23,11 @@ const Container = glamorous.div({
   borderBottomColor: UI.Colors.Palette.LightGray,
   borderBottomWidth: 1,
   borderBottomStyle: 'solid',
-})
+});
 
 const Close = glamorous.span({
   fontSize: 26,
   fontWeight: 'normal',
-})
+});
 
-export default ModalHeader
+export default ModalHeader;
