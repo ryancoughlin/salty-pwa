@@ -8,8 +8,11 @@ const request = function(path) {
     headers: {
       ...DEFAULT_HEADERS,
     },
+    mode: 'no-cors',
     method: 'get',
   }
+
+  console.log(`${process.env.API_URL}${path}`)
 
   const response = fetch(`${process.env.API_URL}${path}`, params)
 
