@@ -5,8 +5,10 @@ import {
   VictoryContainer,
   VictoryAxis,
   VictoryLabel,
+  VictoryScatter,
 } from 'victory';
 import moment from 'moment';
+import _ from 'lodash';
 import glamorous from 'glamorous';
 import UI from '../../assets/ui';
 
@@ -14,9 +16,20 @@ const AXIS_FONT_SIZE = 14;
 
 export default class TideChart extends Component {
   get tides() {
+    const { tideChart } = this.props;
+
     const today = moment().format('MM/DD/YYYY');
+
+    const yesterday = moment().add(-1, 'days').format('MM/DD/YYYY');
+    const lastTideYesterday = _.last(tideChart[yesterday]);
+
+    const tomorrow = moment().add(1, 'days').format('MM/DD/YYYY');
+    const firstTideTomorrow = _.first(tideChart[tomorrow]);
+
     const todaysTides = this.props.tideChart[today];
-    return todaysTides.map(prediction => ({
+    const chartData = _.concat(lastTideYesterday, todaysTides, firstTideTomorrow);
+
+    return chartData.map(prediction => ({
       ...prediction,
       time: moment(prediction.time),
     }));
@@ -28,11 +41,12 @@ export default class TideChart extends Component {
         <VictoryChart
           animate={{ duration: 1000 }}
           containerComponent={<VictoryContainer />}
+          domainPadding={{ y: [10, 16] }}
           height={170}
           padding={{
             top: 5,
             right: 10,
-            bottom: 24,
+            bottom: 16,
             left: 30,
           }}
           scale={{ x: 'time', y: 'linear' }}
@@ -77,19 +91,32 @@ export default class TideChart extends Component {
           />
           <VictoryLine
             data={this.tides}
-            interpolation="basis"
+            interpolation="catmullRom"
             x="time"
             y="height"
             scale={{ x: 'time' }}
             style={{
               data: {
                 stroke: UI.Colors.Primary,
-                strokeWidth: 2,
+                strokeWidth: 3.6,
+                strokeLinecap: 'round',
+              },
+            }}
+          />
+          <VictoryScatter
+            data={this.tides}
+            x="time"
+            y="height"
+            scale={{ x: 'time' }}
+            size={10}
+            style={{
+              data: {
+                fill: '#ffffff',
               },
             }}
           />
           <VictoryLine
-            data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 12 }]}
+            data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 10 }]}
             labels={['NOW']}
             labelComponent={<VictoryLabel angle={90} y={20} />}
             style={{
