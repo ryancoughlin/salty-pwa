@@ -11,6 +11,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       ENV: JSON.stringify(process.env.NODE_ENV === 'production' ? 'production' : 'development'),
