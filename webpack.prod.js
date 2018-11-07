@@ -42,8 +42,8 @@ module.exports = merge(common, {
   },
   plugins: [
     new Dotenv({
-      path: './.env.production',
-      silent: true, // hide any errors
+      silent: false,
+      systemvars: true,
     }),
   ],
 })
