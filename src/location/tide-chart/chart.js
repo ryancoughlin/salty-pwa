@@ -11,6 +11,7 @@ import moment from 'moment';
 import _ from 'lodash';
 import glamorous from 'glamorous';
 import UI from '../../assets/ui';
+import Marker from './marker';
 
 const AXIS_FONT_SIZE = 14;
 
@@ -104,6 +105,7 @@ export default class TideChart extends Component {
             }}
           />
           <VictoryScatter
+            dataComponent={<Marker />}
             data={this.tides}
             x="time"
             y="height"

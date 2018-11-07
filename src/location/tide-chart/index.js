@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import Chart from './chart';
 import UI from '../../assets/ui';
-import Raven from 'raven-js';
 
 class TideChart extends Component {
   componentDidCatch(error, info) {
