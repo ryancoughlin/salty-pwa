@@ -4,7 +4,7 @@ import SVG from 'react-inlinesvg'
 
 const Loading = props => (
   <Container {...props}>
-    <SVG src="/wave-loader.svg" style={{ top: '-5px', position: 'relative' }} />
+    <Icon.Loader style={{ top: '-5px', position: 'relative' }} />
   </Container>
 )
 

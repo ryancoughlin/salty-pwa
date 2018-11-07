@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'react-emotion'
 import SVGInline from 'react-svg-inline'
 
+import loader from '../assets/images/loader.svg'
 import info from '../assets/images/info.svg'
 import tide from '../assets/images/tide.svg'
 import sun from '../assets/images/weather/sunny.svg'
@@ -32,6 +33,7 @@ const createIcon = (src, alt) => props => (
   <Icon {...props} name={src} alt={alt} />
 )
 
+Icon.Loader = createIcon(loader, 'Loader')
 Icon.Tide = createIcon(tide, 'Tide')
 Icon.Info = createIcon(info, 'Info')
 Icon.Sun = createIcon(sun, 'Sun')
