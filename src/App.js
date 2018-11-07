@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AnimatedSwitch, spring } from 'react-router-transition'
 import { Provider } from 'react-redux'
@@ -43,28 +43,24 @@ const bounceTransition = {
   },
 }
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate loading={<Loading />} persistor={persistor}>
-          <Router>
-            <AnimatedSwitch
-              atEnter={bounceTransition.atEnter}
-              atLeave={bounceTransition.atLeave}
-              atActive={bounceTransition.atActive}
-              mapStyles={mapStyles}
-              className="switch-wrapper"
-            >
-              <Route exact path="/" component={Location} />
-              <Route exact path="/tables" component={TideTables} />
-              <Route exact path="/nearest-buoy" component={NearestBuoy} />
-            </AnimatedSwitch>
-          </Router>
-        </PersistGate>
-      </Provider>
-    )
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <PersistGate loading={<Loading />} persistor={persistor}>
+      <Router>
+        <AnimatedSwitch
+          atEnter={bounceTransition.atEnter}
+          atLeave={bounceTransition.atLeave}
+          atActive={bounceTransition.atActive}
+          mapStyles={mapStyles}
+          className="switch-wrapper"
+        >
+          <Route exact path="/" component={Location} />
+          <Route exact path="/tables" component={TideTables} />
+          <Route exact path="/nearest-buoy" component={NearestBuoy} />
+        </AnimatedSwitch>
+      </Router>
+    </PersistGate>
+  </Provider>
+)
 
 export default App
