@@ -1,6 +1,7 @@
 const merge = require('webpack-merge')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const common = require('./webpack.common.js')
+const DotEnv = require('webpack-env')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -39,7 +40,7 @@ module.exports = merge(common, {
     ],
   },
   plugins: [
-    new Dotenv({
+    new DotEnv({
       silent: false,
     }),
   ],
