@@ -1,12 +1,12 @@
-import _ from 'lodash';
 import moment from 'moment';
 
-export default function findNextTide(tides) {
-  const allTides = _.flatten(_.values(tides));
-  const nextTideIndex = _.findIndex(allTides, (tide) => {
+export default function findNextTide(data) {
+  const tideArray = Object.values(data);
+  const flattenedTides = tideArray.flat();
+  const nextTideIndex = tideArray.findIndex((tide) => {
     const tideTime = moment(tide.time);
     return moment().diff(tideTime) <= 0;
   });
 
-  return allTides[nextTideIndex];
+  return flattenedTides[nextTideIndex];
 }
