@@ -17,7 +17,7 @@ export function fetchLocation() {
     userLocation().then(location => {
       dispatch({
         type: FETCH_USER_LOCATION,
-        location: location,
+        location,
       })
 
       this.getLocationName(location)
@@ -41,7 +41,7 @@ export function fetchTides(location) {
         } else {
           dispatch({
             type: FETCH_TIDES,
-            tides: tides,
+            tides,
           })
         }
       })
@@ -98,7 +98,7 @@ export function fetchWeather(location) {
       .then(weather => {
         dispatch({
           type: FETCH_WEATHER,
-          weather: weather,
+          weather,
         })
       })
       .catch(error => {
@@ -114,7 +114,7 @@ export function fetchNearbyStations(location) {
       .then(nearbyStations => {
         dispatch({
           type: FETCH_NEARBY_STATIONS,
-          nearbyStations: nearbyStations,
+          nearbyStations,
         })
       })
       .catch(error => {
@@ -128,20 +128,19 @@ export function getLocationName(location) {
     geocodeLocation(location)
       .then(result => {
         const cityComponents = result.results[0].address_components.filter(
-          function(addr) {
-            return addr.types[0] === 'locality'
+          addr =>
+            addr.types[0] === 'locality'
               ? 1
               : addr.types[0] === 'administrative_area_level_1'
-                ? 1
-                : 0
-          },
+              ? 1
+              : 0,
         )
 
         const locationName = cityComponents[0].long_name
 
         dispatch({
           type: GET_LOCATION_NAME,
-          locationName: locationName,
+          locationName,
         })
       })
       .catch(error => {

@@ -11,7 +11,7 @@ const WaterTemperature = class extends Component {
       return null
     }
 
-    return <ConditionRow dark label={'Temperature'} value={`${currentTemp}°`} />
+    return <ConditionRow dark label="Temperature" value={`${currentTemp}°`} />
   }
 }
 

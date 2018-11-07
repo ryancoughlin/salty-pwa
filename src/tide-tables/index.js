@@ -10,7 +10,7 @@ class Tides extends Component {
     const { tides } = this.props
 
     return (
-      <div className={'container'}>
+      <div className="container">
         <ModalHeader />
         <UI.Container.Base>
           {Object.keys(tides).map(date => {
@@ -18,9 +18,9 @@ class Tides extends Component {
             return (
               <div>
                 <Header date={date} />
-                {dayTides.map((dayTide, index) => {
-                  return <TideRow tide={dayTide} key={index} />
-                })}
+                {dayTides.map((dayTide, index) => (
+                  <TideRow tide={dayTide} key={index} />
+                ))}
               </div>
             )
           })}

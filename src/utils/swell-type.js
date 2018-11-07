@@ -9,7 +9,6 @@ export function swellType(windSpeed) {
     return 'Choppy'
   } else if (windSpeed >= 23.017 && windSpeed <= 28.769) {
     return 'Rough'
-  } else {
-    return 'Very Rough'
   }
+  return 'Very Rough'
 }

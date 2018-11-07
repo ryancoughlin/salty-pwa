@@ -41,7 +41,7 @@ module.exports = {
     }),
   ],
   output: {
-    path: __dirname + '/dist',
+    path: `${__dirname}/dist`,
     publicPath: '/',
     filename: '[name].[hash].js',
   },

@@ -35,14 +35,14 @@ class Location extends Component {
   }
 
   render() {
-    const { tides, weather, location, nearbyStations } = this.props
+    const { tides, location, nearbyStations } = this.props
 
-    if (!tides || !weather || !location) {
+    if (!tides || !location) {
       return <Loading />
     }
 
     return (
-      <div className={'container'}>
+      <div className="container">
         <UI.Container.Base>
           <Overview
             location={location}

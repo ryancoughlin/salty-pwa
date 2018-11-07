@@ -15,21 +15,18 @@ class CurrentConditions extends Component {
         <Summary>{weather.summary}</Summary>
         <Details>
           <ConditionRow
-            label={'Sunrise'}
+            label="Sunrise"
             value={shortTimeFormat(weather.sunrise)}
           />
           <ConditionRow
-            label={'Sunset'}
+            label="Sunset"
             value={shortTimeFormat(weather.sunset)}
           />
-          <ConditionRow label={'Pressure'} value={`${weather.pressure} mb`} />
-          <ConditionRow label={'Moon'} value={weather.moon.phase} />
-          <ConditionRow label={'Humidity'} value={`${weather.humidity}%`} />
-          <ConditionRow label={'UV Index'} value={`${weather.uvIndex} / 10`} />
-          <ConditionRow
-            label={'Visibility'}
-            value={`${weather.visibility} mi`}
-          />
+          <ConditionRow label="Pressure" value={`${weather.pressure} mb`} />
+          <ConditionRow label="Moon" value={weather.moon.phase} />
+          <ConditionRow label="Humidity" value={`${weather.humidity}%`} />
+          <ConditionRow label="UV Index" value={`${weather.uvIndex} / 10`} />
+          <ConditionRow label="Visibility" value={`${weather.visibility} mi`} />
         </Details>
       </Container>
     )

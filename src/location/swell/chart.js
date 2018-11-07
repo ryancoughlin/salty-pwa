@@ -19,12 +19,10 @@ export default class SwellChart extends Component {
         const time = moment.utc(hour.time).local()
         return moment().diff(time) <= 0
       })
-      .map(swell => {
-        return {
-          ...swell,
-          time: new Date(swell.time),
-        }
-      })
+      .map(swell => ({
+        ...swell,
+        time: new Date(swell.time),
+      }))
       .slice(0, 7)
   }
 

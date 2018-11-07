@@ -54,4 +54,7 @@ const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NearestBuoy)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(NearestBuoy)

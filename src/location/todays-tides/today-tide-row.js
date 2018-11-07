@@ -20,9 +20,7 @@ export default class NextTideRow extends Component {
   }
 }
 
-const formatTideHeight = height => {
-  return `${height.toFixed(1)}'`
-}
+const formatTideHeight = height => `${height.toFixed(1)}'`
 
 const isPastTide = time => {
   const now = moment()
