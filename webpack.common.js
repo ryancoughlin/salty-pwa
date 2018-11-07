@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: ['./src/index.js'],
@@ -18,6 +19,7 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: './src/index.html',
     }),
+    new FaviconsWebpackPlugin('./src/assets/images/icons/icon.png'),
   ],
   output: {
     path: __dirname + '/dist',
