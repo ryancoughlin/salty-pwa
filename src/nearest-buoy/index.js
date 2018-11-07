@@ -1,36 +1,20 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import StationMap from './station-map'
-import Loading from '../../common/loading'
-import request from '../../utils/request'
-import { userLocation } from '../../utils/location'
-import UI from '../../assets/ui'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../actions'
+import Map from './map'
+import Loading from '../common/loading'
+import UI from '../assets/ui'
 
-class StationInformation extends Component {
-  state = {
-    nearbyStations: JSON.parse(localStorage.getItem('nearbyStations')) || [],
-  }
-
-  componentDidMount() {
-    userLocation().then(location => {
-      const { latitude, longitude } = location
-
-      request(
-        `/nearby-stations?latitude=${latitude}&longitude=${longitude}`,
-      ).then(nearbyStations => {
-        this.setState({ nearbyStations })
-        localStorage.setItem('nearbyStations', JSON.stringify(nearbyStations))
-      })
-    })
-  }
-
+class NearestBuoy extends Component {
   render() {
-    const { nearbyStations } = this.state
+    const { nearbyStations } = this.props
     if (!nearbyStations || nearbyStations.length === 0) return <Loading />
 
     return (
       <Container>
-        <StationMap stations={nearbyStations} />
+        <Map stations={nearbyStations} />
         <StationHeader>
           <NearestStationTitle>Station nearest you</NearestStationTitle>
           <UI.Type.SecondaryHeader>
@@ -61,4 +45,13 @@ const StationHeader = glamorous.div({
   backgroundColor: 'white',
 })
 
-export default StationInformation
+const mapStateToProps = ({ data }) => ({
+  nearbyStations: data.nearbyStations,
+  location: data.location,
+})
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(actions, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NearestBuoy)

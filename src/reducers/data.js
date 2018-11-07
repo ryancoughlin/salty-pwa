@@ -5,6 +5,7 @@ import {
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
   GET_LOCATION_NAME,
+  FETCH_NEARBY_STATIONS,
 } from '../types'
 
 const initialState = {}
@@ -35,6 +36,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         weather: action.weather,
+      }
+    case FETCH_NEARBY_STATIONS:
+      return {
+        ...state,
+        nearbyStations: action.nearbyStations,
       }
     case GET_LOCATION_NAME:
       return {

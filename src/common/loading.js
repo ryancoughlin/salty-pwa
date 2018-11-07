@@ -1,10 +1,10 @@
 import React from 'react'
 import glamorous from 'glamorous'
-import SVG from 'react-inlinesvg'
+import Icon from './icon'
 
 const Loading = props => (
   <Container {...props}>
-    <SVG src="/wave-loader.svg" style={{ top: '-5px', position: 'relative' }} />
+    <Icon.Loader style={{ top: '-5px', position: 'relative' }} />
   </Container>
 )
 

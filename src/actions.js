@@ -8,6 +8,7 @@ import {
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
   FETCH_WATER_TEMPERATURE,
+  FETCH_NEARBY_STATIONS,
   GET_LOCATION_NAME,
 } from './types'
 
@@ -19,17 +20,17 @@ export function fetchLocation() {
         location: location,
       })
 
+      this.getLocationName(location)
       this.fetchTides(location)
       this.fetchTideChart(location)
-      this.fetchWaterTemperature(location)
       this.fetchWeather(location)
-      this.getLocationName(location)
+      this.fetchWaterTemperature(location)
+      this.fetchNearbyStations(location)
     })
   }
 }
 
 export function fetchTides(location) {
-  console.log('tides')
   const { latitude, longitude } = location
   return dispatch => {
     request(`/tides?latitude=${latitude}&longitude=${longitude}`)
@@ -106,6 +107,22 @@ export function fetchWeather(location) {
   }
 }
 
+export function fetchNearbyStations(location) {
+  const { latitude, longitude } = location
+  return dispatch => {
+    request(`/nearby-stations?latitude=${latitude}&longitude=${longitude}`)
+      .then(nearbyStations => {
+        dispatch({
+          type: FETCH_NEARBY_STATIONS,
+          nearbyStations: nearbyStations,
+        })
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+}
+
 export function getLocationName(location) {
   return dispatch => {
     geocodeLocation(location)
@@ -114,7 +131,9 @@ export function getLocationName(location) {
           function(addr) {
             return addr.types[0] === 'locality'
               ? 1
-              : addr.types[0] === 'administrative_area_level_1' ? 1 : 0
+              : addr.types[0] === 'administrative_area_level_1'
+                ? 1
+                : 0
           },
         )
 

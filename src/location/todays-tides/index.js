@@ -5,13 +5,15 @@ import moment from 'moment'
 import TodayTideRow from './today-tide-row'
 import UI from '../../assets/ui'
 import Icon from '../../common/icon'
-import tideIcon from '../../assets/images/tide.svg'
+import NearestBuoy from '../nearest-buoy'
 
-const TodaysTides = ({ tides }) => (
+const TodaysTides = ({ tides, nearbyStations }) => (
   <Container>
     <InnerContainer>
       <Header>
-        <Icon source={tideIcon} />
+        <IconContainer>
+          <Icon.Tide />
+        </IconContainer>
         <UI.Type.SecondaryHeader>Today's Tides</UI.Type.SecondaryHeader>
       </Header>
       <ViewTideTable to="/tables">View tides</ViewTideTable>
@@ -20,6 +22,9 @@ const TodaysTides = ({ tides }) => (
     {findTodaysTides(tides).map(tide => (
       <TodayTideRow tide={tide} key={tide.time} />
     ))}
+    {nearbyStations.length > 0 && (
+      <NearestBuoy nearbyStations={nearbyStations} />
+    )}
   </Container>
 )
 
@@ -36,6 +41,10 @@ const InnerContainer = glamorous.div({
 
 const Header = glamorous.div({
   display: 'flex',
+})
+
+const IconContainer = glamorous.div({
+  marginRight: 16,
 })
 
 const ViewTideTable = glamorous(Link)({

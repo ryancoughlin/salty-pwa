@@ -8,10 +8,11 @@ const request = function(path) {
     headers: {
       ...DEFAULT_HEADERS,
     },
+    mode: 'no-cors',
     method: 'get',
   }
 
-  const response = fetch(`${process.env.REACT_APP_BASE_URL}${path}`, params)
+  const response = fetch(`${process.env.API_URL}${path}`, params)
 
   response.catch(error => {
     console.error(error)
