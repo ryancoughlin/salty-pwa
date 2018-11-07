@@ -13,11 +13,11 @@ class TideChart extends Component {
   }
 
   render() {
-    const { tideChart } = this.props;
+    const { tides } = this.props;
 
     return (
       <Container>
-        {tideChart ? <Chart tideChart={tideChart} /> : <div>Loading...</div>}
+        {tides ? <Chart tides={tides} /> : <div>Loading...</div>}
       </Container>
     );
   }
@@ -27,7 +27,7 @@ const Container = glamorous.div({
 });
 
 const mapStateToProps = ({ data }) => ({
-  tideChart: data.tideChart,
+  tides: data.tides,
 });
 
 export default connect(mapStateToProps)(TideChart);

@@ -17,17 +17,17 @@ const AXIS_FONT_SIZE = 14;
 
 export default class TideChart extends Component {
   get tides() {
-    const { tideChart } = this.props;
+    const { tides } = this.props;
 
     const today = moment().format('MM/DD/YYYY');
 
     const yesterday = moment().add(-1, 'days').format('MM/DD/YYYY');
-    const lastTideYesterday = _.last(tideChart[yesterday]);
+    const lastTideYesterday = _.last(tides[yesterday]);
 
     const tomorrow = moment().add(1, 'days').format('MM/DD/YYYY');
-    const firstTideTomorrow = _.first(tideChart[tomorrow]);
+    const firstTideTomorrow = _.first(tides[tomorrow]);
 
-    const todaysTides = this.props.tideChart[today];
+    const todaysTides = this.props.tides[today];
     const chartData = _.concat(lastTideYesterday, todaysTides, firstTideTomorrow);
 
     return chartData.map(prediction => ({

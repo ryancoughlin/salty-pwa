@@ -4,11 +4,17 @@ const circleCSS = {
   filter: '0 1px 4px 0 rgba(17,29,74,0.20)',
 };
 
-const arrow = {
+const arrowCSS = {
   fontFamily: 'InputMonoNarrow-Bold',
   fontSize: 12,
   color: '#0D1B2A',
 };
+
+const ArrowDirection = ({ datum, x, y }) => (
+  <text id="↑" style={arrowCSS}>
+    <tspan x={x - 2} y={y + 2}>{datum.type === 'high' ? '↑' : '↓'}</tspan>
+  </text>
+);
 
 const Marker = ({
   ...props
@@ -28,9 +34,7 @@ const Marker = ({
     </defs>
     <g>
       <circle r="12" cx={props.x} cy={props.y} fill="#ffffff" style={circleCSS} />
-      <text id="↑" style={arrow}>
-        <tspan x={props.x - 2} y={props.y + 2}>↑</tspan>
-      </text>
+      <ArrowDirection {...props} />
     </g>
   </g>
 );
