@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import moment from 'moment';
 import glamorous from 'glamorous';
 import { shortTimeFormat } from '../../utils/helpers';
@@ -17,7 +16,7 @@ const isPastTide = (time) => {
 
 const TideRow = ({ tide }) => (
   <Container pastTide={isPastTide(tide.time)}>
-    <TideType>{_.upperFirst(tide.type)}</TideType>
+    <TideType>{tide.type}</TideType>
     <UI.Type.Time>
       {shortTimeFormat(tide.time)}
       /
@@ -43,6 +42,7 @@ const Container = glamorous.div(
 
 const TideType = glamorous(UI.Type.TextMedium)({
   minWidth: 54,
+  textTransform: 'capitalize',
 });
 
 export default TideRow;
