@@ -1,14 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import glamorous from 'glamorous'
-import UI from '../assets/ui'
-import Icon from '../common/icon'
+import UI from '../../assets/ui'
 
 const NearestBuoyText = ({ nearbyStations }) => (
   <Container>
     <SmallText>
-      <Icon.Info size="8" />
-      Nearest buoy is&nbsp;
+      Buoy @&nbsp;
       <ViewNearestBuoyLink to="/nearest-buoy">
         {nearbyStations[0].name}
       </ViewNearestBuoyLink>
@@ -17,13 +15,12 @@ const NearestBuoyText = ({ nearbyStations }) => (
 )
 
 const Container = glamorous.div({
-  marginTop: 16,
+  marginTop: 0,
 })
 
 const SmallText = glamorous(UI.Type.Text)({
   fontSize: 12,
   fontWeight: '500',
-  marginLeft: 32,
 })
 
 const ViewNearestBuoyLink = glamorous(Link)({

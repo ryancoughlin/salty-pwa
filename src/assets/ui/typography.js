@@ -5,11 +5,10 @@ const numericFontFamily = 'overpass-mono, Menlo, Monaco, monospace'
 const mediumFontWeight = 500
 const boldFontWeight = 700
 
-const TidePhrase = glamorous.div({
+const TideDirection = glamorous.div({
   fontSize: 34,
   fontWeight: boldFontWeight,
   color: Colors.baseTextColor,
-  lineHeight: 1.3,
 })
 
 const SmallNumericType = glamorous.span({
@@ -52,7 +51,7 @@ const Time = glamorous.time({
 
 const Type = {}
 
-Type.TidePhrase = TidePhrase
+Type.TideDirection = TideDirection
 Type.SmallNumericType = SmallNumericType
 Type.Body = Body
 Type.Time = Time

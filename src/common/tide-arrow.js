@@ -18,7 +18,7 @@ const Arrow = glamorous(UI.Type.Body)(
     marginRight: UI.Spacing.smallSpacing,
   },
   props => {
-    if (props.tidePhrase) {
+    if (props.tideDirection) {
       return { fontSize: 18, position: 'relative', top: 12, left: 5 }
     } else {
       return null

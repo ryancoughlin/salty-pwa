@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import findNextTide from '../utils/find-next-tide'
 import Loading from '../common/loading'
-import TidePhrase from './tide-phrase'
+import Overview from './overview'
 import Currently from './currently'
 import CurrentWeather from './current-weather'
 import TodaysTides from './todays-tides'
@@ -45,7 +45,11 @@ class Location extends Component {
     return (
       <div className={'container'}>
         <UI.Container.Base>
-          <TidePhrase location={location} nextTide={this.nextTide} />
+          <Overview
+            location={location}
+            nextTide={this.nextTide}
+            nearbyStations={nearbyStations}
+          />
           <CurrentWeather weather={weather} />
           <TodaysTides tides={tides} nearbyStations={nearbyStations} />
           <TideChart location={location} />

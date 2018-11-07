@@ -7,8 +7,11 @@ import UI from '../../assets/ui'
 import RemainingTideTime from './remaining-tide-time'
 import TideArrow from '../../common/tide-arrow'
 import Raven from 'raven-js'
+import LocationName from './location-name'
+import TideDirection from './tide-direction'
+import NearestBuoy from './nearest-buoy'
 
-const TidePhrase = class extends Component {
+const Overview = class extends Component {
   componentDidCatch(error, info) {
     // eslint-disable-next-line
     Raven.captureException(error, {
@@ -19,42 +22,21 @@ const TidePhrase = class extends Component {
   }
 
   render() {
-    const { nextTide } = this.props
-
-    // eslint-disable-next-line
-    Raven.setExtraContext({ nextTide })
-
+    const { nextTide, locationName, nearbyStations } = this.props
     return (
       <Container>
-        <TideArrow direction={nextTide.type} tidePhrase />
-        <InnerContainer>
-          <UI.Type.TidePhrase>
-            {nextTide.type === 'high' ? 'Incoming' : 'Outgoing'}{' '}
-            <FadedText>
-              Tide
-              <br />
-              in <a>{this.props.locationName}</a>
-            </FadedText>
-          </UI.Type.TidePhrase>
-          <RemainingTideTime nextTide={nextTide} />
-        </InnerContainer>
+        <LocationName locationName={locationName} />
+        {nearbyStations.length > 0 && (
+          <NearestBuoy nearbyStations={nearbyStations} />
+        )}
+        <TideDirection nextTide={nextTide} />
+        <RemainingTideTime nextTide={nextTide} />
       </Container>
     )
   }
 }
 
-const FadedText = glamorous.span({
-  color: UI.Colors.SubtleTextColor,
-})
-
-const Container = glamorous.div({
-  display: 'flex',
-  flexDirection: 'row',
-})
-
-const InnerContainer = glamorous.div({
-  marginLeft: 16,
-})
+const Container = glamorous.div({})
 
 const mapStateToProps = ({ data }) => ({
   locationName: data.locationName,
@@ -68,4 +50,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TidePhrase)
+)(Overview)

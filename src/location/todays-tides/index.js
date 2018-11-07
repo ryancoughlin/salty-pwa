@@ -5,7 +5,6 @@ import moment from 'moment'
 import TodayTideRow from './today-tide-row'
 import UI from '../../assets/ui'
 import Icon from '../../common/icon'
-import NearestBuoy from '../nearest-buoy'
 
 const TodaysTides = ({ tides, nearbyStations }) => (
   <Container>
@@ -22,9 +21,6 @@ const TodaysTides = ({ tides, nearbyStations }) => (
     {findTodaysTides(tides).map(tide => (
       <TodayTideRow tide={tide} key={tide.time} />
     ))}
-    {nearbyStations.length > 0 && (
-      <NearestBuoy nearbyStations={nearbyStations} />
-    )}
   </Container>
 )
 
