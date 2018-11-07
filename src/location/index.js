@@ -35,9 +35,11 @@ class Location extends Component {
   }
 
   render() {
-    const { tides, location, nearbyStations } = this.props;
+    const {
+      tides, location, nearbyStations, weather,
+    } = this.props;
 
-    if (!tides || !location) {
+    if (!tides || !location || !weather) {
       return <Loading />;
     }
 
@@ -63,6 +65,7 @@ const mapStateToProps = ({ data }) => ({
   location: data.location,
   tides: data.tides,
   nearbyStations: data.nearbyStations,
+  weather: data.weather,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -15,18 +15,19 @@ const isPastTide = (time) => {
   }
 };
 
-const NextTideRow = ({ tide }) => (
+const TideRow = ({ tide }) => (
   <Container pastTide={isPastTide(tide.time)}>
     <TideType>{_.upperFirst(tide.type)}</TideType>
     <UI.Type.Time>
-      {shortTimeFormat(tide.time)}/{formatTideHeight(tide.height)}
+      {shortTimeFormat(tide.time)}
+      /
+      {formatTideHeight(tide.height)}
     </UI.Type.Time>
   </Container>
 );
 
 const Container = glamorous.div(
   {
-    marginLeft: 38,
     flexDirection: 'row',
     display: 'flex',
     marginBottom: 8,
@@ -44,4 +45,4 @@ const TideType = glamorous(UI.Type.TextMedium)({
   minWidth: 54,
 });
 
-export default NextTideRow;
+export default TideRow;

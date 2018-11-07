@@ -127,12 +127,11 @@ export function getLocationName(location) {
   return (dispatch) => {
     geocodeLocation(location)
       .then((result) => {
-        const cityComponents = result.results[0].address_components.filter(addr =>
-          (addr.types[0] === 'locality'
+        const cityComponents = result.results[0].address_components.filter(addr => (addr.types[0] === 'locality'
+          ? 1
+          : addr.types[0] === 'administrative_area_level_1'
             ? 1
-            : addr.types[0] === 'administrative_area_level_1'
-              ? 1
-              : 0));
+            : 0));
 
         const locationName = cityComponents[0].long_name;
 
