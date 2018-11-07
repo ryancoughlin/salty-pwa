@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
