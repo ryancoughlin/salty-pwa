@@ -19,7 +19,7 @@ const NextTideRow = ({ tide }) => (
   <Container pastTide={isPastTide(tide.time)}>
     <TideType>{_.upperFirst(tide.type)}</TideType>
     <UI.Type.Time>
-      {shortTimeFormat(tide.time)} / {formatTideHeight(tide.height)}
+      {shortTimeFormat(tide.time)}/{formatTideHeight(tide.height)}
     </UI.Type.Time>
   </Container>
 )

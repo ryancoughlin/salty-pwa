@@ -6,14 +6,20 @@ import TodayTideRow from './today-tide-row'
 import UI from '../../assets/ui'
 import Icon from '../../common/icon'
 
-const TodaysTides = ({ tides, nearbyStations }) => (
+const findTodaysTides = tides => {
+  const now = moment()
+  const todaysKey = now.format('MM/DD/YYYY')
+  return tides[todaysKey]
+}
+
+const TodaysTides = ({ tides }) => (
   <Container>
     <InnerContainer>
       <Header>
         <IconContainer>
           <Icon.Tide />
         </IconContainer>
-        <UI.Type.SecondaryHeader>Today's Tides</UI.Type.SecondaryHeader>
+        <UI.Type.SecondaryHeader>Today&apos;s Tides</UI.Type.SecondaryHeader>
       </Header>
       <ViewTideTable to="/tables">View tides</ViewTideTable>
     </InnerContainer>
@@ -23,12 +29,6 @@ const TodaysTides = ({ tides, nearbyStations }) => (
     ))}
   </Container>
 )
-
-const findTodaysTides = tides => {
-  const now = moment()
-  const todaysKey = now.format('MM/DD/YYYY')
-  return tides[todaysKey]
-}
 
 const InnerContainer = glamorous.div({
   display: 'flex',

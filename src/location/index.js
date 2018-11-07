@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Raven from 'raven-js'
 import * as actions from '../actions'
 import findNextTide from '../utils/find-next-tide'
 import Loading from '../common/loading'
@@ -10,11 +11,14 @@ import TodaysTides from './todays-tides'
 import Swell from './swell'
 import TideChart from './tide-chart'
 import UI from '../assets/ui'
-import Raven from 'raven-js'
 
 class Location extends Component {
   componentDidMount() {
     this.props.fetchLocation()
+  }
+
+  get nextTide() {
+    return findNextTide(this.props.tides)
   }
 
   componentDidCatch(error, info) {
@@ -28,10 +32,6 @@ class Location extends Component {
       props: this.props,
       location: this.props.location,
     })
-  }
-
-  get nextTide() {
-    return findNextTide(this.props.tides)
   }
 
   render() {
