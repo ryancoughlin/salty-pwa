@@ -36,7 +36,6 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "NODE_ENV=production webpack -p --config webpack.prod.js",
-    "precommit": "lint-staged"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -55,7 +54,6 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "favicons-webpack-plugin": "^0.0.9",
-    "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
     "react-hot-loader": "^4.3.11",
     "style-loader": "^0.23.1",
@@ -65,11 +63,5 @@
     "webpack-dev-server": "3.1.9",
     "webpack-merge": "^4.1.4",
     "webpack-pwa-manifest": "^3.7.1"
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }
