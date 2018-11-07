@@ -16,7 +16,7 @@ module.exports = merge(common, {
     children: true,
   },
   optimization: {
-    runtimeChunk: 'single', // enable "runtime" chunk
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendor: {
@@ -41,7 +41,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new DotEnv({
-      silent: false,
+      systemvars: true,
     }),
   ],
 })
