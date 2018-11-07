@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
@@ -11,8 +13,6 @@ const request = function(path) {
     mode: 'no-cors',
     method: 'get',
   }
-
-  console.log(`${process.env.API_URL}${path}`)
 
   const response = fetch(`${process.env.API_URL}${path}`, params)
 
