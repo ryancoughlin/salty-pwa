@@ -4,7 +4,7 @@ import Icon from './icon'
 
 const Loading = props => (
   <Container {...props}>
-    <Icon.Loader size="40" style={{ top: '-5px', position: 'relative' }} />
+    <Icon.Loader style={{ top: '-5px', position: 'relative' }} />
   </Container>
 )
 
