@@ -18,7 +18,6 @@ const request = function (path) {
   });
 
   return response.then((res) => {
-    console.log({ res });
     if (res.ok) {
       return res.json();
     }
