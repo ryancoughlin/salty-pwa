@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import glamorous from 'glamorous'
-import UI from '../assets/ui'
 import moment from 'moment'
+import UI from '../assets/ui'
 
 export default class extends Component {
   get formattedDate() {
-    return moment(this.props.date).format('dddd, MMM D')
+    const { date } = this.props
+    return moment(date).format('dddd, MMM D')
   }
 
   render() {
