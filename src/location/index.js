@@ -6,7 +6,6 @@ import findNextTide from '../utils/find-next-tide'
 import Loading from '../common/loading'
 import Overview from './overview'
 import Currently from './currently'
-import CurrentWeather from './current-weather'
 import TodaysTides from './todays-tides'
 import Swell from './swell'
 import TideChart from './tide-chart'
@@ -50,7 +49,6 @@ class Location extends Component {
             nextTide={this.nextTide}
             nearbyStations={nearbyStations}
           />
-          <CurrentWeather weather={weather} />
           <TodaysTides tides={tides} nearbyStations={nearbyStations} />
           <TideChart location={location} />
         </UI.Container.Base>
@@ -64,7 +62,6 @@ class Location extends Component {
 const mapStateToProps = ({ data }) => ({
   location: data.location,
   tides: data.tides,
-  weather: data.weather,
   nearbyStations: data.nearbyStations,
 })
 
