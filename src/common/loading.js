@@ -1,6 +1,6 @@
 import React from 'react'
 import glamorous from 'glamorous'
-import SVG from 'react-inlinesvg'
+import Icon from './icon'
 
 const Loading = props => (
   <Container {...props}>
