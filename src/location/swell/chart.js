@@ -13,17 +13,25 @@ import BarSegment from '../../common/bar-segment';
 import UI from '../../assets/ui';
 
 export default class SwellChart extends Component {
+  this.futureSwells(swell) {
+    const time = moment.utc(swell.time).local();
+    return moment().diff(time) <= 0;
+  }
+
+  this.formatSwells(swell) {
+    return { ...swell, time: new Date(swell.time) };
+  }
+
   get data() {
-    return _.flatMap(this.props.swell)
-      .filter((hour) => {
-        const time = moment.utc(hour.time).local();
-        return moment().diff(time) <= 0;
-      })
-      .map(swell => ({
-        ...swell,
-        time: new Date(swell.time),
-      }))
+    const swellArray = Object.values(this.props.swell);
+    const flattened = swellArray.flat();
+    const futureSwells = flattened
+      .filter(futureSwells)
+      .map(formatSwells)
       .slice(0, 7);
+
+    console.log(futureSwells);
+    return futureSwells;
   }
 
   render() {
