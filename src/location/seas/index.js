@@ -12,7 +12,7 @@ import { userLocation } from '../../utils/location';
 import request from '../../utils/request';
 import { swellType } from '../../utils/swell-type';
 
-const Swell = class extends Component {
+const Seas = class extends Component {
   componentDidMount() {
     userLocation()
       .then((location) => {
@@ -112,4 +112,4 @@ const SeaForecastTitle = glamorous(UI.Type.TextMedium)({
   color: UI.Colors.SwellBlue,
 });
 
-export default Swell;
+export default Seas;

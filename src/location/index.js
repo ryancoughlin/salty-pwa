@@ -8,7 +8,7 @@ import Loading from '../common/loading';
 import Overview from './overview';
 import Currently from './currently';
 import TodaysTides from './todays-tides';
-import Swell from './swell';
+import Seas from './seas';
 import TideChart from './tide-chart';
 import UI from '../assets/ui';
 
@@ -54,7 +54,7 @@ class Location extends Component {
           <TideChart location={location} />
           <TodaysTides tides={tides} nearbyStations={nearbyStations} />
         </UI.Container.Base>
-        <Swell weather={weather} />
+        <Seas weather={weather} />
         <Currently />
       </div>
     );
