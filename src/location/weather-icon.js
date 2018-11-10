@@ -1,5 +1,5 @@
-import React from 'react'
-import Icon from '../../common/icon'
+import React from 'react';
+import Icon from '../../common/icon';
 
 const weatherTypes = {
   'clear-day': <Icon.Sun />,
@@ -10,10 +10,10 @@ const weatherTypes = {
   cloudy: <Icon.Cloudy />,
   fog: <Icon.Fog />,
   snow: <Icon.Snow />,
-}
+};
 
 const WeatherIcon = ({ weather }) => (
   <div>{weatherTypes[weather] || <Icon.Sun />}</div>
-)
+);
 
-export default WeatherIcon
+export default WeatherIcon;

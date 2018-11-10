@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import mapboxgl from 'mapbox-gl'
-import UI from '../assets/ui'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import React, { Component } from 'react';
+import mapboxgl from 'mapbox-gl';
+import UI from '../assets/ui';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`
+mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
 
 class Map extends Component {
   componentDidMount() {
-    const nearbyStation = this.props.stations[0]
-    const nearbyStationCoordinates = nearbyStation.location
+    const nearbyStation = this.props.stations[0];
+    const nearbyStationCoordinates = nearbyStation.location;
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
@@ -20,7 +20,7 @@ class Map extends Component {
       zoom: 13,
       minZoom: 8,
       maxZoom: 13,
-    })
+    });
 
     this.map.on('load', () => {
       this.map.addLayer({
@@ -45,7 +45,7 @@ class Map extends Component {
           'circle-stroke-width': 5,
           'circle-stroke-color': 'rgba(62, 63, 112, 0.24)',
         },
-      })
+      });
 
       this.map.addLayer({
         id: 'selected-station-symbol',
@@ -67,23 +67,21 @@ class Map extends Component {
           'icon-image': 'buoy',
           'icon-size': 0.5,
         },
-      })
+      });
 
-      this.map.addControl(
-        new mapboxgl.GeolocateControl({
-          positionOptions: {
-            enableHighAccuracy: false,
-          },
-        }),
-      )
+      this.map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: false,
+        },
+      }));
 
-      this.map.setLayoutProperty('stations', 'visibility', 'none')
-      this.map.setLayoutProperty('station-name', 'visibility', 'none')
-    })
+      this.map.setLayoutProperty('stations', 'visibility', 'none');
+      this.map.setLayoutProperty('station-name', 'visibility', 'none');
+    });
   }
 
   componentWillUnmount() {
-    this.map && this.map.remove()
+    this.map && this.map.remove();
   }
 
   render() {
@@ -92,8 +90,8 @@ class Map extends Component {
         ref={el => (this.mapContainer = el)}
         style={{ width: '100vw', height: '100vh' }}
       />
-    )
+    );
   }
 }
 
-export default Map
+export default Map;

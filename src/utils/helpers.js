@@ -1,5 +1,5 @@
-import moment from 'moment'
+import moment from 'moment';
 
 export function shortTimeFormat(time) {
-  return moment(time).format('hh:mma')
+  return moment(time).format('hh:mma');
 }

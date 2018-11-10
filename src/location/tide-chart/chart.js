@@ -1,53 +1,68 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   VictoryLine,
   VictoryChart,
   VictoryContainer,
   VictoryAxis,
   VictoryLabel,
-} from 'victory'
-import moment from 'moment'
-import glamorous from 'glamorous'
-import UI from '../../assets/ui'
+  VictoryArea,
+  VictoryScatter,
+} from 'victory';
+import moment from 'moment';
+import _ from 'lodash';
+import glamorous from 'glamorous';
+import UI from '../../assets/ui';
+import Marker from './marker';
 
-const AXIS_FONT_SIZE = 14
+const AXIS_FONT_SIZE = 14;
 
 export default class TideChart extends Component {
   get tides() {
-    const today = moment().format('MM/DD/YYYY')
-    const todaysTides = this.props.tideChart[today]
-    return todaysTides.map(prediction => ({
+    const { tides } = this.props;
+
+    const today = moment().format('MM/DD/YYYY');
+
+    const yesterday = moment().add(-1, 'days').format('MM/DD/YYYY');
+    const lastTideYesterday = _.last(tides[yesterday]);
+
+    const tomorrow = moment().add(1, 'days').format('MM/DD/YYYY');
+    const firstTideTomorrow = _.first(tides[tomorrow]);
+
+    const todaysTides = this.props.tides[today];
+    const chartData = _.concat(lastTideYesterday, todaysTides, firstTideTomorrow);
+
+    return chartData.map(prediction => ({
       ...prediction,
       time: moment(prediction.time),
-    }))
+    }));
   }
 
   render() {
     return (
       <Container>
         <VictoryChart
-          animate={{ duration: 1000 }}
           containerComponent={<VictoryContainer />}
-          height={170}
+          domain={{ y: [-2, 12] }}
+          domainPadding={{ x: 20, y: 10 }}
+          height={180}
           padding={{
             top: 5,
             right: 10,
-            bottom: 24,
+            bottom: 32,
             left: 30,
           }}
-          scale={{ x: 'time', y: 'linear' }}
         >
           <VictoryAxis
             dependentAxis
+            tickValues={[-3, 0, 3, 6, 9, 12]}
             orientation="left"
             scale="linear"
             style={{
-              axis: { stroke: UI.Colors.SubtleTextColor },
+              axis: { stroke: UI.Colors.SubtleTextColor, strokeLinecap: 'round' },
               grid: {
                 stroke: 'lightgrey',
                 strokeWidth: 1,
-                opacity: 0.9,
-                strokeDasharray: '0.2em',
+                strokeDasharray: '4',
               },
               ticks: { stroke: UI.Colors.SubtleTextColor, size: 4 },
               tickLabels: {
@@ -63,11 +78,10 @@ export default class TideChart extends Component {
             }}
           />
           <VictoryAxis
-            orientation="bottom"
             scale="time"
+            offsetY={33}
             style={{
-              axis: { stroke: UI.Colors.SubtleTextColor },
-              grid: { strokeWidth: 1 },
+              axis: { stroke: UI.Colors.SubtleTextColor, strokeWidth: 1 },
               tickLabels: {
                 fill: UI.Colors.SubtleTextColor,
                 fontSize: AXIS_FONT_SIZE,
@@ -77,21 +91,35 @@ export default class TideChart extends Component {
           />
           <VictoryLine
             data={this.tides}
-            interpolation="basis"
+            interpolation="catmullRom"
             x="time"
             y="height"
             scale={{ x: 'time' }}
             style={{
               data: {
                 stroke: UI.Colors.Primary,
-                strokeWidth: 2,
+                strokeWidth: 3.6,
+                strokeLinecap: 'round',
               },
             }}
           />
-          <VictoryLine
-            data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 12 }]}
+          <VictoryScatter
+            animate={{
+              duration: 2000,
+              easing: 'bounce',
+            }}
+            dataComponent={<Marker />}
+            data={this.tides}
+            x="time"
+            y="height"
+            scale={{ x: 'time' }}
+            size={10}
+          />
+          <VictoryScatter
+            data={[{ x: new Date(), y: 10 }]}
             labels={['NOW']}
-            labelComponent={<VictoryLabel angle={90} y={20} />}
+            labelComponent={<VictoryLabel angle={0} y={20} />}
+            size={6}
             style={{
               labels: {
                 fill: UI.Colors.Highlight,
@@ -99,21 +127,17 @@ export default class TideChart extends Component {
                 fontSize: AXIS_FONT_SIZE,
               },
               data: {
-                stroke: UI.Colors.Highlight,
-                strokeWidth: 2,
+                fill: UI.Colors.Highlight,
               },
             }}
           />
         </VictoryChart>
       </Container>
-    )
+    );
   }
 }
 
 const Container = glamorous.div({
   width: '100%',
-  overflowX: 'scroll',
-  overflowY: 'hidden',
-  whiteSpace: 'nowrap',
-  WebkitOverflowScrolling: 'touch',
-})
+  marginTop: 40,
+});

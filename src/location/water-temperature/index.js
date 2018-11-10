@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import ConditionRow from '../../common/condition-row'
+import ConditionRow from '../../common/condition-row';
 
 const WaterTemperature = class extends Component {
   render() {
-    const currentTemp = this.props.waterTemperature.temperature
+    const currentTemp = this.props.waterTemperature.temperature;
 
     if (!currentTemp) {
-      return null
+      return null;
     }
 
-    return <ConditionRow dark label={'Temperature'} value={`${currentTemp}°`} />
+    return <ConditionRow dark label="Temperature" value={`${currentTemp}°`} />;
   }
-}
+};
 
 const mapStateToProps = ({ data }) => ({
   waterTemperature: data.waterTemperature,
-})
-export default connect(mapStateToProps)(WaterTemperature)
+});
+export default connect(mapStateToProps)(WaterTemperature);
