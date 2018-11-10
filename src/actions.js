@@ -5,6 +5,7 @@ import geocodeLocation from './utils/geocode';
 import {
   FETCH_TIDES,
   FETCH_TIDE_CHART,
+  FETCH_SWELLS,
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
   FETCH_WATER_TEMPERATURE,
@@ -22,6 +23,7 @@ export function fetchLocation() {
 
       this.getLocationName(location);
       this.fetchTides(location);
+      this.fetchSwells(location);
       this.fetchTideChart(location);
       this.fetchWeather(location);
       this.fetchWaterTemperature(location);
@@ -35,13 +37,32 @@ export function fetchTides(location) {
   return (dispatch) => {
     request(`/tides?latitude=${latitude}&longitude=${longitude}`)
       .then((tides) => {
-        console.log('tides');
         if (Object.keys(tides).length === 0) {
           console.log('empty tide response');
         } else {
           dispatch({
             type: FETCH_TIDES,
             tides,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+}
+
+export function fetchSwells(location) {
+  const { latitude, longitude } = location;
+  return (dispatch) => {
+    request(`/swells?latitude=${latitude}&longitude=${longitude}`)
+      .then((swells) => {
+        if (Object.keys(swells).length === 0) {
+          console.log('empty tide response');
+        } else {
+          dispatch({
+            type: FETCH_SWELLS,
+            swells,
           });
         }
       })

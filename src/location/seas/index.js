@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Raven from 'raven-js';
 import _ from 'lodash';
 import glamorous from 'glamorous';
-import Raven from 'raven-js';
-import OffshoreSwellChart from './chart';
+import * as actions from '../../actions';
+import OffshoreChart from './chart';
 import Loading from '../../common/loading';
 import WaterTemperature from '../water-temperature';
 import ConditionRow from '../../common/condition-row';
 import UI from '../../assets/ui';
-import { userLocation } from '../../utils/location';
-import request from '../../utils/request';
 import { swellType } from '../../utils/swell-type';
+import { getCurrentSwell } from '../../selectors';
 
 const Seas = class extends Component {
   componentDidMount() {
-    userLocation()
-      .then((location) => {
-        const { longitude, latitude } = location;
-        request(`/swell?latitude=${latitude}&longitude=${longitude}`).then((swell) => {
-          this.setState({ swell }, () => this.findCurrentSwell());
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const { fetchLocation, fetchSwells } = this.props;
+    fetchLocation((location) => {
+      fetchSwells(location);
+    });
   }
 
   componentDidCatch(error, info) {
@@ -31,36 +27,8 @@ const Seas = class extends Component {
     Raven.captureException(error, { extra: info, state: this.state })
   }
 
-  findCurrentSwell() {
-    const { swell } = this.state;
-
-    if (!swell || swell.length === 0) {
-      return;
-    }
-
-    const now = moment();
-    const swellForecast = _.flatMap(swell);
-
-    const currentSwellIndex = _.findIndex(swellForecast, (swell) => {
-      const time = moment.utc(swell.time).local();
-      return now.diff(time) <= 0;
-    });
-
-    const currentSwell = swellForecast[currentSwellIndex];
-
-    // eslint-disable-next-line
-    Raven.setExtraContext({ currentSwell })
-
-    this.setState({
-      compassDirection: currentSwell.compassDirection,
-      direction: currentSwell.direction,
-      height: currentSwell.height,
-      period: currentSwell.period,
-    });
-  }
-
   currentWindSpeed() {
-    const wind = this.props.weather.wind;
+    const { wind } = this.props.weather;
 
     const now = moment();
     const currentWindIndex = _.findIndex(wind, (hourly) => {
@@ -72,26 +40,28 @@ const Seas = class extends Component {
   }
 
   render() {
-    if (!this.state) {
-      return (
-        <Container>
-          <Loading inline />
-        </Container>
-      );
-    }
+    const { swells, currentSwell } = this.props;
 
     return (
       <Container>
-        <Title>Seas</Title>
-        <WaterTemperature />
-        <ConditionRow
-          label="Wave Height"
-          value={`${this.state.height}' / ${swellType(this.currentWindSpeed())}`}
-          dark
-        />
-        <ConditionRow label="Period" value={`${this.state.period}s`} dark />
-        <SeaForecastTitle>Next 24 hours</SeaForecastTitle>
-        <OffshoreSwellChart swell={this.state.swell} />
+        {
+          swells
+            ? (
+              <div>
+                <Title>Seas</Title>
+                <WaterTemperature />
+                <ConditionRow
+                  label="Wave Height"
+                  value={`${currentSwell.height}' / ${swellType(this.currentWindSpeed())}`}
+                  dark
+                />
+                <ConditionRow label="Period" value={`${currentSwell.period}s`} dark />
+                <SeaForecastTitle>Next 24 hours</SeaForecastTitle>
+                <OffshoreChart swell={swells} />
+              </div>
+            )
+            : <Loading inline />
+        }
       </Container>
     );
   }
@@ -112,4 +82,17 @@ const SeaForecastTitle = glamorous(UI.Type.TextMedium)({
   color: UI.Colors.SwellBlue,
 });
 
-export default Seas;
+const mapStateToProps = ({ data }) => ({
+  swells: data.swells,
+  currentSwell: getCurrentSwell(data),
+  weather: data.weather,
+});
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(actions, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Seas);

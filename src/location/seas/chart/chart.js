@@ -11,7 +11,7 @@ import _ from 'lodash';
 import BarSegment from '../../../common/bar-segment';
 import UI from '../../../assets/ui';
 
-const SwellChart = ({ swell }) => (
+const OffshoreChart = ({ swell }) => (
   <Container>
     <VictoryChart
       containerComponent={<VictoryContainer />}
@@ -68,4 +68,4 @@ const Container = glamorous.div({
   WebkitOverflowScrolling: 'touch',
 });
 
-export default SwellChart;
+export default OffshoreChart;

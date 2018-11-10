@@ -36,10 +36,9 @@ class Location extends Component {
       todaysTides,
       location,
       nearbyStations,
-      weather,
     } = this.props;
 
-    if (!tides || !location || !weather) {
+    if (!tides || !location) {
       return <Loading />;
     }
 
@@ -54,7 +53,7 @@ class Location extends Component {
           <TideChart location={location} />
           <TodaysTides tides={todaysTides} nearbyStations={nearbyStations} />
         </UI.Container.Base>
-        <Seas weather={weather} />
+        <Seas />
         <Currently />
       </div>
     );
@@ -66,7 +65,6 @@ const mapStateToProps = ({ data }) => ({
   tides: getTidesState(data),
   todaysTides: getTodaysTides(data),
   nearbyStations: data.nearbyStations,
-  weather: data.weather,
 });
 
 const mapDispatchToProps = dispatch => ({

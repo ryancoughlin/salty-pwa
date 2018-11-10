@@ -1,6 +1,7 @@
 import {
   FETCH_TIDES,
   FETCH_TIDE_CHART,
+  FETCH_SWELLS,
   FETCH_WATER_TEMPERATURE,
   FETCH_USER_LOCATION,
   FETCH_WEATHER,
@@ -26,6 +27,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         tideChart: action.tideChart,
+      };
+    case FETCH_SWELLS:
+      return {
+        ...state,
+        swells: action.swells,
       };
     case FETCH_WATER_TEMPERATURE:
       return {
