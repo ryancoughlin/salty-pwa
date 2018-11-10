@@ -5,6 +5,7 @@ import {
   VictoryContainer,
   VictoryAxis,
   VictoryLabel,
+  VictoryArea,
   VictoryScatter,
 } from 'victory';
 import moment from 'moment';
@@ -42,27 +43,27 @@ export default class TideChart extends Component {
         <VictoryChart
           animate={{ duration: 1000 }}
           containerComponent={<VictoryContainer />}
-          domainPadding={{ y: [10, 16] }}
-          height={170}
+          domain={{ y: [-2, 12] }}
+          domainPadding={{ x: 20, y: 10 }}
+          height={180}
           padding={{
             top: 5,
             right: 10,
-            bottom: 16,
+            bottom: 32,
             left: 30,
           }}
-          scale={{ x: 'time', y: 'linear' }}
         >
           <VictoryAxis
             dependentAxis
+            tickValues={[-3, 0, 3, 6, 9, 12]}
             orientation="left"
             scale="linear"
             style={{
-              axis: { stroke: UI.Colors.SubtleTextColor },
+              axis: { stroke: UI.Colors.SubtleTextColor, strokeLinecap: 'round' },
               grid: {
                 stroke: 'lightgrey',
                 strokeWidth: 1,
-                opacity: 0.9,
-                strokeDasharray: '0.2em',
+                strokeDasharray: '4',
               },
               ticks: { stroke: UI.Colors.SubtleTextColor, size: 4 },
               tickLabels: {
@@ -78,11 +79,10 @@ export default class TideChart extends Component {
             }}
           />
           <VictoryAxis
-            orientation="bottom"
             scale="time"
+            offsetY={33}
             style={{
-              axis: { stroke: UI.Colors.SubtleTextColor },
-              grid: { strokeWidth: 1 },
+              axis: { stroke: UI.Colors.SubtleTextColor, strokeWidth: 1 },
               tickLabels: {
                 fill: UI.Colors.SubtleTextColor,
                 fontSize: AXIS_FONT_SIZE,
@@ -105,17 +105,16 @@ export default class TideChart extends Component {
             }}
           />
           <VictoryScatter
+            animate={{
+              duration: 2000,
+              easing: 'bounce',
+            }}
             dataComponent={<Marker />}
             data={this.tides}
             x="time"
             y="height"
             scale={{ x: 'time' }}
             size={10}
-            style={{
-              data: {
-                fill: '#ffffff',
-              },
-            }}
           />
           <VictoryLine
             data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 10 }]}
