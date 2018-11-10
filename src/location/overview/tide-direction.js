@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import glamorous from 'glamorous';
 import UI from '../../assets/ui';
 import TideArrow from '../../common/tide-arrow';
 
 const TideDirection = ({ nextTide }) => (
   <Container>
-    <UI.Type.TideDirection>
-      {nextTide.type === 'high' ? 'Incoming tide' : 'Outgoing tide'}
-    </UI.Type.TideDirection>
-    <TideArrow direction={nextTide.type} tideDirection />
+    {
+      Object.getOwnPropertyNames(nextTide).length > 0
+        ? (
+          <Fragment>
+            <UI.Type.TideDirection>
+              {nextTide.type === 'high' ? 'Incoming tide' : 'Outgoing tide'}
+            </UI.Type.TideDirection>
+            <TideArrow direction={nextTide.type} tideDirection />
+          </Fragment>
+        )
+        : (
+          <Fragment>
+            <UI.Type.TideDirection>
+              {nextTide.type === 'high' ? 'Incoming tide' : 'Outgoing tide'}
+            </UI.Type.TideDirection>
+          </Fragment>
+        )
+      }
   </Container>
 );
 

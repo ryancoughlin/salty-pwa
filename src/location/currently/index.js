@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import UI from '../../assets/ui';
 import ConditionRow from '../../common/condition-row';
-import { shortTimeFormat } from '../../utils/helpers';
+import shortTimeFormat from '../../utils/helpers';
 
 const CurrentConditions = ({ weather }) => (
   <Container>
@@ -11,12 +11,8 @@ const CurrentConditions = ({ weather }) => (
     <Summary>{weather.summary}</Summary>
     <Details>
       <ConditionRow
-        label="Sunrise"
-        value={shortTimeFormat(weather.sunrise)}
-      />
-      <ConditionRow
-        label="Sunset"
-        value={shortTimeFormat(weather.sunset)}
+        label="Sun"
+        value={`${shortTimeFormat(weather.sunrise)} → ${shortTimeFormat(weather.sunset)}`}
       />
       <ConditionRow label="Pressure" value={`${weather.pressure} mb`} />
       <ConditionRow label="Moon" value={weather.moon.phase} />

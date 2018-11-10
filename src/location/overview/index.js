@@ -25,7 +25,9 @@ const Overview = class extends Component {
     const { locationName, nearbyStations } = this.props;
     return (
       <div>
-        <LocationName locationName={locationName} />
+        {locationName && (
+          <LocationName locationName={locationName} />
+        )}
         {nearbyStations.length > 0 && (
           <NearestBuoy nearbyStations={nearbyStations} />
         )}

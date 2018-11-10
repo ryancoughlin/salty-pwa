@@ -8,5 +8,6 @@ export default function findNextTide(data) {
     return moment().diff(tideTime) <= 0;
   });
 
+  if (nextTideIndex === -1) return {};
   return flattenedTides[nextTideIndex];
 }

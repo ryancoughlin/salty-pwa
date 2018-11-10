@@ -20,7 +20,10 @@ export default class extends Component {
           <TideType>{tide.type}</TideType>
           <Numeric>{this.prettyTideTime}</Numeric>
         </Left>
-        <Numeric>{tide.height}&apos;</Numeric>
+        <Numeric>
+          {tide.height}
+          &apos;
+        </Numeric>
       </Container>
     );
   }

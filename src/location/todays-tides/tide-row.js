@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import glamorous from 'glamorous';
-import { shortTimeFormat } from '../../utils/helpers';
+import shortTimeFormat from '../../utils/helpers';
 import UI from '../../assets/ui';
 
 const formatTideHeight = height => `${height.toFixed(1)}'`;
