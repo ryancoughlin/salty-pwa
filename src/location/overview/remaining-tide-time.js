@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import moment from 'moment';
 import UI from '../../assets/ui';
 
@@ -26,7 +25,7 @@ export default class RemainingTideTime extends Component {
   }
 
   padNumbers(number) {
-    return _.padStart(number, 2, 0);
+    return number;
   }
 
   render() {
