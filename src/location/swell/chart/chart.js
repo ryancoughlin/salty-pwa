@@ -8,32 +8,10 @@ import {
 } from 'victory';
 import glamorous from 'glamorous';
 import _ from 'lodash';
-import moment from 'moment';
-import BarSegment from '../../common/bar-segment';
-import UI from '../../assets/ui';
+import BarSegment from '../../../common/bar-segment';
+import UI from '../../../assets/ui';
 
 export default class SwellChart extends Component {
-  this.futureSwells(swell) {
-    const time = moment.utc(swell.time).local();
-    return moment().diff(time) <= 0;
-  }
-
-  this.formatSwells(swell) {
-    return { ...swell, time: new Date(swell.time) };
-  }
-
-  get data() {
-    const swellArray = Object.values(this.props.swell);
-    const flattened = swellArray.flat();
-    const futureSwells = flattened
-      .filter(futureSwells)
-      .map(formatSwells)
-      .slice(0, 7);
-
-    console.log(futureSwells);
-    return futureSwells;
-  }
-
   render() {
     return (
       <Container>

@@ -3,7 +3,7 @@ import moment from 'moment';
 import _ from 'lodash';
 import glamorous from 'glamorous';
 import Raven from 'raven-js';
-import SwellChartContainer from './chart/swell-chart-container';
+import OffshoreSwellChart from './chart';
 import Loading from '../../common/loading';
 import WaterTemperature from '../water-temperature';
 import ConditionRow from '../../common/condition-row';
@@ -91,7 +91,7 @@ const Swell = class extends Component {
         />
         <ConditionRow label="Period" value={`${this.state.period}s`} dark />
         <SeaForecastTitle>Next 24 hours</SeaForecastTitle>
-        <SwellChartContainer swell={this.state.swell} />
+        <OffshoreSwellChart swell={this.state.swell} />
       </Container>
     );
   }
