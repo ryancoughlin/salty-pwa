@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Raven from 'raven-js';
 import * as actions from '../actions';
+import { getTidesState, getTodaysTides } from '../selectors';
 import Loading from '../common/loading';
 import Overview from './overview';
 import Currently from './currently';
@@ -31,7 +32,11 @@ class Location extends Component {
 
   render() {
     const {
-      tides, location, nearbyStations, weather,
+      tides,
+      todaysTides,
+      location,
+      nearbyStations,
+      weather,
     } = this.props;
 
     if (!tides || !location || !weather) {
@@ -47,7 +52,7 @@ class Location extends Component {
             nearbyStations={nearbyStations}
           />
           <TideChart location={location} />
-          <TodaysTides tides={tides} nearbyStations={nearbyStations} />
+          <TodaysTides tides={todaysTides} nearbyStations={nearbyStations} />
         </UI.Container.Base>
         <Seas weather={weather} />
         <Currently />
@@ -58,7 +63,8 @@ class Location extends Component {
 
 const mapStateToProps = ({ data }) => ({
   location: data.location,
-  tides: data.tides,
+  tides: getTidesState(data),
+  todaysTides: getTodaysTides(data),
   nearbyStations: data.nearbyStations,
   weather: data.weather,
 });

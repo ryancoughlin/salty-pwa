@@ -1,16 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import glamorous from 'glamorous';
-import moment from 'moment';
 import TideRow from './tide-row';
 import UI from '../../assets/ui';
-
-const findTodaysTides = (tides) => {
-  console.log('TCL: findTodaysTides -> tides', tides);
-  const now = moment();
-  const todaysKey = now.format('MM/DD/YYYY');
-  return tides[todaysKey];
-};
 
 const TodaysTides = ({ tides }) => (
   <Container>
@@ -18,8 +10,8 @@ const TodaysTides = ({ tides }) => (
       <UI.Type.SecondaryHeader>Today&apos;s Tides</UI.Type.SecondaryHeader>
       <ViewTideTable to="/tables">View tides</ViewTideTable>
     </InnerContainer>
-
-    {findTodaysTides(tides).map(tide => (
+    {console.log(tides)}
+    {tides.map(tide => (
       <TideRow tide={tide} key={tide.time} />
     ))}
   </Container>
