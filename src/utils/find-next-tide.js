@@ -3,7 +3,7 @@ import moment from 'moment';
 export default function findNextTide(data) {
   const tideArray = Object.values(data);
   const flattenedTides = tideArray.flat();
-  const nextTideIndex = tideArray.findIndex((tide) => {
+  const nextTideIndex = flattenedTides.findIndex((tide) => {
     const tideTime = moment(tide.time);
     return moment().diff(tideTime) <= 0;
   });

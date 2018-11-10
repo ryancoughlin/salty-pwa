@@ -41,7 +41,6 @@ export default class TideChart extends Component {
     return (
       <Container>
         <VictoryChart
-          animate={{ duration: 1000 }}
           containerComponent={<VictoryContainer />}
           domain={{ y: [-2, 12] }}
           domainPadding={{ x: 20, y: 10 }}
@@ -116,10 +115,11 @@ export default class TideChart extends Component {
             scale={{ x: 'time' }}
             size={10}
           />
-          <VictoryLine
-            data={[{ x: new Date(), y: 0 }, { x: new Date(), y: 10 }]}
+          <VictoryScatter
+            data={[{ x: new Date(), y: 10 }]}
             labels={['NOW']}
-            labelComponent={<VictoryLabel angle={90} y={20} />}
+            labelComponent={<VictoryLabel angle={0} y={20} />}
+            size={6}
             style={{
               labels: {
                 fill: UI.Colors.Highlight,
@@ -127,8 +127,7 @@ export default class TideChart extends Component {
                 fontSize: AXIS_FONT_SIZE,
               },
               data: {
-                stroke: UI.Colors.Highlight,
-                strokeWidth: 2,
+                fill: UI.Colors.Highlight,
               },
             }}
           />

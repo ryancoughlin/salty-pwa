@@ -6,6 +6,7 @@ import TideRow from './tide-row';
 import UI from '../../assets/ui';
 
 const findTodaysTides = (tides) => {
+  console.log('TCL: findTodaysTides -> tides', tides);
   const now = moment();
   const todaysKey = now.format('MM/DD/YYYY');
   return tides[todaysKey];

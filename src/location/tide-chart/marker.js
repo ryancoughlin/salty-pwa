@@ -1,7 +1,9 @@
 import React from 'react';
+import { Point } from 'victory';
 
-const circleCSS = {
-  filter: '0 1px 4px 0 rgba(17,29,74,0.20)',
+const pointStyle = {
+  fill: '#ffffff',
+  filter: 'drop-shadow(3px 2px 2px rgba(0,96,128,0.1))',
 };
 
 const arrowCSS = {
@@ -21,21 +23,14 @@ const Marker = ({
 }) => (
   <g>
     <defs>
-      <filter id="dropshadow" x="-40%" y="-40%" width="180%" height="180%" filterUnits="userSpaceOnUse">
-        <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-        <feOffset dx="5" dy="5" result="offsetblur" />
-        <feOffset dx="-5" dy="-5" result="offsetblur" />
-        <feMerge>
-          <feMergeNode />
-          <feMergeNode in="SourceGraphic" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
+      <filter id="f2" x="0" y="0" width="200%" height="200%">
+        <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
       </filter>
     </defs>
-    <g>
-      <circle r="12" cx={props.x} cy={props.y} fill="#ffffff" style={circleCSS} />
-      <ArrowDirection {...props} />
-    </g>
+    <Point cx={props.x} cy={props.y} {...props} style={pointStyle} filter="url(#f2)" />
+    <ArrowDirection {...props} />
   </g>
 );
 
