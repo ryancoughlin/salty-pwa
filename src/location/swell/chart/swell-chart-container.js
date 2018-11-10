@@ -11,7 +11,9 @@ const formatSwells = swell => ({ ...swell, time: new Date(swell.time) });
 
 const formatData = (swell) => {
   const swellArray = Object.values(swell);
+  console.log('TCL: formatData -> swellArray', swellArray);
   const flattened = swellArray.flat();
+  console.log('TCL: formatData -> flattened', flattened);
   return flattened
     .filter(futureSwells)
     .map(formatSwells)
