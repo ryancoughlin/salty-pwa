@@ -6,6 +6,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
+  devtool: 'source-map',
   entry: ['./src/index.js'],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
