@@ -3,8 +3,9 @@ import {
   VictoryLine,
   VictoryChart,
   VictoryContainer,
+  VictoryClipContainer,
+  VictoryZoomContainer,
   VictoryAxis,
-  VictoryLabel,
   VictoryScatter,
 } from 'victory';
 import moment from 'moment';
@@ -15,22 +16,16 @@ import Marker from './marker';
 
 const AXIS_FONT_SIZE = 14;
 
+const tomorrow = new Date().setDate(new Date().getDate() + 1);
+
 export default class TideChart extends Component {
   get tides() {
     const { tides } = this.props;
 
-    const today = moment().format('MM/DD/YYYY');
+    const values = Object.values(tides);
+    const flatTides = values.flat();
 
-    const yesterday = moment().add(-1, 'days').format('MM/DD/YYYY');
-    const lastTideYesterday = _.last(tides[yesterday]);
-
-    const tomorrow = moment().add(1, 'days').format('MM/DD/YYYY');
-    const firstTideTomorrow = _.first(tides[tomorrow]);
-
-    const todaysTides = this.props.tides[today];
-    const chartData = _.concat(lastTideYesterday, todaysTides, firstTideTomorrow);
-
-    return chartData.map(prediction => ({
+    return flatTides.map(prediction => ({
       ...prediction,
       time: moment(prediction.time),
     }));
@@ -40,12 +35,20 @@ export default class TideChart extends Component {
     return (
       <Container>
         <VictoryChart
-          containerComponent={<VictoryContainer />}
-          domain={{ y: [-2, 12] }}
-          domainPadding={{ x: 20, y: 10 }}
-          height={180}
+          containerComponent={(
+            <VictoryZoomContainer
+              clipContainerComponent={(
+                <VictoryClipContainer
+                  clipPadding={{ top: 34 }}
+                />)}
+              zoomDomain={{ x: [new Date(), tomorrow] }}
+              allowZoom={false}
+              dimension="x"
+            />
+          )}
+          height={200}
           padding={{
-            top: 20,
+            top: 30,
             right: 10,
             bottom: 32,
             left: 30,
@@ -103,10 +106,6 @@ export default class TideChart extends Component {
             }}
           />
           <VictoryScatter
-            animate={{
-              duration: 2000,
-              easing: 'bounce',
-            }}
             dataComponent={<Marker />}
             data={this.tides}
             x="time"

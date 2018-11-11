@@ -23,7 +23,7 @@ class TideChart extends Component {
   }
 }
 const Container = glamorous.div({
-  marginBottom: UI.Spacing.Default,
+
 });
 
 const mapStateToProps = ({ data }) => ({
