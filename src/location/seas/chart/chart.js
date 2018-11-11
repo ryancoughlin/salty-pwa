@@ -7,7 +7,6 @@ import {
   VictoryContainer,
 } from 'victory';
 import glamorous from 'glamorous';
-import _ from 'lodash';
 import BarSegment from '../../../common/bar-segment';
 import UI from '../../../assets/ui';
 
@@ -44,7 +43,7 @@ const OffshoreChart = ({ swell }) => (
       <VictoryAxis
         scale={{ x: 'time' }}
         offsetY={16}
-        tickValues={_.map(swell, wind => wind.time)}
+        tickValues={swell.map(wind => wind.time)}
         labelComponent={<VictoryLabel dx={-2} />}
         style={{
           axis: { stroke: 'transparent' },

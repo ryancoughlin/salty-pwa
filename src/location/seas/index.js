@@ -3,7 +3,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Raven from 'raven-js';
-import _ from 'lodash';
 import glamorous from 'glamorous';
 import * as actions from '../../actions';
 import OffshoreChart from './chart';
@@ -31,7 +30,7 @@ const Seas = class extends Component {
     const { wind } = this.props.weather;
 
     const now = moment();
-    const currentWindIndex = _.findIndex(wind, (hourly) => {
+    const currentWindIndex = wind.findIndex((hourly) => {
       const time = moment.utc(hourly.time).local();
       return now.diff(time) <= 0;
     });

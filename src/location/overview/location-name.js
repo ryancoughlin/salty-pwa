@@ -10,7 +10,7 @@ const LocationName = ({ locationName }) => (
 const Location = glamorous.div({
   fontSize: 16,
   fontWeight: 500,
-  marginBottom: 2,
+  marginBottom: 4,
 });
 
 export default LocationName;

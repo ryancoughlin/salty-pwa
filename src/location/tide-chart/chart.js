@@ -9,7 +9,6 @@ import {
   VictoryScatter,
 } from 'victory';
 import moment from 'moment';
-import _ from 'lodash';
 import glamorous from 'glamorous';
 import UI from '../../assets/ui';
 import Marker from './marker';
