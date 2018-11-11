@@ -73,13 +73,13 @@ const Container = glamorous(UI.Container.Base)({
 });
 
 const Title = glamorous(UI.Type.SecondaryHeader)({
-  color: UI.Colors.SwellBlue,
+  color: UI.Colors.Dark,
 });
 
 const SeaForecastTitle = glamorous(UI.Type.TextMedium)({
   marginTop: 16,
   marginBottom: 16,
-  color: UI.Colors.SwellBlue,
+  color: UI.Colors.Dark,
 });
 
 const mapStateToProps = ({ data }) => ({

@@ -6,7 +6,7 @@ import UI from '../../assets/ui';
 const NearestBuoyText = ({ nearbyStations }) => (
   <Container>
     <SmallText>
-      Nearest buoy:&nbsp;
+      Buoy:&nbsp;
       <ViewNearestBuoyLink to="/nearest-buoy">
         {nearbyStations[0].name}
       </ViewNearestBuoyLink>
@@ -20,8 +20,7 @@ const Container = glamorous.div({
 
 const SmallText = glamorous(UI.Type.Text)({
   fontSize: 12,
-  fontWeight: '500',
-  color: UI.Colors.SubtleTextColor,
+  color: UI.Colors.Dark,
 });
 
 const ViewNearestBuoyLink = glamorous(Link)({

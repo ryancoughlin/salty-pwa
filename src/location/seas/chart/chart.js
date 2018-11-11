@@ -37,7 +37,7 @@ const OffshoreChart = ({ swell }) => (
           labels: {
             fontSize: 16,
             fontFamily: 'overpass-mono',
-            fill: UI.Colors.SwellBlue,
+            fill: UI.Colors.Dark,
           },
         }}
       />
