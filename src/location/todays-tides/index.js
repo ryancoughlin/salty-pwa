@@ -10,7 +10,6 @@ const TodaysTides = ({ tides }) => (
       <UI.Type.SecondaryHeader>Today&apos;s Tides</UI.Type.SecondaryHeader>
       <ViewTideTable to="/tables">View tides</ViewTideTable>
     </InnerContainer>
-    {console.log(tides)}
     {tides.map(tide => (
       <TideRow tide={tide} key={tide.time} />
     ))}

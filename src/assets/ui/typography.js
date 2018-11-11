@@ -6,7 +6,7 @@ const mediumFontWeight = 500;
 const boldFontWeight = 700;
 
 const TideDirection = glamorous.div({
-  fontSize: 34,
+  fontSize: 36,
   fontWeight: boldFontWeight,
   color: Colors.baseTextColor,
 });

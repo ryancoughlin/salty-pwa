@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
-
 import moment from 'moment';
 import UI from '../assets/ui';
 import TideArrow from '../common/tide-arrow';

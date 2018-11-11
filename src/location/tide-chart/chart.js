@@ -5,7 +5,6 @@ import {
   VictoryContainer,
   VictoryAxis,
   VictoryLabel,
-  VictoryArea,
   VictoryScatter,
 } from 'victory';
 import moment from 'moment';
@@ -46,7 +45,7 @@ export default class TideChart extends Component {
           domainPadding={{ x: 20, y: 10 }}
           height={180}
           padding={{
-            top: 5,
+            top: 20,
             right: 10,
             bottom: 32,
             left: 30,
@@ -58,13 +57,13 @@ export default class TideChart extends Component {
             orientation="left"
             scale="linear"
             style={{
-              axis: { stroke: UI.Colors.SubtleTextColor, strokeLinecap: 'round' },
+              axis: { stroke: 'transparent' },
               grid: {
                 stroke: 'lightgrey',
                 strokeWidth: 1,
-                strokeDasharray: '4',
+                strokeDasharray: '10',
               },
-              ticks: { stroke: UI.Colors.SubtleTextColor, size: 4 },
+              ticks: { stroke: 'transparent' },
               tickLabels: {
                 fill: UI.Colors.SubtleTextColor,
                 fontSize: AXIS_FONT_SIZE,
@@ -117,8 +116,6 @@ export default class TideChart extends Component {
           />
           <VictoryScatter
             data={[{ x: new Date(), y: 10 }]}
-            labels={['NOW']}
-            labelComponent={<VictoryLabel angle={0} y={20} />}
             size={6}
             style={{
               labels: {
