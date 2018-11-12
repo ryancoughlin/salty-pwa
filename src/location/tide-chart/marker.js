@@ -1,11 +1,5 @@
 import React from 'react';
-import { Point } from 'victory';
 import moment from 'moment';
-
-const pointStyle = {
-  fill: '#ffffff',
-  filter: 'drop-shadow(3px 2px 2px rgba(0,96,128,0.1))',
-};
 
 const arrowCSS = {
   fontFamily: 'InputMonoNarrow-Bold',
@@ -49,15 +43,15 @@ const Marker = ({
 }) => (
   <g>
     <defs>
-      <filter id="f2" x="0" y="0" width="200%" height="200%">
-        <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
-        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
-        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+      <filter id="markerShadow" y="0" height="40" x="0" width="150">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#0C1B2B" floodOpacity="0.2" />
       </filter>
     </defs>
     <Time {...props} />
     <Height {...props} />
-    <Point cx={props.x} cy={props.y} {...props} style={pointStyle} filter="url(#f2)" />
+    <g filter="url(#markerShadow)">
+      <circle cx={props.x + 1} cy={props.y - 2} r="12" fill="white" />
+    </g>
     <ArrowDirection {...props} />
   </g>
 );
