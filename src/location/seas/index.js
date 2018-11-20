@@ -40,11 +40,12 @@ const Seas = class extends Component {
 
   render() {
     const { swells, currentSwell } = this.props;
+    console.log('​extends -> render -> currentSwell', currentSwell);
 
     return (
       <Container>
         {
-          swells && currentSwell.length
+          swells && currentSwell
             ? (
               <div>
                 <Title>Seas</Title>

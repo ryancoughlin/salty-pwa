@@ -55,15 +55,14 @@ export default class TideChart extends Component {
         >
           <VictoryAxis
             dependentAxis
-            tickValues={[0, 4, 8, 12]}
+            tickValues={[-2, 0, 2, 4, 6, 8, 10]}
             orientation="left"
             scale="linear"
             style={{
               axis: { stroke: 'transparent' },
               grid: {
-                stroke: 'lightgrey',
-                strokeWidth: 1,
-                strokeDasharray: '10',
+                stroke: '#eaeaea',
+                strokeDasharray: 10,
               },
               ticks: { stroke: 'transparent' },
               tickLabels: {
