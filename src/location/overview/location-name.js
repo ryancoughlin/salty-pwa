@@ -1,11 +1,16 @@
 import React from 'react';
 import glamorous from 'glamorous';
-import UI from '../../assets/ui';
 
 const LocationName = ({ locationName }) => (
-  <UI.Type.SecondaryHeader marginBottom={4}>
+  <Location>
     {locationName}
-  </UI.Type.SecondaryHeader>
+  </Location>
 );
+
+const Location = glamorous.div({
+  fontSize: 16,
+  fontWeight: 500,
+  marginBottom: 4,
+});
 
 export default LocationName;

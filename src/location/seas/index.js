@@ -3,7 +3,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Raven from 'raven-js';
-import _ from 'lodash';
 import glamorous from 'glamorous';
 import * as actions from '../../actions';
 import OffshoreChart from './chart';
@@ -11,7 +10,7 @@ import Loading from '../../common/loading';
 import WaterTemperature from '../water-temperature';
 import ConditionRow from '../../common/condition-row';
 import UI from '../../assets/ui';
-import { swellType } from '../../utils/swell-type';
+import swellType from '../../utils/swell-type';
 import { getCurrentSwell } from '../../selectors';
 
 const Seas = class extends Component {
@@ -31,7 +30,7 @@ const Seas = class extends Component {
     const { wind } = this.props.weather;
 
     const now = moment();
-    const currentWindIndex = _.findIndex(wind, (hourly) => {
+    const currentWindIndex = wind.findIndex((hourly) => {
       const time = moment.utc(hourly.time).local();
       return now.diff(time) <= 0;
     });
@@ -41,11 +40,12 @@ const Seas = class extends Component {
 
   render() {
     const { swells, currentSwell } = this.props;
+    console.log('​extends -> render -> currentSwell', currentSwell);
 
     return (
       <Container>
         {
-          swells
+          swells && currentSwell
             ? (
               <div>
                 <Title>Seas</Title>
@@ -73,13 +73,13 @@ const Container = glamorous(UI.Container.Base)({
 });
 
 const Title = glamorous(UI.Type.SecondaryHeader)({
-  color: UI.Colors.SwellBlue,
+  color: UI.Colors.Dark,
 });
 
 const SeaForecastTitle = glamorous(UI.Type.TextMedium)({
   marginTop: 16,
   marginBottom: 16,
-  color: UI.Colors.SwellBlue,
+  color: UI.Colors.Dark,
 });
 
 const mapStateToProps = ({ data }) => ({

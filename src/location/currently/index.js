@@ -7,8 +7,7 @@ import shortTimeFormat from '../../utils/helpers';
 
 const CurrentConditions = ({ weather }) => (
   <Container>
-    <Header>Current Conditions</Header>
-    <Summary>{weather.summary}</Summary>
+    <Header>{weather.summary}</Header>
     <Details>
       <ConditionRow
         label="Sun"

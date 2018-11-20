@@ -9,7 +9,13 @@ import {
   FETCH_NEARBY_STATIONS,
 } from '../types';
 
-const initialState = {};
+const initialState = {
+  location: {},
+  locationName: null,
+  tides: {},
+  swells: {},
+  weather: {},
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {

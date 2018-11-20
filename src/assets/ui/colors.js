@@ -1,18 +1,16 @@
 export const Palette = {
-  Vulcan: '#0c1523',
+  BlackPearl: '#0a1a2a',
   LightGray: '#93A0C1',
-  Blue: '#2CACFF',
-  DarkBlue: '#003656',
+  Blue: '#20A4FC',
   CornFlowerBlue: '#3e3f72',
   MySin: '#f6b441',
 };
 
 export const Colors = {
   Primary: Palette.Blue,
-  DarkBackground: Palette.Vulcan,
-  BaseTextColor: Palette.Vulcan,
+  DarkBackground: Palette.BlackPearl,
+  Dark: Palette.BlackPearl,
   SubtleTextColor: Palette.LightGray,
-  SwellBlue: Palette.DarkBlue,
   StationPin: Palette.CornFlowerBlue,
   Highlight: Palette.MySin,
 };

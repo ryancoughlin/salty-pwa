@@ -1,10 +1,5 @@
 import React from 'react';
-import { Point } from 'victory';
-
-const pointStyle = {
-  fill: '#ffffff',
-  filter: 'drop-shadow(3px 2px 2px rgba(0,96,128,0.1))',
-};
+import moment from 'moment';
 
 const arrowCSS = {
   fontFamily: 'InputMonoNarrow-Bold',
@@ -12,9 +7,34 @@ const arrowCSS = {
   color: '#0D1B2A',
 };
 
+const timeCSS = {
+  fontSize: 14,
+  fontWeight: 500,
+  fill: '#20A4FC',
+};
+
+const heightCSS = {
+  fontSize: 12,
+  fontWeight: 500,
+  fill: '#0D1B2A',
+};
+
+
+const Time = ({ datum, x, y }) => (
+  <text x={x} y={y - 32} id="tideTime" textAnchor="middle" style={timeCSS}>
+    {moment(datum.time).format('h:mm a')}
+  </text>
+);
+
+const Height = ({ datum, x, y }) => (
+  <text x={x} y={y - 16} id="tideHeight" textAnchor="middle" style={heightCSS}>
+    {datum.height}
+  </text>
+);
+
 const ArrowDirection = ({ datum, x, y }) => (
-  <text id="↑" style={arrowCSS}>
-    <tspan x={x - 2} y={y + 2}>{datum.type === 'high' ? '↑' : '↓'}</tspan>
+  <text x={x - 2} y={y + 2} id="↑" style={arrowCSS}>
+    {datum.type === 'high' ? '↑' : '↓'}
   </text>
 );
 
@@ -23,13 +43,15 @@ const Marker = ({
 }) => (
   <g>
     <defs>
-      <filter id="f2" x="0" y="0" width="200%" height="200%">
-        <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
-        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
-        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+      <filter id="markerShadow" y="0" height="40" x="0" width="150">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#0C1B2B" floodOpacity="0.2" />
       </filter>
     </defs>
-    <Point cx={props.x} cy={props.y} {...props} style={pointStyle} filter="url(#f2)" />
+    <Time {...props} />
+    <Height {...props} />
+    <g filter="url(#markerShadow)">
+      <circle cx={props.x + 1} cy={props.y - 2} r="12" fill="white" />
+    </g>
     <ArrowDirection {...props} />
   </g>
 );

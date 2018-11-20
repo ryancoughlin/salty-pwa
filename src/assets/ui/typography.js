@@ -6,9 +6,9 @@ const mediumFontWeight = 500;
 const boldFontWeight = 700;
 
 const TideDirection = glamorous.div({
-  fontSize: 34,
+  fontSize: 36,
   fontWeight: boldFontWeight,
-  color: Colors.baseTextColor,
+  color: Colors.Dark,
 });
 
 const SmallNumericType = glamorous.span({
@@ -29,7 +29,7 @@ const SecondaryHeader = glamorous.div(
 
 const Body = glamorous.div({
   fontSize: 18,
-  color: Colors.baseTextColor,
+  color: Colors.Dark,
   fontWeight: 'normal',
 });
 

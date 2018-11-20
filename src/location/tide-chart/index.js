@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import Chart from './chart';
-import UI from '../../assets/ui';
 
 class TideChart extends Component {
   componentDidCatch(error, info) {
@@ -23,7 +22,7 @@ class TideChart extends Component {
   }
 }
 const Container = glamorous.div({
-  marginBottom: UI.Spacing.Default,
+
 });
 
 const mapStateToProps = ({ data }) => ({

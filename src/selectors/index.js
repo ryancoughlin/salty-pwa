@@ -23,5 +23,7 @@ export const getCurrentSwell = createSelector([getSwells], (swells) => {
     return now.diff(time) <= 0;
   });
 
+  if (index === -1) return {};
+
   return swellForecast[index];
 });
