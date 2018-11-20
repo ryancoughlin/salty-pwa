@@ -6,15 +6,6 @@ const BarSegment = ({
 }) => (
   <g>
     <Bar {...props} style={{ fill: props.color, width: 9 }} />
-
-    <rect
-      x={props.x - 5}
-      y={props.y - 6}
-      width="9"
-      height="2"
-      fill="#003656"
-    />
-
     <g
       style={{ transformOrigin: '4px 6px' }}
       transform={`translate(${props.x - 4}, ${props.y0

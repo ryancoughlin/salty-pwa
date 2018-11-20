@@ -14,7 +14,7 @@ const OffshoreChart = ({ swell }) => (
   <Container>
     <VictoryChart
       containerComponent={<VictoryContainer />}
-      height={150}
+      height={100}
       padding={{
         top: 40,
         right: 24,
