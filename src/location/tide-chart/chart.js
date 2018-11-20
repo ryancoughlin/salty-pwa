@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   VictoryLine,
   VictoryChart,
-  VictoryContainer,
   VictoryClipContainer,
   VictoryZoomContainer,
   VictoryAxis,
@@ -13,9 +12,10 @@ import glamorous from 'glamorous';
 import UI from '../../assets/ui';
 import Marker from './marker';
 
-const AXIS_FONT_SIZE = 14;
+const AXIS_FONT_SIZE = 10;
 
-const tomorrow = new Date().setDate(new Date().getDate() + 1);
+const now = moment(new Date()).add(-12, 'hours');
+const tomorrow = moment(new Date()).add(1, 'days').add(-12, 'hours');
 
 export default class TideChart extends Component {
   get tides() {
@@ -40,7 +40,7 @@ export default class TideChart extends Component {
                 <VictoryClipContainer
                   clipPadding={{ top: 34 }}
                 />)}
-              zoomDomain={{ x: [new Date(), tomorrow] }}
+              zoomDomain={{ x: [now, tomorrow] }}
               allowZoom={false}
               dimension="x"
             />
@@ -133,6 +133,6 @@ export default class TideChart extends Component {
 }
 
 const Container = glamorous.div({
-  width: '100%',
-  marginTop: 40,
+  marginLeft: 24,
+  marginBottom: 24,
 });

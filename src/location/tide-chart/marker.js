@@ -8,13 +8,13 @@ const arrowCSS = {
 };
 
 const timeCSS = {
-  fontSize: 16,
+  fontSize: 14,
   fontWeight: 500,
   fill: '#20A4FC',
 };
 
 const heightCSS = {
-  fontSize: 13,
+  fontSize: 12,
   fontWeight: 500,
   fill: '#0D1B2A',
 };
