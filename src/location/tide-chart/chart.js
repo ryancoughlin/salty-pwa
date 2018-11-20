@@ -55,7 +55,7 @@ export default class TideChart extends Component {
         >
           <VictoryAxis
             dependentAxis
-            tickValues={[-4, 0, 4, 8, 12]}
+            tickValues={[0, 4, 8, 12]}
             orientation="left"
             scale="linear"
             style={{

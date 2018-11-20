@@ -10,7 +10,7 @@ import Loading from '../../common/loading';
 import WaterTemperature from '../water-temperature';
 import ConditionRow from '../../common/condition-row';
 import UI from '../../assets/ui';
-import { swellType } from '../../utils/swell-type';
+import swellType from '../../utils/swell-type';
 import { getCurrentSwell } from '../../selectors';
 
 const Seas = class extends Component {
@@ -44,7 +44,7 @@ const Seas = class extends Component {
     return (
       <Container>
         {
-          swells
+          swells && currentSwell.length
             ? (
               <div>
                 <Title>Seas</Title>
