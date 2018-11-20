@@ -14,8 +14,8 @@ import Marker from './marker';
 
 const AXIS_FONT_SIZE = 10;
 
-const now = moment(new Date()).add(-12, 'hours');
-const tomorrow = moment(new Date()).add(1, 'days').add(-12, 'hours');
+const now = moment(new Date()).add(-6, 'hours');
+const tomorrow = moment(new Date()).add(1, 'days').add(-8, 'hours');
 
 export default class TideChart extends Component {
   get tides() {
