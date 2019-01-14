@@ -35,6 +35,11 @@ const Seas = class extends Component {
       return now.diff(time) <= 0;
     });
 
+    const windSpeed = wind[currentWindIndex].windSpeed;
+
+    if (windSpeed === undefined) {
+      return null;
+    }
     return wind[currentWindIndex].windSpeed;
   }
 
@@ -50,11 +55,15 @@ const Seas = class extends Component {
               <div>
                 <Title>Seas</Title>
                 <WaterTemperature />
-                <ConditionRow
-                  label="Wave Height"
-                  value={`${currentSwell.height}' / ${swellType(this.currentWindSpeed())}`}
-                  dark
-                />
+                {
+                  this.currentWindSpeed() && (
+                    <ConditionRow
+                      label="Wave Height"
+                      value={`${currentSwell.height}' / ${swellType(this.currentWindSpeed())}`}
+                      dark
+                    />
+                  )
+                }
                 <ConditionRow label="Period" value={`${currentSwell.period}s`} dark />
                 <SeaForecastTitle>Next 24 hours</SeaForecastTitle>
                 <OffshoreChart swell={swells} />
