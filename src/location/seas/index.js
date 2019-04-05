@@ -35,11 +35,10 @@ const Seas = class extends Component {
       return now.diff(time) <= 0;
     });
 
-    const windSpeed = wind[currentWindIndex].windSpeed;
-
-    if (windSpeed === undefined) {
+    if (currentWindIndex === -1) {
       return null;
     }
+
     return wind[currentWindIndex].windSpeed;
   }
 
