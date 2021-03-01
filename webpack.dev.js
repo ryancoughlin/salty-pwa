@@ -1,8 +1,8 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const Dotenv = require('dotenv-webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const common = require('./webpack.common.js');
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const Dotenv = require('dotenv-webpack')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
   mode: 'development',
@@ -13,8 +13,8 @@ module.exports = merge(common, {
   ],
   devServer: {
     contentBase: './dist',
-    port: 3000,
+    port: 5000,
     hot: true,
     open: true,
   },
-});
+})
