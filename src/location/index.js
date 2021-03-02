@@ -30,7 +30,7 @@ class Location extends Component {
   }
 
   render() {
-    const { tides, location, nearbyStations } = this.props
+    const { tides, location } = this.props
 
     if (!tides || !location) {
       return <Loading />
@@ -39,11 +39,7 @@ class Location extends Component {
     return (
       <div className="container">
         <UI.Container.Base>
-          <Overview
-            location={location}
-            tides={tides}
-            nearbyStations={nearbyStations}
-          />
+          <Overview location={location} tides={tides} />
         </UI.Container.Base>
         <TideChart location={location} />
         <Seas />
@@ -59,8 +55,11 @@ const mapStateToProps = ({ data }) => ({
   nearbyStations: data.nearbyStations,
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Location)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Location)

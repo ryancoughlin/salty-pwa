@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import glamorous from 'glamorous';
-import UI from '../../assets/ui';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import glamorous from 'glamorous'
+import UI from '../../assets/ui'
 
 const NearestBuoyText = ({ nearbyStations }) => (
   <Container>
@@ -12,16 +12,16 @@ const NearestBuoyText = ({ nearbyStations }) => (
       </ViewNearestBuoyLink>
     </SmallText>
   </Container>
-);
+)
 
 const Container = glamorous.div({
   marginTop: 0,
-});
+})
 
 const SmallText = glamorous(UI.Type.Text)({
   fontSize: 12,
   color: UI.Colors.Dark,
-});
+})
 
 const ViewNearestBuoyLink = glamorous(Link)({
   color: UI.Colors.SubtleTextColor,
@@ -29,6 +29,6 @@ const ViewNearestBuoyLink = glamorous(Link)({
   ':visited': {
     color: UI.Colors.SubtleTextColor,
   },
-});
+})
 
-export default NearestBuoyText;
+export default NearestBuoyText
