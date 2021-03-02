@@ -1,20 +1,23 @@
 export const userLocation = () => {
-  const geolocation = navigator.geolocation;
-  const location = new Promise((resolve, reject) => {
-    if (!geolocation) {
-      reject(new Error('Geolocation is not supported by this browser!'));
+  const geolocation = navigator.geolocation
+
+  return new Promise((resolve, reject) => {
+    if ('geolocation' in navigator) {
+      console.log('FIND!!!!!')
+      geolocation.getCurrentPosition(success, error)
+    } else {
+      reject(new Error('Geolocation is not supported by this browser!'))
     }
+  })
 
-    geolocation.getCurrentPosition(
-      (position) => {
-        resolve(position.coords);
-      },
-      (error) => {
-        reject(error);
-      },
-      { maximumAge: 60 * 60 * 1000 },
-    );
-  });
+  function error() {
+    alert(`ERROR(${error.code}): ${error.message}`)
+    reject(error)
+  }
 
-  return location;
-};
+  function success(position) {
+    alert(position.coord)
+    navigator.geolocation.clearWatch(watchID)
+    resolve(position.coords)
+  }
+}

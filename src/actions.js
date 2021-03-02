@@ -14,6 +14,7 @@ import {
 } from './types'
 
 export function fetchLocation() {
+  alert('firing location')
   return dispatch => {
     userLocation().then(location => {
       dispatch({
@@ -54,6 +55,7 @@ export function fetchTides(location) {
 
 export function fetchSwells(location) {
   const { latitude, longitude } = location
+  console.log('FETCH SWELL')
   return dispatch => {
     request(`/swell?latitude=${latitude}&longitude=${longitude}`)
       .then(swells => {
