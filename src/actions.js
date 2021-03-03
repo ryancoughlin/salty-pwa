@@ -117,7 +117,7 @@ export function fetchWaterTemperature(location) {
 export function fetchWeather(location) {
   const { latitude, longitude } = location
   return (dispatch) => {
-    request(`/weather?latitude=${latitude}&longitude=${longitude}`)
+    request(`/weather-forecast?latitude=${latitude}&longitude=${longitude}`)
       .then((weather) => {
         dispatch({
           type: FETCH_WEATHER,

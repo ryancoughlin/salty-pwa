@@ -24,17 +24,19 @@ const Overview = class extends Component {
   }
 
   render() {
-    const { locationName, nearbyStations } = this.props
+    const { locationName } = this.props
+    console.log('LOCATION NAME', locationName)
+    console.log('LOCATION NAME', this.props.tides)
     return (
       <Container>
-        {location && this.nextTide ? (
-          <LocationLoader />
-        ) : (
+        {locationName && this.props.tides ? (
           <div>
             <LocationName locationName={locationName} />
             <TideDirection nextTide={this.nextTide} />
             <RemainingTideTime nextTide={this.nextTide} />
           </div>
+        ) : (
+          <LocationLoader />
         )}
       </Container>
     )

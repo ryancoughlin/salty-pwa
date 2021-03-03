@@ -7,9 +7,11 @@ import shortTimeFormat from '../../utils/helpers'
 import CurrentlyLoader from '../../common/loaders/currently.loader'
 
 function CurrentConditions(props) {
+  const weather = props.weather
+
   return (
     <Container>
-      {Object.keys(props.weather).length == 0 ? (
+      {Object.keys(weather).length == 0 ? (
         <CurrentlyLoader />
       ) : (
         <div>

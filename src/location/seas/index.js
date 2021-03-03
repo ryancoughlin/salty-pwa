@@ -12,11 +12,12 @@ import ConditionRow from '../../common/condition-row'
 import UI from '../../assets/ui'
 import swellType from '../../utils/swell-type'
 import { getCurrentSwell } from '../../selectors'
+import CurrentlyLoader from '../../common/loaders/currently.loader'
 
 const Seas = class extends Component {
   componentDidMount() {
     const { fetchLocation, fetchSwells } = this.props
-    fetchLocation(location => {
+    fetchLocation((location) => {
       fetchSwells(location)
     })
   }
@@ -30,7 +31,7 @@ const Seas = class extends Component {
     const { wind } = this.props.weather
 
     const now = moment()
-    const currentWindIndex = wind.findIndex(hourly => {
+    const currentWindIndex = wind.findIndex((hourly) => {
       const time = moment.utc(hourly.time).local()
       return now.diff(time) <= 0
     })
@@ -47,7 +48,9 @@ const Seas = class extends Component {
 
     return (
       <Container>
-        {swells === null && swells === null ? (
+        {Object.keys(swells).length == 0 ? (
+          <CurrentlyLoader />
+        ) : (
           <div>
             <Title>Seas</Title>
             <WaterTemperature />
@@ -68,8 +71,6 @@ const Seas = class extends Component {
             <SeaForecastTitle>Next 24 hours</SeaForecastTitle>
             <OffshoreChart swell={swells} />
           </div>
-        ) : (
-          <Loading inline />
         )}
       </Container>
     )
@@ -97,11 +98,8 @@ const mapStateToProps = ({ data }) => ({
   weather: data.weather,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(actions, dispatch),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Seas)
+export default connect(mapStateToProps, mapDispatchToProps)(Seas)

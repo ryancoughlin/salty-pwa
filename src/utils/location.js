@@ -8,15 +8,15 @@ export const userLocation = () => {
     } else {
       reject(new Error('Geolocation is not supported by this browser!'))
     }
+
+    function error() {
+      alert(`ERROR(${error.code}): ${error.message}`)
+      reject(error)
+    }
+
+    function success(position) {
+      console.log(position)
+      resolve(position.coords)
+    }
   })
-
-  function error() {
-    alert(`ERROR(${error.code}): ${error.message}`)
-    reject(error)
-  }
-
-  function success(position) {
-    alert(position.coord)
-    resolve(position.coords)
-  }
 }
