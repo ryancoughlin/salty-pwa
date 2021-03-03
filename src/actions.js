@@ -14,9 +14,8 @@ import {
 } from './types'
 
 export function fetchLocation() {
-  alert('firing location')
-  return dispatch => {
-    userLocation().then(location => {
+  return (dispatch) => {
+    userLocation().then((location) => {
       dispatch({
         type: FETCH_USER_LOCATION,
         location,
@@ -35,9 +34,9 @@ export function fetchLocation() {
 
 export function fetchTides(location) {
   const { latitude, longitude } = location
-  return dispatch => {
+  return (dispatch) => {
     request(`/tide-table?latitude=${latitude}&longitude=${longitude}`)
-      .then(tides => {
+      .then((tides) => {
         if (Object.keys(tides).length === 0) {
           console.log('empty tide response')
         } else {
@@ -47,7 +46,7 @@ export function fetchTides(location) {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
   }
@@ -56,9 +55,9 @@ export function fetchTides(location) {
 export function fetchSwells(location) {
   const { latitude, longitude } = location
   console.log('FETCH SWELL')
-  return dispatch => {
+  return (dispatch) => {
     request(`/swell?latitude=${latitude}&longitude=${longitude}`)
-      .then(swells => {
+      .then((swells) => {
         if (Object.keys(swells).length === 0) {
           console.log('empty tide response')
         } else {
@@ -68,7 +67,7 @@ export function fetchSwells(location) {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
   }
@@ -76,9 +75,9 @@ export function fetchSwells(location) {
 
 export function fetchTideChart(location) {
   const { latitude, longitude } = location
-  return dispatch => {
+  return (dispatch) => {
     request(`/tide-chart?latitude=${latitude}&longitude=${longitude}`)
-      .then(data => {
+      .then((data) => {
         console.log(data)
         if (Object.keys(data).length === 0) {
           console.log('empty tide response')
@@ -89,7 +88,7 @@ export function fetchTideChart(location) {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
   }
@@ -97,9 +96,9 @@ export function fetchTideChart(location) {
 
 export function fetchWaterTemperature(location) {
   const { latitude, longitude } = location
-  return dispatch => {
+  return (dispatch) => {
     request(`/water-temperature?latitude=${latitude}&longitude=${longitude}`)
-      .then(data => {
+      .then((data) => {
         if (Object.keys(data).length === 0) {
           console.log('empty tide response')
         } else {
@@ -109,7 +108,7 @@ export function fetchWaterTemperature(location) {
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
   }
@@ -117,15 +116,15 @@ export function fetchWaterTemperature(location) {
 
 export function fetchWeather(location) {
   const { latitude, longitude } = location
-  return dispatch => {
+  return (dispatch) => {
     request(`/weather?latitude=${latitude}&longitude=${longitude}`)
-      .then(weather => {
+      .then((weather) => {
         dispatch({
           type: FETCH_WEATHER,
           weather,
         })
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
   }
@@ -133,26 +132,26 @@ export function fetchWeather(location) {
 
 export function fetchNearbyStations(location) {
   const { latitude, longitude } = location
-  return dispatch => {
+  return (dispatch) => {
     request(`/nearby-stations?latitude=${latitude}&longitude=${longitude}`)
-      .then(nearbyStations => {
+      .then((nearbyStations) => {
         dispatch({
           type: FETCH_NEARBY_STATIONS,
           nearbyStations,
         })
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
   }
 }
 
 export function getLocationName(location) {
-  return dispatch => {
+  return (dispatch) => {
     geocodeLocation(location)
-      .then(result => {
+      .then((result) => {
         const cityComponents = result.results[0].address_components.filter(
-          addr =>
+          (addr) =>
             addr.types[0] === 'locality'
               ? 1
               : addr.types[0] === 'administrative_area_level_1'
@@ -167,7 +166,7 @@ export function getLocationName(location) {
           locationName,
         })
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
   }

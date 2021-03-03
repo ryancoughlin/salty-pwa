@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   VictoryLine,
   VictoryChart,
@@ -6,45 +6,44 @@ import {
   VictoryZoomContainer,
   VictoryAxis,
   VictoryScatter,
-} from 'victory';
-import moment from 'moment';
-import glamorous from 'glamorous';
-import UI from '../../assets/ui';
-import Marker from './marker';
+} from 'victory'
+import moment from 'moment'
+import glamorous from 'glamorous'
+import UI from '../../assets/ui'
+import Marker from './marker'
 
-const AXIS_FONT_SIZE = 10;
+const AXIS_FONT_SIZE = 10
 
-const now = moment(new Date()).add(-6, 'hours');
-const tomorrow = moment(new Date()).add(1, 'days').add(-8, 'hours');
+const now = moment(new Date()).add(-6, 'hours')
+const tomorrow = moment(new Date()).add(1, 'days').add(-8, 'hours')
 
 export default class TideChart extends Component {
   get tides() {
-    const { tides } = this.props;
+    const { tides } = this.props
 
-    const values = Object.values(tides);
-    const flatTides = values.flat();
+    const values = Object.values(tides)
+    const flatTides = values.flat()
 
-    return flatTides.map(prediction => ({
+    return flatTides.map((prediction) => ({
       ...prediction,
       time: moment(prediction.time),
-    }));
+    }))
   }
 
   render() {
     return (
       <Container>
         <VictoryChart
-          containerComponent={(
+          containerComponent={
             <VictoryZoomContainer
-              clipContainerComponent={(
-                <VictoryClipContainer
-                  clipPadding={{ top: 34 }}
-                />)}
+              clipContainerComponent={
+                <VictoryClipContainer clipPadding={{ top: 34 }} />
+              }
               zoomDomain={{ x: [now, tomorrow] }}
               allowZoom={false}
               dimension="x"
             />
-          )}
+          }
           height={200}
           padding={{
             top: 30,
@@ -127,11 +126,11 @@ export default class TideChart extends Component {
           />
         </VictoryChart>
       </Container>
-    );
+    )
   }
 }
 
 const Container = glamorous.div({
   marginLeft: 24,
   marginBottom: 24,
-});
+})

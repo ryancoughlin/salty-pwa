@@ -1,9 +1,7 @@
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const workboxPlugin = require('workbox-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+const webpack = require('webpack')
+const workboxPlugin = require('workbox-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 
 module.exports = {
   devtool: 'source-map',
@@ -13,9 +11,10 @@ module.exports = {
   },
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
-      ENV: JSON.stringify(process.env.NODE_ENV === 'production' ? 'production' : 'development'),
+      ENV: JSON.stringify(
+        process.env.NODE_ENV === 'production' ? 'production' : 'development',
+      ),
     }),
     new HTMLWebpackPlugin({
       template: './src/index.html',
@@ -48,6 +47,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      },
+      {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
@@ -56,7 +66,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'raw-loader',
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|eot|ttf)$/i,
@@ -69,4 +79,4 @@ module.exports = {
       },
     ],
   },
-};
+}

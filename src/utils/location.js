@@ -17,7 +17,6 @@ export const userLocation = () => {
 
   function success(position) {
     alert(position.coord)
-    navigator.geolocation.clearWatch(watchID)
     resolve(position.coords)
   }
 }

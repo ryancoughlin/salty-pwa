@@ -8,6 +8,8 @@ import RemainingTideTime from './remaining-tide-time'
 import LocationName from './location-name'
 import TideDirection from './tide-direction'
 import NearestBuoy from './nearest-buoy'
+import styled from '@emotion/styled'
+import LocationLoader from '../../common/loaders/location.loader'
 
 const Overview = class extends Component {
   get nextTide() {
@@ -24,25 +26,32 @@ const Overview = class extends Component {
   render() {
     const { locationName, nearbyStations } = this.props
     return (
-      <div>
-        {locationName && <LocationName locationName={locationName} />}
-        <TideDirection nextTide={this.nextTide} />
-        <RemainingTideTime nextTide={this.nextTide} />
-      </div>
+      <Container>
+        {location && this.nextTide ? (
+          <LocationLoader />
+        ) : (
+          <div>
+            <LocationName locationName={locationName} />
+            <TideDirection nextTide={this.nextTide} />
+            <RemainingTideTime nextTide={this.nextTide} />
+          </div>
+        )}
+      </Container>
     )
   }
 }
+
+const Container = styled.div`
+  background-color: #fff;
+`
 
 const mapStateToProps = ({ data }) => ({
   locationName: data.locationName,
   location: data.location,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(actions, dispatch),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Overview)
+export default connect(mapStateToProps, mapDispatchToProps)(Overview)

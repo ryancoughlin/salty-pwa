@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import Raven from 'raven-js'
 import * as actions from '../actions'
 import { getTidesState } from '../selectors'
-import Loading from '../common/loading'
 import Overview from './overview'
 import Currently from './currently'
 import Seas from './seas'
@@ -31,11 +30,6 @@ class Location extends Component {
 
   render() {
     const { tides, location } = this.props
-
-    if (!tides || !location) {
-      return <Loading />
-    }
-
     return (
       <div className="container">
         <UI.Container.Base>
@@ -55,11 +49,8 @@ const mapStateToProps = ({ data }) => ({
   nearbyStations: data.nearbyStations,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(actions, dispatch),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Location)
+export default connect(mapStateToProps, mapDispatchToProps)(Location)

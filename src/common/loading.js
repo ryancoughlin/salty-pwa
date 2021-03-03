@@ -1,12 +1,8 @@
-import React from 'react';
-import glamorous from 'glamorous';
-import Icon from './icon';
+import React from 'react'
+import glamorous from 'glamorous'
+// import { ReactComponent as Loader } from '../assets/images/loader.svg'
 
-const Loading = props => (
-  <Container {...props}>
-    <Icon.Loader size="40" style={{ top: '-5px', position: 'relative' }} />
-  </Container>
-);
+const Loading = (props) => <Container {...props}></Container>
 
 const Container = glamorous.div(
   {
@@ -14,10 +10,10 @@ const Container = glamorous.div(
     alignItems: 'center',
     justifyContent: 'center',
   },
-  props => ({
+  (props) => ({
     width: props.inline ? '100%' : '100vw',
     height: props.inline ? '100%' : '100vh',
   }),
-);
+)
 
-export default Loading;
+export default Loading

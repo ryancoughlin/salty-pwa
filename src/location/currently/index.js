@@ -4,28 +4,35 @@ import glamorous from 'glamorous'
 import UI from '../../assets/ui'
 import ConditionRow from '../../common/condition-row'
 import shortTimeFormat from '../../utils/helpers'
-import Loading from '../../common/loading'
+import CurrentlyLoader from '../../common/loaders/currently.loader'
 
 function CurrentConditions(props) {
-  return props.weather === null ? (
+  return (
     <Container>
-      <Header>{weather.summary}</Header>
-      <Details>
-        <ConditionRow
-          label="Sun"
-          value={`${shortTimeFormat(weather.sunrise)} → ${shortTimeFormat(
-            weather.sunset,
-          )}`}
-        />
-        <ConditionRow label="Pressure" value={`${weather.pressure} mb`} />
-        <ConditionRow label="Moon" value={weather.moon.phase} />
-        <ConditionRow label="Humidity" value={`${weather.humidity}%`} />
-        <ConditionRow label="UV Index" value={`${weather.uvIndex} / 10`} />
-        <ConditionRow label="Visibility" value={`${weather.visibility} mi`} />
-      </Details>
+      {Object.keys(props.weather).length == 0 ? (
+        <CurrentlyLoader />
+      ) : (
+        <div>
+          <Header>{weather.summary}</Header>
+          <Details>
+            <ConditionRow
+              label="Sun"
+              value={`${shortTimeFormat(weather.sunrise)} → ${shortTimeFormat(
+                weather.sunset,
+              )}`}
+            />
+            <ConditionRow label="Pressure" value={`${weather.pressure} mb`} />
+            <ConditionRow label="Moon" value={weather.moon.phase} />
+            <ConditionRow label="Humidity" value={`${weather.humidity}%`} />
+            <ConditionRow label="UV Index" value={`${weather.uvIndex} / 10`} />
+            <ConditionRow
+              label="Visibility"
+              value={`${weather.visibility} mi`}
+            />
+          </Details>
+        </div>
+      )}
     </Container>
-  ) : (
-    <Loading inline />
   )
 }
 
