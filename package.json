@@ -11,7 +11,7 @@
     "glamor": "^2.20.40",
     "glamorous": "^4.13.1",
     "mapbox-gl": "^2.1.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "normalize.css": "^8.0.1",
     "raven-js": "^3.27.2",
     "raw-loader": "^4.0.2",
