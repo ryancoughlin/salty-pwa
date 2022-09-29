@@ -29,7 +29,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "url-loader": "4.1.1",
-    "victory": "^35.4.10",
+    "victory": "^36.6.8",
     "workbox-webpack-plugin": "^6.1.1"
   },
   "scripts": {
